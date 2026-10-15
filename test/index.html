@@ -270,8 +270,8 @@ try {
   login.addEventListener('click', async () => {
     status.textContent = 'Otevírám přihlášení Google…';
     try {
-      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) await signInWithRedirect(auth,provider);
-      else await signInWithPopup(auth,provider);
+    
+      await signInWithPopup(auth,provider);
     } catch(error) { status.textContent = 'Přihlášení se nezdařilo: ' + error.code + ' – ' + error.message; }
   });
   logout.addEventListener('click', async () => { try { await signOut(auth); } catch(error) { status.textContent = error.message; } });
