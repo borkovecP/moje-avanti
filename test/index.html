@@ -106,7 +106,7 @@ header .brand{position:absolute;left:22px;top:13px;background:transparent;border
 </div></details>
 <label class="field wide">Poznámky<textarea name="note" rows="3" maxlength="2000"></textarea></label></div><div class="actions"><button type="submit">Uložit zákazníka</button><button type="button" class="secondary" id="cancel">Zrušit</button><button type="button" class="danger" id="delete" hidden>Smazat zákazníka</button></div></form></div></section>
 <section id="visitView" hidden><div class="topline"><button class="secondary" id="visitBack">← Zpět</button><h1>Nová návštěva</h1></div><div class="panel"><form id="visitForm" class="visit-form"><div class="visit-mode"><button type="button" class="active" id="visitOwn">Můj zákazník</button><button type="button" id="visitOther">Ostatní návštěva</button></div><div class="formgrid"><label class="field wide" id="visitCustomerWrap">Zákazník<select id="visitCustomer" name="customerId"><option value="">Vyber zákazníka…</option></select></label><label class="field wide" id="visitOtherWrap" hidden>Název zákazníka / místo<input name="otherName" maxlength="150" placeholder="Např. prodejna, firma nebo školení"></label><label class="field date-field">Datum<input name="date" type="date" required></label><label class="field">Město<input name="city" maxlength="100" required placeholder="Město návštěvy" list="visitCities"></label><datalist id="visitCities"></datalist><label class="field">Čas (nepovinné)<input name="time" type="time"></label></div><div class="visit-groups"><details class="visit-group"><summary>Objednáno</summary><div class="visit-options" data-group="ordered"></div></details><details class="visit-group"><summary>Dodáno</summary><div class="visit-options" data-group="delivered"></div></details><details class="visit-group"><summary>Ostatní</summary><div class="visit-options" data-group="other"></div></details></div><div class="formgrid"><label class="field wide">Moje poznámka (soukromá)<textarea name="privateNote" rows="3" maxlength="5000"></textarea></label><label class="field wide">Poznámka do hlášení<textarea name="reportNote" rows="3" maxlength="5000"></textarea></label></div><div class="actions"><button type="submit">Uložit návštěvu</button><button type="button" class="secondary" id="visitCancel">Zrušit</button></div><p class="notice">Návštěvy se zatím ukládají jen do tohoto zařízení. Export návštěv a synchronizaci doplníme později.</p></form></div></section>
-<section id="settingsView" hidden><div class="topline"><button class="secondary" id="settingsBack">← Zpět</button><h1>Nastavení</h1></div><div class="panel settings-panel"><h2>Správa aplikace</h2><p class="muted">Tato část je chráněna čtyřmístným PINem proti nechtěným změnám.</p><h2>Zálohování</h2><p>Společná záloha obsahuje zákazníky i uložené návštěvy z tohoto zařízení.</p><div class="settings-actions"><button id="backupAll" type="button">↓ Zálohovat vše (JSON)</button><button id="restoreAll" type="button" class="secondary">↑ Obnovit ze zálohy</button><input id="restoreAllFile" type="file" accept="application/json,.json" hidden></div><p class="settings-warning">Pozor: Obnovení nahradí současné zákazníky a návštěvy na tomto zařízení. Před obnovením si vytvoř novou zálohu.</p><h2>Zabezpečení</h2><div class="settings-actions"><button id="changeSettingsPin" type="button" class="secondary">Změnit PIN Nastavení</button></div><p class="settings-warning">PIN chrání vstup do Nastavení, nikoliv samotná data v úložišti zařízení.</p><h2>Cloud – test přihlášení</h2><p class="muted">Test přihlášení k Firebase. Zákazníci a návštěvy se zatím nikam neodesílají.</p><div class="settings-actions"><button id="cloudLogin" type="button">Přihlásit přes Google</button><button id="cloudLogout" type="button" class="secondary" hidden>Odhlásit</button></div><p id="cloudStatus" class="muted" aria-live="polite">Připravuji přihlášení…</p><h2>Cloud – test přenosu dat</h2><p class="muted">Nejdříve si stáhni úplnou zálohu JSON. Přenos dat spouštíš ručně; automatická synchronizace zatím není zapnutá.</p><div class="settings-actions"><button id="cloudUpload" type="button" hidden>↑ Odeslat data do cloudu</button><button id="cloudDownload" type="button" class="secondary" hidden>↓ Načíst data z cloudu</button></div><p id="cloudDataStatus" class="muted" aria-live="polite">Přihlas se, abys mohl přenášet data.</p><h2>O aplikaci</h2><p>Moje AVANTI · testovací verze 1.2 (ruční cloudový přenos)</p><p class="muted">Automatická synchronizace zatím není zapnutá.</p></div></section></main><script>
+<section id="settingsView" hidden><div class="topline"><button class="secondary" id="settingsBack">← Zpět</button><h1>Nastavení</h1></div><div class="panel settings-panel"><h2>Správa aplikace</h2><p class="muted">Tato část je chráněna čtyřmístným PINem proti nechtěným změnám.</p><h2>Zálohování</h2><p>Společná záloha obsahuje zákazníky i uložené návštěvy z tohoto zařízení.</p><div class="settings-actions"><button id="backupAll" type="button">↓ Zálohovat vše (JSON)</button><button id="restoreAll" type="button" class="secondary">↑ Obnovit ze zálohy</button><input id="restoreAllFile" type="file" accept="application/json,.json" hidden></div><p class="settings-warning">Pozor: Obnovení nahradí současné zákazníky a návštěvy na tomto zařízení. Před obnovením si vytvoř novou zálohu.</p><h2>Zabezpečení</h2><div class="settings-actions"><button id="changeSettingsPin" type="button" class="secondary">Změnit PIN Nastavení</button></div><p class="settings-warning">PIN chrání vstup do Nastavení, nikoliv samotná data v úložišti zařízení.</p><h2>Cloud – test přihlášení</h2><p class="muted">Test přihlášení k Firebase. Zákazníci a návštěvy se zatím nikam neodesílají.</p><div class="settings-actions"><button id="cloudLogin" type="button">Přihlásit přes Google</button><button id="cloudLogout" type="button" class="secondary" hidden>Odhlásit</button></div><p id="cloudStatus" class="muted" aria-live="polite">Připravuji přihlášení…</p><h2>Cloud – test přenosu dat</h2><p class="muted">Nejdříve si stáhni úplnou zálohu JSON. Přenos dat spouštíš ručně; automatická synchronizace zatím není zapnutá.</p><div class="settings-actions"><button id="cloudUpload" type="button" hidden>↑ Odeslat data do cloudu</button><button id="cloudDownload" type="button" class="secondary" hidden>↓ Načíst data z cloudu</button></div><p id="cloudDataStatus" class="muted" aria-live="polite">Přihlas se, abys mohl přenášet data.</p><h2>O aplikaci</h2><p>Moje AVANTI · testovací verze 1.3 (diagnostika Firebase)</p><p class="muted">Automatická synchronizace zatím není zapnutá.</p></div></section></main><script>
 (()=>{'use strict';
 const KEY='moje-avanti-customers-v1',fields=['person','company','phone','phone2','email','email2','street','postal','city','homeStreet','homePostal','homeCity','note'];let data=[],current=null,fromEdit='listView',customerView=window.matchMedia('(max-width: 600px)').matches?'rows':'tiles';
 const $=id=>document.getElementById(id),safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -269,6 +269,8 @@ try {
   const visitsKey = "moje-avanti-visits-v1";
   const getLocal = key => { const value = JSON.parse(localStorage.getItem(key) || "[]"); if (!Array.isArray(value)) throw new Error("Neplatná místní data"); return value; };
   const cloudDoc = () => doc(db, "users", activeUser.uid);
+  const expectedUid = "Csg7Rlp3PWc8xahhfC2LvrPVWJn1";
+  const diagnostic = (stage, error) => `${stage}: ${error.code || "chyba"} – ${error.message}. Projekt: ${app.options.projectId}; UID: ${activeUser?.uid || "nepřihlášen"}; pravidlo UID: ${expectedUid}; shoda: ${activeUser?.uid === expectedUid ? "ANO" : "NE"}.`;
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({prompt:'select_account'});
   onAuthStateChanged(auth, user => {
@@ -290,17 +292,21 @@ try {
   });
   upload.addEventListener('click', async () => {
     if (!activeUser) return;
+    let stage = "Příprava";
     try {
       const customers = getLocal(customersKey), visits = getLocal(visitsKey);
+      stage = "Čtení existujícího dokumentu";
+      dataStatus.textContent = "Kontroluji oprávnění čtení…";
       const existing = await getDoc(cloudDoc());
       const warning = existing.exists()
         ? `V cloudu už jsou data. Odesláním je NAHRADÍŠ daty z tohoto zařízení (${customers.length} zákazníků, ${visits.length} návštěv). Máš staženou zálohu JSON?`
         : `Odeslat do cloudu ${customers.length} zákazníků a ${visits.length} návštěv? Máš staženou zálohu JSON?`;
       if (!confirm(warning)) return;
       dataStatus.textContent = 'Odesílám…';
+      stage = "Zápis dokumentu";
       await setDoc(cloudDoc(), {app:'Moje AVANTI',version:1,customers,visits,updatedAt:new Date().toISOString()});
       dataStatus.textContent = `Odesláno: ${customers.length} zákazníků, ${visits.length} návštěv.`;
-    } catch(error) { dataStatus.textContent = 'Chyba odesílání: ' + error.message; }
+    } catch(error) { dataStatus.textContent = diagnostic(stage, error); }
   });
   download.addEventListener('click', async () => {
     if (!activeUser) return;
@@ -322,7 +328,7 @@ try {
       }
       alert('Data byla načtena z cloudu. Aplikace se nyní znovu načte.');
       location.reload();
-    } catch(error) { dataStatus.textContent = 'Chyba načítání: ' + error.message; }
+    } catch(error) { dataStatus.textContent = diagnostic('Čtení / načtení', error); }
   });
   logout.addEventListener('click', async () => { try { await signOut(auth); } catch(error) { status.textContent = error.message; } });
 } catch(error) { status.textContent = 'Firebase se nepodařilo spustit: ' + error.message; }
