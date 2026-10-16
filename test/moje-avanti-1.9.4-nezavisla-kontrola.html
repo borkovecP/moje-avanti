@@ -1,0 +1,39 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Moje AVANTI · 1.9.4 kontrola</title><style>body{margin:0;background:#f3f4f6;color:#20242d;font:17px -apple-system,BlinkMacSystemFont,Arial,sans-serif}.wrap{max-width:780px;margin:28px auto;padding:25px;background:white;border-radius:17px;box-shadow:0 2px 14px #0001}h1{font-size:26px}h2{font-size:20px;margin-top:28px}button{padding:13px 18px;border:1px solid #cdd3df;background:#546078;color:white;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer}button:disabled{opacity:.45}p{line-height:1.5}.muted{color:#677080}.result{white-space:pre-wrap;line-height:1.65;background:#f6f7fa;padding:16px;border-radius:10px;overflow-wrap:anywhere}.good{color:#167044}.bad{color:#a02b29}.actions{display:flex;gap:12px;flex-wrap:wrap}code{font-size:14px}</style></head><body><main class="wrap"><h1>Moje AVANTI · kontrola 1.9.4</h1><p><strong>Nezávislé ověření po sloučení</strong></p><p class="muted">Tato stránka pouze čte Firebase a místní data Safari. Neobsahuje žádný zápis, mazání ani automatickou synchronizaci. Ostrá instalovaná aplikace se nemění.</p><p id="authStatus">Ověřuji přihlášení…</p><div class="actions"><button id="login" hidden>Přihlásit Google</button><button id="verify" disabled>🔎 Ověřit skutečná data</button></div><h2>Výsledek kontroly</h2><div id="result" class="result">Čekám na spuštění kontroly.</div><p class="muted">Kontrolujeme 20 zákazníků, 3 návštěvy, shodu cloud ↔ Safari, poznámky Bopa Servis, archivaci Černý Design a smazání test-014. Výsledek můžeš poslat jako snímek obrazovky.</p></main><script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+import {getFirestore,doc,getDoc} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
+const config={apiKey:'AIzaSyAQobrG_n5fUdnQgS9JSYyvWokSWrIhwzo',authDomain:'moje-avanti.firebaseapp.com',projectId:'moje-avanti',storageBucket:'moje-avanti.firebasestorage.app',messagingSenderId:'1075628554394',appId:'1:1075628554394:web:0f9b8d925ae69d6b44c723'};
+const $=id=>document.getElementById(id),canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
+const eq=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
+const array=k=>{const v=JSON.parse(localStorage.getItem(k)||'[]');if(!Array.isArray(v))throw Error('Místní '+k+' nejsou pole');return v};
+const deleted=()=>JSON.parse(localStorage.getItem('moje-avanti-deleted-v1')||'{"customers":{},"visits":{}}');
+const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app);let user=null;
+const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});
+onAuthStateChanged(auth,u=>{user=u;$('login').hidden=!!u;$('verify').disabled=!u;$('authStatus').textContent=u?'Přihlášeno. Kontrola může začít.':'Nepřihlášeno.'});
+getRedirectResult(auth).catch(e=>$('authStatus').textContent='Chyba přihlášení: '+e.message);
+$('login').onclick=async()=>{try{if(/iPad/.test(navigator.userAgent)&&!/iPhone/.test(navigator.userAgent))await signInWithRedirect(auth,provider);else await signInWithPopup(auth,provider)}catch(e){$('authStatus').textContent='Chyba: '+e.message}};
+$('verify').onclick=async()=>{if(!user)return;const uid=user.uid;$('verify').disabled=true;$('result').textContent='Načítám cloud a porovnávám záznamy…';try{
+const snap=await getDoc(doc(db,'users',uid,'sync','v2'));if(!snap.exists())throw Error('Cloudový dokument users/{uid}/sync/v2 neexistuje.');if(auth.currentUser?.uid!==uid)throw Error('Účet se změnil během kontroly.');
+const cloud=snap.data(),lc=array('moje-avanti-customers-v1'),lv=array('moje-avanti-visits-v1'),ld=deleted(),cc=cloud.customers,cv=cloud.visits,cd=cloud.deleted||{};
+if(!Array.isArray(cc)||!Array.isArray(cv))throw Error('Cloud neobsahuje správná pole zákazníků a návštěv.');
+const checks=[],line=(name,ok,detail='')=>checks.push({name,ok,detail});
+line('Cloud: 20 zákazníků',cc.length===20,'nalezeno '+cc.length);line('Cloud: 3 návštěvy',cv.length===3,'nalezeno '+cv.length);
+line('Safari: 20 zákazníků',lc.length===20,'nalezeno '+lc.length);line('Safari: 3 návštěvy',lv.length===3,'nalezeno '+lv.length);
+const byId=a=>new Map(a.map(x=>[String(x.id),x]));const cm=byId(cc),lm=byId(lc),vm=byId(cv),vlm=byId(lv);
+line('Unikátní ID zákazníků',cm.size===cc.length&&lm.size===lc.length);
+line('Unikátní ID návštěv',vm.size===cv.length&&vlm.size===lv.length);
+const diffs=(a,b)=>{const am=byId(a),bm=byId(b),ids=new Set([...am.keys(),...bm.keys()]);return [...ids].filter(id=>!eq(am.get(id),bm.get(id)))};
+const customerDiffs=diffs(cc,lc),visitDiffs=diffs(cv,lv);
+line('Zákazníci: cloud = Safari',customerDiffs.length===0,customerDiffs.length?'Rozdílná ID: '+customerDiffs.join(', '):'všech 20 záznamů odpovídá');
+line('Návštěvy: cloud = Safari',visitDiffs.length===0,visitDiffs.length?'Rozdílná ID: '+visitDiffs.join(', '):'všechny 3 záznamy odpovídají');
+const gone=!cm.has('test-014')&&!lm.has('test-014')&&!!cd.customers?.['test-014']&&!!ld.customers?.['test-014'];
+line('test-014 smazaný v obou úložištích',gone,'cloudová i místní evidence smazání');
+const name=x=>[x.company,x.person,x.name,x.nazev].filter(Boolean).join(' ').toLocaleLowerCase('cs');
+const bopa=cc.filter(x=>name(x).includes('bopa')),cerny=cc.filter(x=>name(x).includes('černý')||name(x).includes('cerny'));
+line('Bopa Servis: nalezen právě jeden záznam',bopa.length===1,'nalezeno '+bopa.length);
+if(bopa.length===1){const note=String(bopa[0].note||'');line('Bopa Servis: obě poznámky',note.includes('tester')&&note.includes('TEST SYNCHRONIZACE 1'),'obsahuje „tester“ i „TEST SYNCHRONIZACE 1“');line('Bopa Servis: nearchivovaný',bopa[0].archived===false,'archived = '+String(bopa[0].archived));}
+line('Černý Design: nalezen právě jeden záznam',cerny.length===1,'nalezeno '+cerny.length);
+if(cerny.length===1)line('Černý Design: nearchivovaný',cerny[0].archived===false,'archived = '+String(cerny[0].archived));
+const failed=checks.filter(x=>!x.ok);$('result').className='result '+(failed.length?'bad':'good');$('result').textContent=(failed.length?'⚠️ KONTROLA ODHALILA ROZDÍLY':'✅ KONTROLA PROŠLA')+'\nCloudová revize: '+String(cloud.revision??'neuvedena')+'\n\n'+checks.map(x=>(x.ok?'✓ ':'✗ ')+x.name+(x.detail?' — '+x.detail:'')).join('\n')+'\n\n'+(failed.length?'Nic nebylo změněno. Pošli snímek obrazovky, další kroky zatím nedělej.':'Všechny uvedené kontroly prošly. Nic nebylo změněno.');
+}catch(e){$('result').className='result bad';$('result').textContent='KONTROLA SE NEPODAŘILA: '+e.message+'\nNic nebylo změněno.'}finally{$('verify').disabled=!user}};
+</script></body></html>
