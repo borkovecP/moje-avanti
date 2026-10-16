@@ -1,0 +1,51 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Moje AVANTI · 1.9.4 kontrola</title><style>body{margin:0;background:#f3f4f6;color:#20242d;font:17px -apple-system,BlinkMacSystemFont,Arial,sans-serif}.wrap{max-width:780px;margin:28px auto;padding:25px;background:white;border-radius:17px;box-shadow:0 2px 14px #0001}h1{font-size:26px}h2{font-size:20px;margin-top:28px}button{padding:13px 18px;border:1px solid #cdd3df;background:#546078;color:white;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer}button:disabled{opacity:.45}p{line-height:1.5}.muted{color:#677080}.result{white-space:pre-wrap;line-height:1.65;background:#f6f7fa;padding:16px;border-radius:10px;overflow-wrap:anywhere}.good{color:#167044}.bad{color:#a02b29}.actions{display:flex;gap:12px;flex-wrap:wrap}code{font-size:14px}</style></head><body><main class="wrap"><h1>Moje AVANTI · kontrola rozdílů 1.9.7</h1>
+<p><strong>Černý Design a Bopa Servis – přesné porovnání</strong></p>
+<p class="muted">Pouze čtení. Žádné zápisy do Firebase ani do MacBooku. Zobrazí rozdílná pole obou zákazníků včetně obsahu poznámek.</p>
+<p id="authStatus">Ověřuji přihlášení…</p>
+<div class="actions"><button id="login" hidden>Přihlásit Google</button><button id="compare" disabled>Porovnat jednotlivá pole</button></div>
+<h2>Výsledek</h2><div id="result" class="result">Čekám na kontrolu.</div>
+</main><script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+import {getFirestore,doc,getDoc} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
+const config={apiKey:'AIzaSyAQobrG_n5fUdnQgS9JSYyvWokSWrIhwzo',authDomain:'moje-avanti.firebaseapp.com',projectId:'moje-avanti',storageBucket:'moje-avanti.firebasestorage.app',messagingSenderId:'1075628554394',appId:'1:1075628554394:web:0f9b8d925ae69d6b44c723'};
+const $=id=>document.getElementById(id);
+const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
+const eq=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
+const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider();
+provider.setCustomParameters({prompt:'select_account'});
+let user=null;
+onAuthStateChanged(auth,u=>{user=u;$('login').hidden=!!u;$('compare').disabled=!u;$('authStatus').textContent=u?'Přihlášeno.':'Nepřihlášeno.'});
+getRedirectResult(auth).catch(e=>$('authStatus').textContent='Chyba: '+e.message);
+$('login').onclick=async()=>{try{if(/iPad/.test(navigator.userAgent)&&!/iPhone/.test(navigator.userAgent))await signInWithRedirect(auth,provider);else await signInWithPopup(auth,provider)}catch(e){$('authStatus').textContent='Chyba: '+e.message}};
+const fmt=v=>v===undefined?'(pole chybí)':JSON.stringify(v);
+$('compare').onclick=async()=>{
+ if(!user)return;
+ const uid=user.uid;$('compare').disabled=true;$('result').textContent='Načítám…';
+ try{
+  const snap=await getDoc(doc(db,'users',uid,'sync','v2'));
+  if(!snap.exists())throw Error('Cloudový dokument neexistuje');
+  if(auth.currentUser?.uid!==uid)throw Error('Změna přihlášení');
+  const cloud=snap.data(),local=JSON.parse(localStorage.getItem('moje-avanti-customers-v1')||'[]');
+  if(!Array.isArray(local)||!Array.isArray(cloud.customers))throw Error('Nesprávná data');
+  const ids=['test-005','c_1792092099588_vce4iadks3'];
+  const lines=['Cloudová revize: '+cloud.revision,'Porovnání je pouze pro čtení.'];
+  for(const id of ids){
+   const l=local.filter(x=>String(x.id)===id),r=cloud.customers.filter(x=>String(x.id)===id);
+   lines.push('\n'+(id==='test-005'?'ČERNÝ DESIGN':'BOPA SERVIS')+' ('+id+')');
+   if(l.length!==1||r.length!==1){lines.push('Chyba počtu záznamů: MacBook '+l.length+', cloud '+r.length);continue}
+   const fields=new Set([...Object.keys(l[0]),...Object.keys(r[0])]);
+   let n=0;
+   for(const field of [...fields].sort()){
+    if(eq(l[0][field],r[0][field]))continue;
+    n++;
+    lines.push('POLE: '+field,'  MacBook: '+fmt(l[0][field]),'  Firebase: '+fmt(r[0][field]));
+   }
+   if(!n)lines.push('Záznamy jsou shodné.');
+  }
+  lines.push('\nNic nebylo změněno.');
+  $('result').textContent=lines.join('\n');
+ }catch(e){$('result').textContent='Kontrola selhala: '+e.message+'\nNic nebylo změněno.'}
+ finally{$('compare').disabled=!user}
+};
+</script></body></html>
