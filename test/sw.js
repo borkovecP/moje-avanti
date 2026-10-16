@@ -34,7 +34,8 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (request.mode === 'navigate') {
+  if (request.mode === 'navigate' &&
+    (url.pathname.endsWith('/test/') || url.pathname.endsWith('/test/index.html'))) {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE);
       const shell = await cache.match(INDEX);
