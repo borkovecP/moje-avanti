@@ -1,0 +1,209 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Moje AVANTI · 1.9.4 kontrola</title><style>body{margin:0;background:#f3f4f6;color:#20242d;font:17px -apple-system,BlinkMacSystemFont,Arial,sans-serif}.wrap{max-width:780px;margin:28px auto;padding:25px;background:white;border-radius:17px;box-shadow:0 2px 14px #0001}h1{font-size:26px}h2{font-size:20px;margin-top:28px}button{padding:13px 18px;border:1px solid #cdd3df;background:#546078;color:white;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer}button:disabled{opacity:.45}p{line-height:1.5}.muted{color:#677080}.result{white-space:pre-wrap;line-height:1.65;background:#f6f7fa;padding:16px;border-radius:10px;overflow-wrap:anywhere}.good{color:#167044}.bad{color:#a02b29}.actions{display:flex;gap:12px;flex-wrap:wrap}code{font-size:14px}</style></head><body><main class="wrap"><h1>Moje AVANTI · test 1.9.8</h1><p><strong>Nezávislé ověření po sloučení</strong></p><p class="muted">Kontrola dat je pouze pro čtení. Testovací synchronizaci lze samostatně zapnout nebo pozastavit. Ostrá instalovaná aplikace se nemění.</p><p id="authStatus">Ověřuji přihlášení…</p><div class="actions"><button id="login" hidden>Přihlásit Google</button><button id="verify" disabled>🔎 Ověřit skutečná data</button></div><h2>Test 1.9.5 · synchronizace mezi zařízeními</h2>
+<p class="muted">Automatická synchronizace se zapne pouze na tomto zařízení a jen po ověření úplné shody s cloudem. Při konfliktu se zastaví. Před aktivací stáhne místní zálohu. Ostrá instalovaná aplikace zůstává oddělená.</p>
+<div class="actions"><button id="startSync" disabled>Zapnout testovací synchronizaci</button><button id="syncOnce" disabled>Synchronizovat nyní</button><button id="stopSync" disabled>Pozastavit synchronizaci</button></div>
+<div id="syncReport" class="result" style="margin-top:15px">Synchronizace vypnutá.</div><h2>Test 1.9.8 · přenos poznámky</h2>
+<p class="muted">Bezpečný test na zákazníkovi Bopa Servis. Původní poznámky zůstávají zachované. Před změnou se nabídne místní záloha.</p>
+<div class="actions"><button id="showBopa" disabled>Načíst poznámku Bopa Servis</button><button id="appendBopa" disabled>Přidat testovací řádek a synchronizovat</button></div>
+<div id="bopaInfo" class="result" style="margin-top:12px">Nejdřív zapni synchronizaci na tomto zařízení.</div>
+<h2>Výsledek kontroly</h2><div id="result" class="result">Čekám na spuštění kontroly.</div><p class="muted">Kontrolujeme 20 zákazníků, 3 návštěvy, shodu cloud ↔ Safari, poznámky Bopa Servis, archivaci Černý Design a smazání test-014. Výsledek můžeš poslat jako snímek obrazovky.</p></main><script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+import {getFirestore,doc,getDoc,runTransaction} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
+const config={apiKey:'AIzaSyAQobrG_n5fUdnQgS9JSYyvWokSWrIhwzo',authDomain:'moje-avanti.firebaseapp.com',projectId:'moje-avanti',storageBucket:'moje-avanti.firebasestorage.app',messagingSenderId:'1075628554394',appId:'1:1075628554394:web:0f9b8d925ae69d6b44c723'};
+const $=id=>document.getElementById(id),canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
+const eq=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
+const array=k=>{const v=JSON.parse(localStorage.getItem(k)||'[]');if(!Array.isArray(v))throw Error('Místní '+k+' nejsou pole');return v};
+const deleted=()=>JSON.parse(localStorage.getItem('moje-avanti-deleted-v1')||'{"customers":{},"visits":{}}');
+const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app);let user=null;
+const provider=new GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});
+onAuthStateChanged(auth,u=>{user=u;$('login').hidden=!!u;$('verify').disabled=!u;$('authStatus').textContent=u?'Přihlášeno. Kontrola může začít.':'Nepřihlášeno.'});
+getRedirectResult(auth).catch(e=>$('authStatus').textContent='Chyba přihlášení: '+e.message);
+$('login').onclick=async()=>{try{if(/iPad/.test(navigator.userAgent)&&!/iPhone/.test(navigator.userAgent))await signInWithRedirect(auth,provider);else await signInWithPopup(auth,provider)}catch(e){$('authStatus').textContent='Chyba: '+e.message}};
+$('verify').onclick=async()=>{if(!user)return;const uid=user.uid;$('verify').disabled=true;$('result').textContent='Načítám cloud a porovnávám záznamy…';try{
+const snap=await getDoc(doc(db,'users',uid,'sync','v2'));if(!snap.exists())throw Error('Cloudový dokument users/{uid}/sync/v2 neexistuje.');if(auth.currentUser?.uid!==uid)throw Error('Účet se změnil během kontroly.');
+const cloud=snap.data(),lc=array('moje-avanti-customers-v1'),lv=array('moje-avanti-visits-v1'),ld=deleted(),cc=cloud.customers,cv=cloud.visits,cd=cloud.deleted||{};
+if(!Array.isArray(cc)||!Array.isArray(cv))throw Error('Cloud neobsahuje správná pole zákazníků a návštěv.');
+const checks=[],line=(name,ok,detail='')=>checks.push({name,ok,detail});
+line('Cloud: 20 zákazníků',cc.length===20,'nalezeno '+cc.length);line('Cloud: 3 návštěvy',cv.length===3,'nalezeno '+cv.length);
+line('Safari: 20 zákazníků',lc.length===20,'nalezeno '+lc.length);line('Safari: 3 návštěvy',lv.length===3,'nalezeno '+lv.length);
+const byId=a=>new Map(a.map(x=>[String(x.id),x]));const cm=byId(cc),lm=byId(lc),vm=byId(cv),vlm=byId(lv);
+line('Unikátní ID zákazníků',cm.size===cc.length&&lm.size===lc.length);
+line('Unikátní ID návštěv',vm.size===cv.length&&vlm.size===lv.length);
+const diffs=(a,b)=>{const am=byId(a),bm=byId(b),ids=new Set([...am.keys(),...bm.keys()]);return [...ids].filter(id=>!eq(am.get(id),bm.get(id)))};
+const customerDiffs=diffs(cc,lc),visitDiffs=diffs(cv,lv);
+line('Zákazníci: cloud = Safari',customerDiffs.length===0,customerDiffs.length?'Rozdílná ID: '+customerDiffs.join(', '):'všech 20 záznamů odpovídá');
+line('Návštěvy: cloud = Safari',visitDiffs.length===0,visitDiffs.length?'Rozdílná ID: '+visitDiffs.join(', '):'všechny 3 záznamy odpovídají');
+const gone=!cm.has('test-014')&&!lm.has('test-014')&&!!cd.customers?.['test-014']&&!!ld.customers?.['test-014'];
+line('test-014 smazaný v obou úložištích',gone,'cloudová i místní evidence smazání');
+const name=x=>[x.company,x.person,x.name,x.nazev].filter(Boolean).join(' ').toLocaleLowerCase('cs');
+const bopa=cc.filter(x=>name(x).includes('bopa')),cerny=cc.filter(x=>name(x).includes('černý')||name(x).includes('cerny'));
+line('Bopa Servis: nalezen právě jeden záznam',bopa.length===1,'nalezeno '+bopa.length);
+if(bopa.length===1){const note=String(bopa[0].note||'');line('Bopa Servis: obě poznámky',note.includes('tester')&&note.includes('TEST SYNCHRONIZACE 1'),'obsahuje „tester“ i „TEST SYNCHRONIZACE 1“');line('Bopa Servis: nearchivovaný',bopa[0].archived===false,'archived = '+String(bopa[0].archived));}
+line('Černý Design: nalezen právě jeden záznam',cerny.length===1,'nalezeno '+cerny.length);
+if(cerny.length===1)line('Černý Design: nearchivovaný',cerny[0].archived===false,'archived = '+String(cerny[0].archived));
+const failed=checks.filter(x=>!x.ok);$('result').className='result '+(failed.length?'bad':'good');$('result').textContent=(failed.length?'⚠️ KONTROLA ODHALILA ROZDÍLY':'✅ KONTROLA PROŠLA')+'\nCloudová revize: '+String(cloud.revision??'neuvedena')+'\n\n'+checks.map(x=>(x.ok?'✓ ':'✗ ')+x.name+(x.detail?' — '+x.detail:'')).join('\n')+'\n\n'+(failed.length?'Nic nebylo změněno. Pošli snímek obrazovky, další kroky zatím nedělej.':'Všechny uvedené kontroly prošly. Nic nebylo změněno.');
+}catch(e){$('result').className='result bad';$('result').textContent='KONTROLA SE NEPODAŘILA: '+e.message+'\nNic nebylo změněno.'}finally{$('verify').disabled=!user}};
+
+const BASE='moje-avanti-sync-195-baseline', ON='moje-avanti-sync-195-on', DEL='moje-avanti-deleted-v1', HIST='moje-avanti-history-view-v3';
+const ref=uid=>doc(db,'users',uid,'sync','v2');
+let busy=false,timer=null;
+const clone=x=>JSON.parse(JSON.stringify(x));
+const clean=x=>({customers:x.customers,visits:x.visits,deleted:{customers:x.deleted?.customers||{},visits:x.deleted?.visits||{}},settings:{historyView:x.settings?.historyView||'compact'}});
+const local=()=>clean({customers:array('moje-avanti-customers-v1'),visits:array('moje-avanti-visits-v1'),deleted:deleted(),settings:{historyView:localStorage.getItem(HIST)||'compact'}});
+const valid=x=>{
+ for(const k of ['customers','visits']){
+  if(!Array.isArray(x[k])||x[k].some(r=>!r||typeof r.id!=='string')||new Set(x[k].map(r=>r.id)).size!==x[k].length)throw Error('Neplatná nebo duplicitní ID: '+k);
+ }
+ if(x.customers.some(r=>r.id==='test-014')||!x.deleted.customers['test-014'])throw Error('Chybí ochrana smazaného zákazníka test-014');
+};
+const map=a=>new Map(a.map(x=>[x.id,x]));
+function merge(base,loc,remote){
+ const gone={customers:{...remote.deleted.customers,...loc.deleted.customers},visits:{...remote.deleted.visits,...loc.deleted.visits}};
+ const output={customers:[],visits:[],deleted:gone,settings:{historyView:''}};
+ for(const kind of ['customers','visits']){
+  const bm=map(base[kind]),lm=map(loc[kind]),rm=map(remote[kind]);
+  for(const id of new Set([...bm.keys(),...lm.keys(),...rm.keys(),...Object.keys(gone[kind])])){
+   if(gone[kind][id])continue;
+   const b=bm.get(id),l=lm.get(id),r=rm.get(id);
+   if(b&&(!l||!r)){gone[kind][id]=new Date().toISOString();continue}
+   if(!l&&!r)continue;
+   if(!l){output[kind].push(r);continue}
+   if(!r){output[kind].push(l);continue}
+   const obj={id};
+   for(const field of new Set([...Object.keys(b||{}),...Object.keys(l),...Object.keys(r)])){
+    if(field==='id')continue;
+    const bv=b?.[field],lv=l[field],rv=r[field],lc=!eq(lv,bv),rc=!eq(rv,bv);
+    if(lc&&rc&&!eq(lv,rv))throw Error('Konflikt '+kind+'/'+id+'/'+field+' – data nebyla přepsána');
+    const value=lc?lv:rv;
+    if(value!==undefined)obj[field]=value;
+   }
+   output[kind].push(obj);
+  }
+ }
+ gone.customers['test-014']=gone.customers['test-014']||new Date().toISOString();
+ const bs=base.settings.historyView,ls=loc.settings.historyView,rs=remote.settings.historyView;
+ if(ls!==bs&&rs!==bs&&ls!==rs)throw Error('Konflikt nastavení historie');
+ output.settings.historyView=ls!==bs?ls:rs;
+ valid(output);return output;
+}
+function store(data){
+ const keys=['moje-avanti-customers-v1','moje-avanti-visits-v1',DEL,HIST];
+ const old=keys.map(k=>localStorage.getItem(k));
+ const values=[JSON.stringify(data.customers),JSON.stringify(data.visits),JSON.stringify(data.deleted),data.settings.historyView];
+ try{keys.forEach((k,i)=>localStorage.setItem(k,values[i]))}
+ catch(e){keys.forEach((k,i)=>{try{old[i]===null?localStorage.removeItem(k):localStorage.setItem(k,old[i])}catch{}});throw e}
+}
+function backup(data){
+ const blob=new Blob([JSON.stringify({app:'Moje AVANTI',type:'backup-before-sync-195',exportedAt:new Date().toISOString(),...data},null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='moje-avanti-zaloha-pred-sync-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';
+ document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+const report=s=>$('syncReport').textContent=s;
+const enabled=()=>!!user&&localStorage.getItem(ON)===user.uid;
+function controls(){
+ $('startSync').disabled=!user||busy||enabled();
+ $('syncOnce').disabled=!enabled()||busy;
+ $('stopSync').disabled=!enabled()||busy;
+}
+function stop(reason){
+ localStorage.removeItem(ON);clearInterval(timer);timer=null;report(reason);controls();
+}
+async function sync(){
+ if(!enabled()||busy)return;
+ busy=true;controls();let uid=user.uid;
+ try{
+  const baseRaw=localStorage.getItem(BASE);if(!baseRaw)throw Error('Chybí výchozí stav');
+  const base=clean(JSON.parse(baseRaw)),before=local();valid(base);valid(before);
+  let merged,rev;
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(ref(uid));if(!snap.exists())throw Error('Cloudová data chybí');
+   const remote=clean(snap.data());valid(remote);
+   merged=merge(base,before,remote);
+   rev=snap.data().revision||0;
+   if(!eq(merged,remote)){
+    rev++;
+    tx.set(ref(uid),{...merged,schema:2,revision:rev});
+   }
+  });
+  if(user?.uid!==uid||!eq(local(),before))throw Error('Místní data se během synchronizace změnila – je potřeba opakovat kontrolu');
+  store(merged);localStorage.setItem(BASE,JSON.stringify(merged));
+  report('✓ Synchronizováno. Cloudová revize '+rev+'. Zákazníci: '+merged.customers.length+', návštěvy: '+merged.visits.length+'.');
+ }catch(e){stop('⚠ Synchronizace pozastavena: '+e.message)}
+ finally{busy=false;controls()}
+}
+$('startSync').onclick=async()=>{
+ if(!user||busy||enabled())return;
+ busy=true;controls();
+ try{
+  const uid=user.uid,before=local();valid(before);
+  const snap=await getDoc(ref(uid));if(!snap.exists())throw Error('Cloudová data chybí');
+  if(user?.uid!==uid)throw Error('Účet se změnil');
+  const remote=clean(snap.data());valid(remote);
+  if(!eq(before,remote))throw Error('Zařízení a cloud se liší. Aktivace zablokována, nic nebylo změněno.');
+  if(!confirm('Zapnout automatickou testovací synchronizaci na tomto zařízení?\\n\\nNejprve se stáhne záloha. Při konfliktu se synchronizace zastaví.'))return;
+  backup(before);
+  localStorage.setItem(BASE,JSON.stringify(remote));
+  localStorage.setItem(ON,uid);
+  report('✓ Aktivováno na tomto zařízení. Kontrola každých 15 sekund. Záloha nabídnuta ke stažení.');
+  clearInterval(timer);timer=setInterval(sync,15000);
+ }catch(e){report('⚠ Aktivace zastavena: '+e.message)}
+ finally{busy=false;controls()}
+};
+$('syncOnce').onclick=sync;
+$('stopSync').onclick=()=>stop('Synchronizace pozastavena. Data zůstala zachována.');
+onAuthStateChanged(auth,u=>{
+ clearInterval(timer);timer=null;controls();
+ if(enabled()){report('Synchronizace aktivní.');timer=setInterval(sync,15000);sync()}
+ else report(u?'Synchronizace vypnutá. Nejprve ověř shodu dat.':'Přihlas se přes Google.');
+});
+
+const bopaId='c_1792092099588_vce4iadks3';
+const testLine='TEST MACBOOK → IPAD';
+let bopaReady=false;
+function bopaControls(){
+ $('showBopa').disabled=!enabled()||busy;
+ $('appendBopa').disabled=!enabled()||busy||!bopaReady;
+}
+const priorControls=controls;
+controls=function(){priorControls();bopaControls()};
+$('showBopa').onclick=()=>{
+ try{
+  if(!enabled())throw Error('Synchronizace není zapnutá');
+  const x=local().customers.filter(x=>String(x.id)===bopaId);
+  if(x.length!==1)throw Error('Zákazník Bopa Servis nebyl jednoznačně nalezen');
+  bopaReady=true;
+  $('bopaInfo').textContent='Současná poznámka:\n'+String(x[0].note||'(prázdná)')+
+   '\n\nTestovací řádek: '+testLine+
+   '\n\nZměna bude provedena pouze po potvrzení a po nabídnutí zálohy.';
+  bopaControls();
+ }catch(e){bopaReady=false;$('bopaInfo').textContent='⚠ '+e.message;bopaControls()}
+};
+$('appendBopa').onclick=async()=>{
+ if(!enabled()||busy||!bopaReady)return;
+ try{
+  const before=local(),customer=before.customers.find(x=>String(x.id)===bopaId);
+  if(!customer)throw Error('Zákazník nenalezen');
+  const original=String(customer.note||'');
+  if(original.includes(testLine)){
+   $('bopaInfo').textContent='Testovací řádek již v poznámce je. Není třeba jej přidávat znovu.';
+   return;
+  }
+  if(!original.includes('tester')||!original.includes('TEST SYNCHRONIZACE 1'))
+   throw Error('Chybí některá z původních poznámek. Změna byla zablokována.');
+  if(!confirm('Přidat na konec poznámky Bopa Servis řádek „'+testLine+'“?\n\nPůvodní text zůstane zachován. Před úpravou se stáhne záloha.'))return;
+  backup(before);
+  const changed=clone(before);
+  const c=changed.customers.find(x=>String(x.id)===bopaId);
+  c.note=original.replace(/\s+$/,'')+'\n'+testLine;
+  valid(changed);
+  if(!eq(local(),before))throw Error('Data se mezitím změnila. Opakuj kontrolu.');
+  store(changed);
+  $('bopaInfo').textContent='Testovací řádek uložen místně. Probíhá synchronizace…';
+  await sync();
+  const updated=local().customers.find(x=>String(x.id)===bopaId);
+  $('bopaInfo').textContent=String(updated?.note||'')+'\n\nStav: '+$('syncReport').textContent;
+  bopaReady=false;bopaControls();
+ }catch(e){$('bopaInfo').textContent='⚠ '+e.message}
+};
+</script></body></html>
