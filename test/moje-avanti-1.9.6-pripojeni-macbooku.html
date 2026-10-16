@@ -1,0 +1,95 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Moje AVANTI · 1.9.4 kontrola</title><style>body{margin:0;background:#f3f4f6;color:#20242d;font:17px -apple-system,BlinkMacSystemFont,Arial,sans-serif}.wrap{max-width:780px;margin:28px auto;padding:25px;background:white;border-radius:17px;box-shadow:0 2px 14px #0001}h1{font-size:26px}h2{font-size:20px;margin-top:28px}button{padding:13px 18px;border:1px solid #cdd3df;background:#546078;color:white;border-radius:9px;font-weight:700;font-size:16px;cursor:pointer}button:disabled{opacity:.45}p{line-height:1.5}.muted{color:#677080}.result{white-space:pre-wrap;line-height:1.65;background:#f6f7fa;padding:16px;border-radius:10px;overflow-wrap:anywhere}.good{color:#167044}.bad{color:#a02b29}.actions{display:flex;gap:12px;flex-wrap:wrap}code{font-size:14px}</style></head><body><main class="wrap"><h1>Moje AVANTI · připojení MacBooku 1.9.6</h1>
+<p><strong>Bezpečná příprava druhého zařízení</strong></p>
+<p class="muted">Nejdřív jen porovnáme místní data s cloudem. Pokud se liší, zobrazíme rozdíly. Před případným převzetím cloudu se stáhne úplná místní záloha. Tato stránka nikdy nezapisuje do Firebase.</p>
+<p id="authStatus">Ověřuji přihlášení…</p>
+<div class="actions"><button id="login" hidden>Přihlásit Google</button><button id="compare" disabled>1. Porovnat MacBook s cloudem</button><button id="backup" disabled>2. Stáhnout zálohu MacBooku</button><button id="restore" disabled>3. Převzít cloud do Safari MacBooku</button></div>
+<h2>Výsledek porovnání</h2><div id="result" class="result">Čekám na kontrolu.</div>
+<p class="muted">Převzetí cloudu je volitelné a vždy vyžaduje potvrzení. Pokud má MacBook vlastní nové změny, nejdřív je společně vyhodnotíme. Nespouštěj současně starší automatickou synchronizaci 1.8.8.</p>
+</main><script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+import {getFirestore,doc,getDoc} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
+const config={apiKey:'AIzaSyAQobrG_n5fUdnQgS9JSYyvWokSWrIhwzo',authDomain:'moje-avanti.firebaseapp.com',projectId:'moje-avanti',storageBucket:'moje-avanti.firebasestorage.app',messagingSenderId:'1075628554394',appId:'1:1075628554394:web:0f9b8d925ae69d6b44c723'};
+const $=id=>document.getElementById(id);
+const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
+const eq=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
+const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider();
+provider.setCustomParameters({prompt:'select_account'});
+const KEYS={customers:'moje-avanti-customers-v1',visits:'moje-avanti-visits-v1',deleted:'moje-avanti-deleted-v1',history:'moje-avanti-history-view-v3'};
+let user=null,comparison=null,backupDone=false;
+const arr=k=>{const a=JSON.parse(localStorage.getItem(k)||'[]');if(!Array.isArray(a))throw Error('Místní '+k+' nejsou pole');return a};
+const local=()=>({customers:arr(KEYS.customers),visits:arr(KEYS.visits),deleted:JSON.parse(localStorage.getItem(KEYS.deleted)||'{"customers":{},"visits":{}}'),settings:{historyView:localStorage.getItem(KEYS.history)||'compact'}});
+const clean=x=>({customers:x.customers,visits:x.visits,deleted:{customers:x.deleted?.customers||{},visits:x.deleted?.visits||{}},settings:{historyView:x.settings?.historyView||'compact'}});
+const map=a=>new Map(a.map(x=>[String(x.id),x]));
+function changes(a,b){
+ const am=map(a),bm=map(b),ids=new Set([...am.keys(),...bm.keys()]);
+ return [...ids].filter(id=>!eq(am.get(id),bm.get(id)));
+}
+function download(obj,name){
+ const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+const stamp=()=>new Date().toISOString().replace(/[:.]/g,'-');
+const reset=()=>{comparison=null;backupDone=false;$('backup').disabled=true;$('restore').disabled=true};
+onAuthStateChanged(auth,u=>{user=u;reset();$('login').hidden=!!u;$('compare').disabled=!u;$('authStatus').textContent=u?'Přihlášeno. Můžeš porovnat data.':'Nepřihlášeno.'});
+getRedirectResult(auth).catch(e=>$('authStatus').textContent='Chyba přihlášení: '+e.message);
+$('login').onclick=async()=>{try{if(/iPad/.test(navigator.userAgent)&&!/iPhone/.test(navigator.userAgent))await signInWithRedirect(auth,provider);else await signInWithPopup(auth,provider)}catch(e){$('authStatus').textContent='Chyba: '+e.message}};
+$('compare').onclick=async()=>{
+ if(!user)return;reset();$('compare').disabled=true;$('result').textContent='Porovnávám aktuální data…';
+ try{
+  const uid=user.uid,snap=await getDoc(doc(db,'users',uid,'sync','v2'));
+  if(!snap.exists())throw Error('Cloudový dokument chybí');
+  if(auth.currentUser?.uid!==uid)throw Error('Změnil se přihlášený účet');
+  const cloud=clean(snap.data()),here=local();
+  if(!Array.isArray(cloud.customers)||!Array.isArray(cloud.visits))throw Error('Cloud nemá správný formát');
+  const customerIds=changes(here.customers,cloud.customers),visitIds=changes(here.visits,cloud.visits);
+  const differentDeleted=!eq(here.deleted,cloud.deleted),differentSettings=!eq(here.settings,cloud.settings);
+  const same=!customerIds.length&&!visitIds.length&&!differentDeleted&&!differentSettings;
+  comparison={uid,cloud,here,revision:snap.data().revision,same};
+  $('backup').disabled=false;
+  $('restore').disabled=same;
+  const name=x=>x.company||x.person||x.name||x.nazev||x.id;
+  const lm=map(here.customers),cm=map(cloud.customers);
+  const lines=customerIds.map(id=>' • '+id+' ('+name(lm.get(id)||cm.get(id)||{id})+')').slice(0,40);
+  $('result').textContent=(same?'✓ MACBOOK A CLOUD JSOU SHODNÉ':'⚠ MACBOOK A CLOUD SE LIŠÍ')+
+   '\nCloudová revize: '+String(comparison.revision)+
+   '\nMacBook: '+here.customers.length+' zákazníků, '+here.visits.length+' návštěv'+
+   '\nCloud: '+cloud.customers.length+' zákazníků, '+cloud.visits.length+' návštěv'+
+   '\nRozdílní zákazníci: '+customerIds.length+(lines.length?'\n'+lines.join('\n'):'')+
+   '\nRozdílné návštěvy: '+visitIds.length+(visitIds.length?'\n • '+visitIds.join(', '):'')+
+   '\nEvidence smazání se liší: '+(differentDeleted?'ANO':'ne')+
+   '\nNastavení se liší: '+(differentSettings?'ANO':'ne')+
+   '\n\n'+(same?'Není potřeba nic přepisovat.':'Nejdřív stáhni zálohu MacBooku. Převzetí cloudu zatím neprováděj, dokud nezkontrolujeme rozdíly.');
+ }catch(e){$('result').textContent='Kontrola selhala: '+e.message}finally{$('compare').disabled=!user}
+};
+$('backup').onclick=()=>{
+ if(!comparison||!user||comparison.uid!==user.uid)return;
+ download({type:'macbook-original-before-cloud-import',exportedAt:new Date().toISOString(),revisionAtComparison:comparison.revision,...comparison.here},'moje-avanti-macbook-puvodni-'+stamp()+'.json');
+ backupDone=true;
+ $('result').textContent+='\n\n✓ Záloha nabídnuta ke stažení. Ulož ji před dalším krokem.';
+};
+$('restore').onclick=async()=>{
+ if(!comparison||!backupDone||comparison.same||!user||comparison.uid!==user.uid)return;
+ $('restore').disabled=true;
+ try{
+  const uid=user.uid;
+  if(!eq(local(),comparison.here))throw Error('Místní data se mezitím změnila. Znovu porovnej.');
+  const snap=await getDoc(doc(db,'users',uid,'sync','v2'));
+  if(!snap.exists()||snap.data().revision!==comparison.revision||!eq(clean(snap.data()),comparison.cloud))throw Error('Cloud se změnil. Znovu porovnej.');
+  if(!confirm('POZOR: Převzít ověřená cloudová data do Safari na tomto MacBooku?\n\nMístní zákazníci, návštěvy, evidence smazání a nastavení budou nahrazeny. Záloha musí být uložená. Firebase se nezmění.'))return;
+  const keys=[KEYS.customers,KEYS.visits,KEYS.deleted,KEYS.history];
+  const before=keys.map(k=>localStorage.getItem(k));
+  const vals=[JSON.stringify(comparison.cloud.customers),JSON.stringify(comparison.cloud.visits),JSON.stringify(comparison.cloud.deleted),comparison.cloud.settings.historyView];
+  try{keys.forEach((k,i)=>localStorage.setItem(k,vals[i]))}
+  catch(e){keys.forEach((k,i)=>{try{before[i]===null?localStorage.removeItem(k):localStorage.setItem(k,before[i])}catch{}});throw e}
+  if(!eq(local(),comparison.cloud))throw Error('Kontrola místního zápisu neprošla');
+  localStorage.removeItem('moje-avanti-sync-186-baseline');
+  localStorage.removeItem('moje-avanti-sync-186-enabled');
+  localStorage.removeItem('moje-avanti-sync-195-baseline');
+  localStorage.removeItem('moje-avanti-sync-195-on');
+  $('result').textContent='✓ MacBook převzal ověřený cloud. '+comparison.cloud.customers.length+' zákazníků, '+comparison.cloud.visits.length+' návštěv. Firebase zůstala beze změny.\n\nPro zapnutí synchronizace otevři test 1.9.5 na MacBooku a nejdřív spusť kontrolu.';
+  reset();
+ }catch(e){$('result').textContent='Převzetí zablokováno: '+e.message+'\nPůvodní záloha zůstává zachovaná.'}
+ finally{$('restore').disabled=!comparison||comparison.same}
+};
+</script></body></html>
