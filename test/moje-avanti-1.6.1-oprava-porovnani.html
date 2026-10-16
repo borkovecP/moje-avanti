@@ -1,0 +1,418 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#a71f2b"><title>Moje AVANTI</title><link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#25262a;background:#f4f5f7}*{box-sizing:border-box}body{margin:0}header{background:#a71f2b;color:white;padding:13px 25px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}header strong{font-size:23px}header small{display:block;opacity:.85;margin-top:3px}main{max-width:1480px;margin:25px auto;padding:0 18px}h1{font-size:25px;margin:0 0 8px}h2{font-size:21px;margin:0 0 16px}p{line-height:1.5}button,.filebutton{border:0;background:#a71f2b;color:#fff;border-radius:9px;padding:10px 14px;font:600 14px inherit;cursor:pointer}button{font-size:14px;font-weight:600}button.secondary,.filebutton{background:white;color:#34353a;border:1px solid #d7d9df}button.danger{background:#fff0f1;color:#9a1a24}button:hover,.tile:hover{filter:brightness(.97)}.panel{background:white;border:1px solid #e0e2e6;border-radius:14px;padding:20px;box-shadow:0 3px 14px #1c26300a}.muted{color:#737780}.lead{color:#737780;margin:0 0 22px}.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.tile{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:11px;min-height:155px;padding:20px;background:white;border:1px solid #e0e2e6;border-radius:15px;color:#27282b;box-shadow:0 3px 12px #1c263008}.tile .symbol{display:grid;place-items:center;width:45px;height:45px;border-radius:12px;background:#f9e8ea;color:#a71f2b;font-size:24px}.tile b{font-size:18px}.tile small{color:#737780;font-size:13px;font-weight:400}.tile.placeholder{opacity:.75}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.topline h1{margin:0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}input,textarea{width:100%;padding:11px;border:1px solid #cfd2d9;border-radius:9px;font:inherit;background:white}input[type=file]{display:none}.search{margin-bottom:14px}.customer{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #eee;padding:9px 0}.customer:first-child{border-top:0}.customer h3{margin:0 0 3px;font-size:15px}.customer p{margin:0;font-size:13px;color:#737780}.customer button{padding:8px 11px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}.wide{grid-column:1/-1}.address-group{border:1px solid #e0e2e6;border-radius:10px;padding:12px;margin-top:2px}.address-group summary{font-weight:700;cursor:pointer;padding:4px}.address-group .formgrid{margin-top:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.notice{font-size:12px;color:#777;margin-top:20px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:18px}.detail section{border-bottom:1px solid #eee;padding-bottom:12px}.detail h3{font-size:13px;color:#777;margin:0 0 7px}.detail p{margin:4px 0}.detail a{color:#a71f2b;text-decoration:none}.detail .full{grid-column:1/-1}[hidden]{display:none!important}@media(max-width:700px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{min-height:140px}.detail{grid-template-columns:1fr}.detail .full{grid-column:auto}.formgrid{grid-template-columns:1fr}.toolbar button,.toolbar .filebutton{flex:1;text-align:center}header{padding:18px}main{margin:18px auto}}@media(max-width:420px){.tiles{gap:10px}.tile{padding:14px;min-height:135px}.tile b{font-size:16px}.topline{flex-wrap:wrap}}
+header .brand{position:absolute;left:22px;top:13px;background:transparent;border:0;color:white;font-size:23px;font-weight:800;padding:5px 8px;white-space:nowrap}header nav{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin:auto}header nav button{background:transparent;color:white;font-size:14px;padding:10px 12px;border-radius:7px}header nav button.active,header nav button:hover{background:#ffffff2b}.view-toggle{display:flex;gap:6px}.view-toggle button.active{background:#a71f2b;color:white}.customer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.customer-grid .customer{display:block;border:1px solid #e0e2e6;border-radius:12px;padding:16px;background:#fff;min-height:130px}.customer-grid .customer button{margin-top:13px}.customer-grid .customer h3{font-size:16px}.customer-grid .customer p{margin-top:5px}.customer-grid .customer .customer-links{margin-top:9px;display:grid;gap:5px}.customer-links a{font-size:12px;color:#646c7a;text-decoration:none;overflow-wrap:anywhere}.customer-links a:hover{text-decoration:underline}@media(max-width:1250px){header .brand{position:static}header{justify-content:space-between}header nav{margin:0 auto}}@media(max-width:1100px){.customer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:780px){.customer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}header{padding:12px}}@media(max-width:470px){.customer-grid{grid-template-columns:1fr}header nav{overflow-x:auto;flex-wrap:nowrap;max-width:100%;width:100%;justify-content:flex-start}header nav button{white-space:nowrap}}
+
+.customers-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.customers-heading p{margin:3px 0 0;font-size:13px}.view-toggle{margin-left:auto}.view-toggle button,.toolbar-right button,.toolbar-right .filebutton{font-size:12px;padding:7px 10px;border-radius:7px}.customer-toolbar{display:flex;justify-content:space-between;align-items:center}.toolbar-right{display:flex;gap:6px;margin-left:auto}.toolbar-right .filebutton{display:inline-flex;align-items:center;cursor:pointer}.customer-grid{gap:15px}.customer-grid .customer{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:17px;min-height:215px;border-radius:14px;box-shadow:0 3px 10px #1018270a;cursor:pointer;transition:box-shadow .15s,transform .15s}.customer-grid .customer:hover{box-shadow:0 6px 20px #10182718;transform:translateY(-1px)}.customer-grid .customer h3{font-size:19px;margin:0 0 5px}.customer-grid .customer p{margin:0 0 4px}.customer-grid .customer .customer-links{margin-top:11px}.customer-grid .customer button{margin-top:auto;align-self:flex-start;background:#f9e8ea;border:0;color:#a71f2b}.customer-top{display:flex;gap:11px;align-items:center;margin-bottom:12px}.avatar{flex:0 0 42px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px}.customer-grid .customer-top h3{margin:0 0 3px;line-height:1.25}.customer-grid .customer-top p{font-size:12px}.customer-grid .customer-links a{display:block;line-height:1.4}.customer-grid .customer-city{font-size:12px;color:#69717c;margin:8px 0 14px}.customer-grid .customer .customer-links{margin:0 0 10px}.customer-grid .customer button{padding:7px 12px;font-size:12px}.customer-grid .customer-top{min-height:46px;align-self:stretch;justify-content:flex-start}@media(max-width:700px){.customers-heading{align-items:flex-start}.customer-toolbar{gap:10px}.customer-toolbar>button{flex:0 1 auto}.toolbar-right{flex:0 0 auto}.toolbar-right button,.toolbar-right .filebutton{flex:0 0 auto}.view-toggle button{font-size:11px;padding:6px 8px}}@media(max-width:410px){.customers-heading{flex-wrap:wrap}.view-toggle{margin-left:0}.customer-toolbar{flex-wrap:wrap}}
+.customer-links .contact-text{font-size:12px;color:#646c7a;overflow-wrap:anywhere;line-height:1.5}
+.customer:not(.customer-grid *)[data-card]{cursor:pointer}
+.customer[data-card]:focus-visible{outline:3px solid #a71f2b;outline-offset:2px}
+.detail-tabs{display:flex;gap:8px;margin:18px 0;border-bottom:1px solid #e0e2e6;padding-bottom:12px}
+.detail-tabs button{flex:1;min-height:48px;background:#f4f5f7;color:#333;border:1px solid #ddd}
+.detail-tabs button.active{background:#a71f2b;color:#fff;border-color:#a71f2b}
+.detail-pane{min-height:120px}.detail-pane[hidden]{display:none!important}
+.map-link{display:inline-flex;align-items:center;gap:5px;color:#a71f2b;text-decoration:none;font-size:14px;font-weight:600;padding:8px 0;min-height:42px}
+@media(max-width:470px){.detail-tabs{gap:5px}.detail-tabs button{padding:10px 5px;font-size:13px}.customer-grid .customer h3{font-size:19px}}
+
+.visit-mode{display:flex;gap:9px;margin-bottom:18px}.visit-mode button{flex:1;background:#f4f5f7;color:#34353a;border:1px solid #ddd}.visit-mode button.active{background:#a71f2b;color:white;border-color:#a71f2b}.visit-groups{display:grid;gap:10px;margin:16px 0}.visit-group{border:1px solid #e0e2e6;border-radius:12px;padding:12px}.visit-group summary{font-weight:700;cursor:pointer;padding:5px}.visit-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0 5px}.visit-options label{display:flex;align-items:center;gap:9px;padding:9px;border-radius:8px;background:#f6f7f9}.visit-options input{width:auto;accent-color:#a71f2b}.visit-form textarea{resize:vertical}.visit-form select{width:100%;padding:11px;border:1px solid #cfd2d9;border-radius:9px;font:inherit;background:white}@media(max-width:470px){.visit-options{grid-template-columns:1fr}}
+
+/* Moje AVANTI: decentní barevné rozlišení modulů */
+#homeView .tiles{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:17px;margin-top:8px}
+#homeView .tile{--accent:#4e6388;--soft:#e9edf5;min-height:205px;align-items:center;justify-content:center;text-align:center;gap:14px;background:var(--soft);border:1px solid color-mix(in srgb,var(--accent) 12%,white);box-shadow:0 4px 16px #1423370a;color:var(--accent);opacity:1}
+#homeView .tile .symbol{width:82px;height:82px;background:transparent;color:var(--accent)}
+#homeView .tile .symbol svg{width:65px;height:65px}
+#homeView .tile b{font-size:19px;color:var(--accent)}
+#homeView .tile small{font-size:12px;color:#606977}
+#tileCustomers{--accent:#1758aa!important;--soft:#e4eefb!important}
+#tileNewVisit{--accent:#146b43!important;--soft:#e1f2e8!important}
+#homeView .tile[data-module="Kalendář"]{--accent:#7440ae;--soft:#efe5fa}
+#homeView .tile[data-module="Disk"]{--accent:#a56a18;--soft:#fff0d8}
+#homeView .tile[data-module="Ceníky"]{--accent:#a84737;--soft:#fce7df}
+#homeView .tile[data-module="Fotografie"]{--accent:#167481;--soft:#e0f1f3}
+#homeView .tile[data-module="Databáze"]{--accent:#b74b59;--soft:#f8e1e3}
+#listView,#detailView,#editView{--module:#1758aa;--module-soft:#e4eefb}
+#visitView{--module:#168453;--module-soft:#e1f2e8}
+#listView button:not(.secondary):not(.danger),#detailView button:not(.secondary):not(.danger),#editView button:not(.secondary):not(.danger){background:var(--module)}
+#listView .view-toggle button.active,#detailView .detail-tabs button.active{background:#1758aa;color:white;border-color:#1758aa}
+#listView .customer-grid .customer button{background:var(--module-soft)!important;color:var(--module)!important}
+#detailView .detail a,#detailView .map-link{color:var(--module)}
+#visitView button:not(.secondary):not(.visit-mode button){background:var(--module);border-color:var(--module);color:#fff}
+#visitView .visit-group summary{color:#176b49}
+#visitView .visit-group input[type=checkbox]{accent-color:#168453}
+#visitCustomer{width:100%;min-height:54px;font-size:18px;font-weight:700;padding:12px 16px;border:1px solid #cfd2d9;border-radius:9px;background:#fff;color:#26362e;cursor:pointer}
+#visitView input[type=date]{min-height:54px;padding-right:42px;cursor:pointer}
+#visitView .date-field{position:relative}
+#visitView .date-field:after{content:'📅';position:absolute;right:15px;bottom:15px;font-size:19px;pointer-events:none}
+#visitView .date-field input[type=date]::-webkit-calendar-picker-indicator{opacity:0;position:absolute;right:0;width:55px;height:100%;cursor:pointer}
+#homeView #tileSettings{--accent:#566173;--soft:#e7e9ed}
+#visitView .visit-mode button,#visitView .visit-mode button:not(.secondary){background:#dce9e0!important;color:#607467!important;border:1px solid #c8d8cd!important;min-height:50px;font-size:16px;font-weight:700}
+#visitView .visit-mode button.active,#visitView .visit-mode button.active:not(.secondary){background:#24764c!important;color:#fff!important;border-color:#24764c!important}
+#settingsView{--module:#566173}#settingsView .settings-panel{max-width:760px;margin:0 auto}#settingsView .settings-actions{display:flex;gap:10px;flex-wrap:wrap}#settingsView .settings-actions button{background:#566173}#settingsView .settings-actions .secondary{background:#fff;color:#566173}#settingsView h2{margin-top:20px}#settingsView .settings-warning{font-size:13px;color:#606977}
+@media(max-width:700px){#homeView .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}#homeView .tile{min-height:155px;padding:14px}#homeView .tile .symbol{height:65px;width:65px}#homeView .tile .symbol svg{height:55px;width:55px}#homeView .tile b{font-size:16px}}
+/* Oprava šířky polí datum a město na iPadu */
+#visitView .formgrid>*{min-width:0}
+#visitView .date-field input[type=date]{min-width:0;max-width:100%;width:100%;box-sizing:border-box}
+/* Historie návštěv zákazníka */
+.visit-history-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.visit-history-head h2{margin:0}.history-modes{display:flex;gap:6px}
+.history-modes button{background:#e4eefb!important;color:#1758aa!important;border:1px solid #bfd2ef!important;padding:9px 12px;min-height:42px}
+.history-modes button.active{background:#1758aa!important;color:#fff!important;border-color:#1758aa!important}
+.visit-history-list{display:grid;gap:10px;margin-top:15px}
+.visit-history-card{width:100%;text-align:left;background:#fff!important;color:#25262a!important;border:1px solid #dce4f0!important;border-left:4px solid #1758aa!important;border-radius:11px;padding:14px 16px;display:grid;gap:9px;cursor:pointer}
+.visit-history-card:hover{background:#f5f9ff!important}.visit-history-card:focus-visible{outline:3px solid #1758aa;outline-offset:2px}
+.visit-history-top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.visit-history-date{font-size:16px;font-weight:750;color:#1e426f}.visit-history-city{font-size:13px;color:#667387}
+.visit-history-tags{display:flex;flex-wrap:wrap;gap:6px}.visit-history-tag{background:#e4eefb;color:#20578c;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:600}
+.visit-history-note-icon{color:#1758aa;font-size:16px}.visit-history-preview{font-size:13px;color:#555e6c;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere}
+.visit-history-edit{font-size:12px;color:#1758aa;font-weight:700}
+@media(max-width:470px){.visit-history-head{align-items:flex-start}.visit-history-top{align-items:flex-start}.visit-history-card{padding:12px}}
+
+/* Jednotný vzhled přepínačů na kartě zákazníka */
+#detailView .detail-tabs button,#detailView .detail-tabs button:not(.active){background:#e4eefb!important;color:#507099!important;border:1px solid #cadcf2!important}
+#detailView .detail-tabs button.active{background:#1758aa!important;color:#fff!important;border-color:#1758aa!important}
+.visit-readonly{max-width:850px;margin:auto}.visit-readonly-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}.visit-readonly-grid section,.visit-note-block{background:#f6f8fa;border-radius:11px;padding:14px;margin:0 0 12px}.visit-readonly h3{font-size:13px;color:#647080;margin:0 0 8px}.visit-readonly p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}.visit-readonly h2{font-size:17px;margin:22px 0 12px}.visit-readonly .visit-history-tag{display:inline-block;margin:0 7px 8px 0}.visit-readonly .empty-note{color:#858b95}.visit-detail-group{margin:0 0 12px}.visit-detail-group strong{display:block;color:#176b49;margin-bottom:7px}@media(max-width:550px){.visit-readonly-grid{grid-template-columns:1fr 1fr}}
+/* Archivace zákazníků – test 1.5 */
+.customer-filters{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;margin:0 0 13px}
+.customer-filters button{background:#e4eefb!important;color:#1758aa!important;border:1px solid #bfd2ef!important}
+.customer-filters button.active{background:#1758aa!important;color:#fff!important;border-color:#1758aa!important}
+.customer.archived{background:#f2f3f5!important;opacity:.72;box-shadow:none}
+.customer.archived h3:after{content:' · archiv';font-size:11px;font-weight:500;color:#68707c}
+#archiveCustomer{background:#e4eefb!important;color:#1758aa!important;border:1px solid #bfd2ef!important}
+/* Vyhledávání – tlačítko pro rychlé vymazání */
+.search-wrap{position:relative;margin-bottom:14px}
+.search-wrap .search{margin-bottom:0;padding-right:47px}
+.search-clear{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:38px;height:38px;padding:0!important;border-radius:8px;background:#e4eefb!important;color:#1758aa!important;border:1px solid #bfd2ef!important;font-size:23px!important;line-height:1;display:grid;place-items:center}
+.search-clear[hidden]{display:none!important}
+#visitDetailDelete{background:#fff0f1;color:#9a1a24;border:1px solid #e7b7bc}
+/* iPad Safari: datum a město na samostatných řádcích */
+@media (max-width: 1200px) {
+  #visitView .date-field,
+  #visitView .visit-city-field { grid-column: 1 / -1; min-width: 0; }
+  #visitView .date-field input[type="date"],
+  #visitView .visit-city-field input { display: block; width: 100%; min-width: 0; max-width: 100%; }
+}
+/* Safari na iPadu: zabranit vnitrni minimalni sirce datumovych/casovych ovladacu. */
+#visitView .formgrid { min-width: 0; }
+#visitView .formgrid > .field { min-width: 0; max-width: 100%; }
+#visitView .date-field { min-width: 0; max-width: 100%; overflow: hidden; }
+#visitView input[type="date"],
+#visitView input[type="time"] {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+#visitView input[type="date"]::-webkit-date-and-time-value,
+#visitView input[type="time"]::-webkit-date-and-time-value { min-width: 0; }
+#visitView input[type="date"]::-webkit-datetime-edit,
+#visitView input[type="time"]::-webkit-datetime-edit { min-width: 0; }
+</style></head><body>
+<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span style="font-size:12px;font-weight:500;vertical-align:middle">1.6 TEST</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci</button><button data-module="Kalendář">▦ Kalendář</button><button data-module="Disk">▣ Disk</button><button data-module="Ceníky">▤ Ceníky</button><button data-module="Fotografie">▧ Fotografie</button><button data-module="Databáze">▥ Databáze</button></nav></header>
+<main>
+<section id="homeView"><div class="tiles">
+<button class="tile" id="tileCustomers"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2"/><path d="M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></svg></span><b>Zákazníci</b><small>Kontakty a karty zákazníků · <span id="homeCount">0</span></small></button>
+<button class="tile" id="tileNewVisit"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4.5h6M9 10h6M9 14h3M14 19l5-5 2 2-5 5-3 1z"/></svg></span><b>Nová návštěva</b><small>Rychlý zápis návštěvy</small></button>
+<button class="tile placeholder" data-module="Kalendář"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h2M14 14h2M8 18h2"/></svg></span><b>Kalendář</b><small>Návštěvy a termíny</small></button>
+<button class="tile placeholder" data-module="Disk"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v3"/><path d="M3 19l3-8h16l-3 8z"/></svg></span><b>Disk</b><small>Firemní soubory</small></button>
+<button class="tile placeholder" data-module="Ceníky"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h9l9 9-8 8-10-10z"/><circle cx="8" cy="8" r="1"/></svg></span><b>Ceníky</b><small>Ceníky a nabídky</small></button>
+<button class="tile placeholder" data-module="Fotografie"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="M3 17l6-6 4 4 3-3 5 5"/></svg></span><b>Fotografie</b><small>Realizace a inspirace</small></button>
+<button class="tile placeholder" data-module="Databáze"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg></span><b>Databáze</b><small>Katalogy a vzorky</small></button>
+<button class="tile" id="tileSettings"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4l.7 2.3 2 1.1 2.3-.6 2 3.4-1.6 1.7v2.2l1.6 1.7-2 3.4-2.3-.6-2 1.1L14 20h-4l-.7-2.3-2-1.1-2.3.6-2-3.4 1.6-1.7V9.9L3 8.2l2-3.4 2.3.6 2-1.1z"/><circle cx="12" cy="11" r="3"/></svg></span><b>Nastavení</b><small>Správa aplikace a zálohování</small></button>
+</div></section>
+<section id="listView" hidden><div class="customers-heading"><div><h1>Zákazníci <span class="muted" id="count"></span></h1><p class="muted">Adresář zákazníků</p></div><div class="view-toggle"><button id="viewRows" class="secondary active" title="Seznam">☷ Seznam</button><button id="viewTiles" class="secondary" title="Dlaždice">▦ Dlaždice</button></div></div>
+<div class="toolbar customer-toolbar"><button id="add">+ Přidat zákazníka</button><div class="toolbar-right"><button class="secondary" id="export" title="Exportovat zálohu">↓ Export</button><label class="filebutton" for="import" title="Importovat zálohu">↑ Import</label><input type="file" id="import" accept="application/json,.json"></div></div>
+<div class="customer-filters" role="group" aria-label="Filtr zákazníků"><button type="button" class="active" data-customer-filter="active">Aktivní</button><button type="button" data-customer-filter="all">Všichni</button><button type="button" data-customer-filter="archived">Archivovaní</button></div>
+<div class="search-wrap"><input class="search" id="search" placeholder="Hledat jméno, firmu nebo město…" aria-label="Hledat"><button type="button" class="search-clear" id="searchClear" aria-label="Vymazat hledání" title="Vymazat hledání" hidden>×</button></div>
+<div class="panel"><div id="customers"></div></div><p class="notice">Prototyp ukládá data pouze v tomto prohlížeči. Zatím není synchronizace mezi zařízeními. Před změnami exportuj zálohu.</p></section>
+<section id="detailView" hidden><div class="topline"><button class="secondary" id="detailBack">← Zpět</button><div class="toolbar"><button id="archiveCustomer" type="button">Archivovat</button><button id="detailEdit">Upravit</button></div></div><div class="panel"><h1 id="detailName"></h1><p class="lead" id="detailCompany"></p><div class="detail-tabs" role="tablist" aria-label="Karta zákazníka"><button class="active" data-tab="contact" role="tab" aria-selected="true">Kontakt</button><button data-tab="visits" role="tab" aria-selected="false">Návštěvy</button><button data-tab="samples" role="tab" aria-selected="false">Vzorky</button></div><div id="pane-contact" class="detail-pane"><div class="detail" id="detailContent"></div></div><div id="pane-visits" class="detail-pane" hidden><div class="visit-history-head"><h2>Návštěvy</h2><div class="history-modes" role="group" aria-label="Zobrazení historie"><button type="button" id="historyBrief" class="active" aria-pressed="true">Strohý</button><button type="button" id="historyCompact" aria-pressed="false">Kompaktní</button></div></div><button type="button" id="addCustomerVisit">+ Nová návštěva</button><div id="visitHistory" class="visit-history-list"></div></div><div id="pane-samples" class="detail-pane" hidden><h2>Vzorky</h2><p class="muted">Tady bude přehled vzorků, které má zákazník na prodejně. Evidenci doplníme v další verzi.</p></div></div></section>
+<section id="visitDetailView" hidden><div class="topline"><button class="secondary" type="button" id="visitDetailBack">← Zpět</button><div class="toolbar"><button type="button" id="visitDetailDelete" class="danger">Smazat návštěvu</button><button type="button" id="visitDetailEdit">Upravit</button></div></div><div class="panel visit-readonly"><h1>Detail návštěvy</h1><p class="lead" id="visitDetailCustomer"></p><div class="visit-readonly-grid"><section><h3>Datum</h3><p id="visitDetailDate"></p></section><section><h3>Město</h3><p id="visitDetailCity"></p></section><section><h3>Čas</h3><p id="visitDetailTime"></p></section></div><h2>Činnosti</h2><div id="visitDetailActivities"></div><div class="visit-note-block"><h3>Moje poznámka (soukromá)</h3><p id="visitDetailPrivate"></p></div><div class="visit-note-block"><h3>Poznámka do hlášení</h3><p id="visitDetailReport"></p></div></div></section>
+<section id="editView" hidden><div class="topline"><button class="secondary" id="editBack">← Zpět</button><h1 id="formTitle">Nový zákazník</h1></div><div class="panel"><form id="form"><div class="formgrid">
+<label class="field">Jméno a příjmení<input name="person" maxlength="150" placeholder="Např. Novák Jan"></label>
+<label class="field">Firma / prodejna<input name="company" maxlength="150"></label>
+<label class="field">Telefon 1<input name="phone" type="tel" maxlength="80"></label>
+<label class="field">Telefon 2<input name="phone2" type="tel" maxlength="80"></label>
+<label class="field">E-mail 1<input name="email" type="email" maxlength="150"></label>
+<label class="field">E-mail 2<input name="email2" type="email" maxlength="150"></label>
+<details class="address-group wide" open><summary>Adresa provozovny</summary><div class="formgrid">
+<label class="field">Ulice a číslo<input name="street" maxlength="150"></label>
+<label class="field">PSČ<input name="postal" maxlength="20"></label>
+<label class="field visit-city-field">Město<input name="city" maxlength="100"></label>
+</div></details>
+<details class="address-group wide"><summary>Adresa domů (nepovinná)</summary><div class="formgrid">
+<label class="field">Ulice a číslo<input name="homeStreet" maxlength="150"></label>
+<label class="field">PSČ<input name="homePostal" maxlength="20"></label>
+<label class="field">Město<input name="homeCity" maxlength="100"></label>
+</div></details>
+<label class="field wide">Poznámky<textarea name="note" rows="3" maxlength="2000"></textarea></label></div><div class="actions"><button type="submit">Uložit zákazníka</button><button type="button" class="secondary" id="cancel">Zrušit</button><button type="button" class="danger" id="delete" hidden>Smazat zákazníka</button></div></form></div></section>
+<section id="visitView" hidden><div class="topline"><button class="secondary" id="visitBack">← Zpět</button><h1>Nová návštěva</h1></div><div class="panel"><form id="visitForm" class="visit-form"><div class="visit-mode"><button type="button" class="active" id="visitOwn">Můj zákazník</button><button type="button" id="visitOther">Ostatní návštěva</button></div><div class="formgrid"><label class="field wide" id="visitCustomerWrap">Zákazník<select id="visitCustomer" name="customerId"><option value="">Vyber zákazníka…</option></select></label><label class="field wide" id="visitOtherWrap" hidden>Název zákazníka / místo<input name="otherName" maxlength="150" placeholder="Např. prodejna, firma nebo školení"></label><label class="field date-field">Datum<input name="date" type="date" required></label><label class="field">Město<input name="city" maxlength="100" required placeholder="Město návštěvy" list="visitCities"></label><datalist id="visitCities"></datalist><label class="field">Čas (nepovinné)<input name="time" type="time"></label></div><div class="visit-groups"><details class="visit-group"><summary>Objednáno</summary><div class="visit-options" data-group="ordered"></div></details><details class="visit-group"><summary>Dodáno</summary><div class="visit-options" data-group="delivered"></div></details><details class="visit-group"><summary>Ostatní</summary><div class="visit-options" data-group="other"></div></details></div><div class="formgrid"><label class="field wide">Moje poznámka (soukromá)<textarea name="privateNote" rows="3" maxlength="5000"></textarea></label><label class="field wide">Poznámka do hlášení<textarea name="reportNote" rows="3" maxlength="5000"></textarea></label></div><div class="actions"><button type="submit">Uložit návštěvu</button><button type="button" class="secondary" id="visitCancel">Zrušit</button></div><p class="notice">Návštěvy se zatím ukládají jen do tohoto zařízení. Export návštěv a synchronizaci doplníme později.</p></form></div></section>
+<section id="settingsView" hidden><div class="topline"><button class="secondary" id="settingsBack">← Zpět</button><h1>Nastavení</h1></div><div class="panel settings-panel"><h2>Správa aplikace</h2><p class="muted">Tato část je chráněna čtyřmístným PINem proti nechtěným změnám.</p><h2>Zálohování</h2><p>Úplná záloha obsahuje zákazníky, návštěvy, místní předvolby zobrazení a informaci o odstraněných záznamech. PIN ani přihlášení se nepřenášejí.</p><div class="settings-actions"><button id="backupAll" type="button">↓ Zálohovat vše (JSON)</button><button id="restoreAll" type="button" class="secondary">↑ Obnovit ze zálohy</button><input id="restoreAllFile" type="file" accept="application/json,.json" hidden></div><p class="settings-warning">Pozor: Obnovení nahradí současné zákazníky a návštěvy na tomto zařízení. Před obnovením si vytvoř novou zálohu.</p><h2>Bezpečné sloučení záloh</h2><p class="muted">Bezpečně porovná zálohu s místními daty. Zatím nic neukládá, nepřepisuje ani nemaže. Výsledek zobrazí.</p><div class="settings-actions"><button id="mergeBackup" type="button" class="secondary">⇄ Porovnat zálohu (bez změn)</button><input id="mergeBackupFile" type="file" accept="application/json,.json" hidden></div><p id="mergeBackupStatus" class="muted" aria-live="polite"></p><h2>Zabezpečení</h2><div class="settings-actions"><button id="changeSettingsPin" type="button" class="secondary">Změnit PIN Nastavení</button></div><p class="settings-warning">PIN chrání vstup do Nastavení, nikoliv samotná data v úložišti zařízení.</p><h2>Cloud – test přihlášení</h2><p class="muted">Test přihlášení k Firebase. Zákazníci a návštěvy se zatím nikam neodesílají.</p><div class="settings-actions"><button id="cloudLogin" type="button">Přihlásit přes Google</button><button id="cloudLogout" type="button" class="secondary" hidden>Odhlásit</button></div><p id="cloudStatus" class="muted" aria-live="polite">Připravuji přihlášení…</p><h2>Cloud – test přenosu dat</h2><p class="muted">Nejdříve si stáhni úplnou zálohu JSON. Přenos do cloudu je v této testovací verzi z bezpečnostních důvodů vypnutý. Připravujeme bezpečnou synchronizaci změn.</p><div class="settings-actions"><button id="cloudUpload" type="button" hidden>↑ Odeslat data do cloudu</button><button id="cloudDownload" type="button" class="secondary" hidden>↓ Načíst data z cloudu</button></div><p id="cloudDataStatus" class="muted" aria-live="polite">Přihlas se, abys mohl přenášet data.</p><h2>O aplikaci</h2><p>Moje AVANTI · testovací verze 1.6.1 – bezpečné porovnání záloh</p><p class="muted">Automatická synchronizace zatím není zapnutá; cloudový přenos je v testu vypnutý.</p></div></section></main><script>
+(()=>{'use strict';
+const KEY='moje-avanti-customers-v1',fields=['person','company','phone','phone2','email','email2','street','postal','city','homeStreet','homePostal','homeCity','note'];let data=[],current=null,fromEdit='listView',customerView=window.matchMedia('(max-width: 600px)').matches?'rows':'tiles',customerFilter='active';
+const $=id=>document.getElementById(id),safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+try{const x=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(x))data=x}catch(e){alert('Nepodařilo se načíst uložená data.')}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data));return true}catch(e){alert('Uložení se nezdařilo.');return false}}
+function show(id){document.querySelectorAll('header nav button').forEach(b=>b.classList.toggle('active',id!=='homeView'&&b.id==='navCustomers'));for(const name of ['homeView','listView','detailView','editView','visitView','visitDetailView','settingsView'])$(name).hidden=name!==id;if(id==='listView'){setCustomerView(window.matchMedia('(max-width: 600px)').matches?'rows':'tiles');}if(id==='homeView')$('homeCount').textContent=data.length;window.scrollTo(0,0)}
+function render(){const q=$('search').value.toLocaleLowerCase('cs').trim(),items=data.filter(x=>(customerFilter==='all'||(customerFilter==='archived'?x.archived===true:x.archived!==true))&&fields.some(f=>String(x[f]||'').toLocaleLowerCase('cs').includes(q))).sort((a,b)=>(a.person||a.company||'').localeCompare(b.person||b.company||'','cs'));$('count').textContent='('+items.length+')';$('customers').className=customerView==='tiles'?'customer-grid':'';$('customers').innerHTML=items.length?items.map(x=>{const name=x.person||x.company||'Zákazník',parts=name.trim().split(/\s+/),initials=(parts.length>1?parts[0][0]+parts[parts.length-1][0]:name.slice(0,2)).toLocaleUpperCase('cs');let colors=['#e9e8fc','#dff2e9','#fce9dc','#e1effb','#f9e5f1','#f4ebd9'];let hash=[...name].reduce((h,c)=>h+c.charCodeAt(0),0),bg=colors[hash%colors.length];const info=[x.person&&x.company?x.company:'',x.city].filter(Boolean).join(' · ');const links=[x.phone,x.phone2].filter(Boolean).map(v=>`<span class="contact-text">☎ ${safe(v)}</span>`).concat([x.email,x.email2].filter(Boolean).map(v=>`<span class="contact-text">✉ ${safe(v)}</span>`)).join('');return customerView==='tiles'?`<div class="customer${x.archived===true?' archived':''}" data-card="${safe(x.id)}" tabindex="0" role="button" aria-label="Otevřít zákazníka ${safe(name)}"><div class="customer-top"><span class="avatar" style="background:${bg}">${safe(initials)}</span><div><h3>${safe(name)}</h3><p>${safe(x.person?x.company||'':'')}</p></div></div><div class="customer-links">${links}</div>${x.city?`<p class="customer-city">⌖ ${safe(x.city)}</p>`:''}<button class="secondary" data-id="${safe(x.id)}">Otevřít kartu →</button></div>`:`<div class="customer${x.archived===true?' archived':''}" data-card="${safe(x.id)}" tabindex="0" role="button" aria-label="Otevřít zákazníka ${safe(name)}"><div><h3>${safe(name)}</h3><p>${safe(info)}</p></div><button class="secondary" data-id="${safe(x.id)}">Otevřít</button></div>`}).join(''):'<p class="muted">Žádní zákazníci k zobrazení.</p>' ;$('customers').querySelectorAll('[data-id]').forEach(b=>b.onclick=e=>{e.stopPropagation();detail(b.dataset.id)});$('customers').querySelectorAll('[data-card]').forEach(b=>{b.onclick=e=>{if(!e.target.closest('button'))detail(b.dataset.card)};b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();detail(b.dataset.card)}}})}
+function detail(id){current=id;const x=data.find(v=>v.id===id);if(!x)return;$('search').value='';updateSearchClear();render();$('archiveCustomer').textContent=x.archived===true?'Vrátit mezi aktivní':'Archivovat';$('detailName').textContent=x.person||x.company;$('detailCompany').textContent=x.person?x.company||'':'';const section=(name,values)=>values.length?`<section><h3>${name}</h3>${values.join('')}</section>`:'';const tel=[x.phone,x.phone2].filter(Boolean).map(v=>`<p><a href="tel:${encodeURIComponent(v.replace(/[^+0-9]/g,''))}">☎ ${safe(v)}</a></p>`);const email=[x.email,x.email2].filter(Boolean).map(v=>`<p><a href="mailto:${encodeURIComponent(v)}">✉ ${safe(v)}</a></p>`);const address=(street,postal,city)=>{const lines=[street,[postal,city].filter(Boolean).join(' ')].filter(Boolean);if(!lines.length)return [];const query=encodeURIComponent([street,postal,city].filter(Boolean).join(', '));return [...lines.map(v=>`<p>${safe(v)}</p>`),`<p><a class="map-link" href="https://maps.apple.com/?q=${query}" target="_blank" rel="noopener noreferrer">⌖ Otevřít v Mapách ↗</a></p>`]};$('detailContent').innerHTML=section('Telefony',tel)+section('E-maily',email)+section('Adresa provozovny',address(x.street,x.postal,x.city))+section('Adresa domů',address(x.homeStreet,x.homePostal,x.homeCity))+(x.note?`<section class="full"><h3>Poznámky</h3><p>${safe(x.note).replace(/\n/g,'<br>')}</p></section>`:'');setDetailTab('contact');show('detailView');renderVisitHistory()}
+function edit(id=null){current=id;fromEdit=id?'detailView':'listView';const x=data.find(v=>v.id===id)||{};$('form').reset();for(const f of fields)$('form').elements[f].value=x[f]||'';$('formTitle').textContent=id?'Upravit zákazníka':'Nový zákazník';$('delete').hidden=!id;show('editView')}
+function backEdit(){if(fromEdit==='detailView'&&current)detail(current);else show('listView')}
+function setDetailTab(tab){document.querySelectorAll('[data-tab]').forEach(b=>{const selected=b.dataset.tab===tab;b.classList.toggle('active',selected);b.setAttribute('aria-selected',String(selected))});for(const key of ['contact','visits','samples'])$('pane-'+key).hidden=key!==tab}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>setDetailTab(b.dataset.tab));
+$('brandHome').onclick=()=>show('homeView');$('navCustomers').onclick=()=>show('listView');$('viewRows').onclick=()=>setCustomerView('rows');$('viewTiles').onclick=()=>setCustomerView('tiles');function setCustomerView(v){customerView=v;$('viewRows').classList.toggle('active',v==='rows');$('viewTiles').classList.toggle('active',v==='tiles');render()}$('tileCustomers').onclick=()=>show('listView');$('tileNewVisit').onclick=()=>openVisit();document.querySelectorAll('[data-home]').forEach(b=>b.onclick=()=>show('homeView'));document.querySelectorAll('[data-module]').forEach(b=>b.onclick=()=>alert('Sekci '+b.dataset.module+' připravíme později. Zatím je to jen ukázka rozložení.'));
+document.querySelectorAll('[data-customer-filter]').forEach(b=>b.onclick=()=>{customerFilter=b.dataset.customerFilter;document.querySelectorAll('[data-customer-filter]').forEach(x=>x.classList.toggle('active',x===b));render()});
+$('archiveCustomer').onclick=()=>{const x=data.find(v=>v.id===current);if(!x)return;const next=x.archived!==true;if(!confirm(next?'Archivovat zákazníka? Kontakty i historie návštěv zůstanou zachované.':'Vrátit zákazníka mezi aktivní?'))return;const old=x.archived;x.archived=next;if(!save()){x.archived=old;return}detail(current);render()};
+$('add').onclick=()=>edit();$('detailBack').onclick=()=>show('listView');$('detailEdit').onclick=()=>edit(current);$('editBack').onclick=backEdit;$('cancel').onclick=backEdit;$('search').oninput=()=>{updateSearchClear();render()};function updateSearchClear(){$('searchClear').hidden=!$('search').value.length}$('searchClear').onclick=()=>{$('search').value='';updateSearchClear();render();$('search').focus()};updateSearchClear();
+$('form').onsubmit=e=>{e.preventDefault();const obj={id:current||('c_'+Date.now()+'_'+Math.random().toString(36).slice(2))};for(const f of fields)obj[f]=$('form').elements[f].value.trim();if(current)obj.archived=data.find(x=>x.id===current)?.archived===true;if(!obj.person&&!obj.company){alert('Vyplň jméno zákazníka nebo firmu.');return}if(current){const i=data.findIndex(x=>x.id===current);if(i<0)return;data[i]=obj}else data.push(obj);if(save()){if(current)detail(current);else show('listView')}};
+$('delete').onclick=()=>{if(!current||!confirm('Opravdu smazat tohoto zákazníka?'))return;data=data.filter(x=>x.id!==current);if(save()){markDeleted('customers',current);show('listView')}};
+$('export').onclick=()=>{const blob=new Blob([JSON.stringify({app:'Moje AVANTI',version:1,exportedAt:new Date().toISOString(),customers:data,visits:visits},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='moje-avanti-zaloha-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('import').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(obj.app!=='Moje AVANTI'||!Array.isArray(obj.customers)||!obj.customers.every(x=>x&&typeof x.id==='string'&&(typeof x.company==='string'||typeof x.person==='string')))throw Error('Neplatná záloha');if(!confirm(`Import nahradí současných ${data.length} zákazníků údaji ze zálohy (${obj.customers.length}). Pokračovat?`))return;const prev=data;data=obj.customers.map(x=>({...Object.fromEntries(['id',...fields].map(k=>[k,String(x[k]||'')])),archived:x.archived===true}));if(!save())data=prev;else if(Array.isArray(obj.visits)){const oldVisits=visits;visits=obj.visits;try{localStorage.setItem(VISIT_KEY,JSON.stringify(visits))}catch(err){visits=oldVisits;alert('Návštěvy se nepodařilo uložit.')}}render()}catch(err){alert('Soubor není platná záloha Moje AVANTI.')}finally{e.target.value=''}};
+// Návštěvy: samostatné úložiště, bez zásahu do uložených zákazníků.
+const VISIT_KEY='moje-avanti-visits-v1';
+ const DELETED_KEY='moje-avanti-deleted-v1';
+ function readDeleted(){try{const x=JSON.parse(localStorage.getItem(DELETED_KEY)||'{"customers":{},"visits":{}}');return {customers:x.customers||{},visits:x.visits||{}}}catch(e){return {customers:{},visits:{}}}}
+ function markDeleted(kind,id){const d=readDeleted();d[kind][id]=new Date().toISOString();try{localStorage.setItem(DELETED_KEY,JSON.stringify(d))}catch(e){alert('Nepodařilo se uložit informaci o smazání.')}}
+const VISIT_GROUPS={ordered:[['carpets','Koberce'],['pvc','PVC'],['chemicals','Chemie'],['other','Ostatní'],['commission','Komise']],delivered:[['samples','Vzorky'],['pricelist','Ceník'],['catalog','Katalog'],['commission','Komise'],['sale','Prodej']],other:[['inquiry','Poptávka'],['update','Aktualizace'],['complaint','Reklamace'],['commission_check','Kontrola komise'],['delivery','Závoz zboží']]};
+let visits=[],visitMode='own',visitReturn='homeView',visitEditing=null,visitDetailId=null,visitEditFromDetail=false;
+try{let v=JSON.parse(localStorage.getItem(VISIT_KEY)||'[]');if(Array.isArray(v))visits=v}catch(e){alert('Nepodařilo se načíst návštěvy.');}
+const vf=$('visitForm');
+for(const [group,opts] of Object.entries(VISIT_GROUPS))document.querySelector(`.visit-options[data-group="${group}"]`).innerHTML=opts.map(([id,label])=>`<label><input type="checkbox" name="${group}:${id}" value="${id}"><span>${label}</span></label>`).join('');
+function visitModeSet(mode){visitMode=mode;const own=mode==='own';$('visitOwn').classList.toggle('active',own);$('visitOther').classList.toggle('active',!own);$('visitCustomerWrap').hidden=!own;$('visitOtherWrap').hidden=own;}
+$('visitOwn').onclick=()=>visitModeSet('own');$('visitOther').onclick=()=>visitModeSet('other');
+function localToday(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
+function visitBack(){if(visitEditFromDetail&&visitDetailId){visitEditFromDetail=false;openVisitDetail(visitDetailId);return}if(visitReturn==='detailView'&&current){detail(current);setDetailTab('visits')}else show(visitReturn==='listView'?'listView':'homeView')}
+$('visitBack').onclick=visitBack;$('visitCancel').onclick=visitBack;
+function openVisit(customerId='',editId=null){if(!editId)visitEditFromDetail=false;visitReturn=customerId?'detailView':'homeView';visitEditing=editId;vf.reset();document.querySelectorAll('.visit-group').forEach(x=>x.open=false);vf.elements.date.value=localToday();$('visitCustomer').innerHTML='<option value="">Vyber zákazníka…</option>'+data.slice().sort((a,b)=>(a.company||a.person||'').localeCompare(b.company||b.person||'','cs')).map(c=>`<option value="${safe(c.id)}">${safe([c.company,c.person].filter(Boolean).join(' – '))}</option>`).join('');$('visitCities').innerHTML=[...new Set(visits.map(v=>v.city).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'cs')).map(v=>`<option value="${safe(v)}"></option>`).join('');visitModeSet('own');if(customerId)$('visitCustomer').value=customerId;
+if(editId){const v=visits.find(x=>x.id===editId);if(v){visitModeSet(v.mode);for(const k of ['customerId','otherName','date','city','time','privateNote','reportNote'])if(vf.elements[k])vf.elements[k].value=v[k]||'';for(const key of v.activities||[])if(vf.elements[key])vf.elements[key].checked=true;}}
+show('visitView');}
+vf.onsubmit=e=>{e.preventDefault();const v={id:visitEditing||('v_'+Date.now()+'_'+Math.random().toString(36).slice(2)),mode:visitMode,customerId:visitMode==='own'?vf.elements.customerId.value:'',otherName:visitMode==='other'?vf.elements.otherName.value.trim():'',date:vf.elements.date.value,city:vf.elements.city.value.trim(),time:vf.elements.time.value,privateNote:vf.elements.privateNote.value.trim(),reportNote:vf.elements.reportNote.value.trim(),activities:[...vf.querySelectorAll('.visit-options input:checked')].map(x=>x.name)};
+if(v.mode==='own'&&!data.some(c=>c.id===v.customerId)){alert('Vyber zákazníka.');return}if(v.mode==='other'&&!v.otherName){alert('Vyplň název zákazníka nebo místa.');return}if(!v.date||!v.city){alert('Vyplň datum a město.');return}if(!v.activities.length&&!v.reportNote){alert('Zaškrtni alespoň jednu činnost nebo vyplň poznámku do hlášení.');return}
+const previous=visits.slice();if(visitEditing){const i=visits.findIndex(x=>x.id===visitEditing);if(i<0)return;visits[i]=v}else visits.push(v);try{localStorage.setItem(VISIT_KEY,JSON.stringify(visits))}catch(err){visits=previous;alert('Návštěvu se nepodařilo uložit.');return}visitBack();};
+
+function openVisitDetail(id){
+ const v=visits.find(item=>item.id===id);if(!v)return;
+ visitDetailId=id;
+ const customer=data.find(c=>c.id===v.customerId);
+ $('visitDetailCustomer').textContent=v.mode==='own'?(customer?[customer.company,customer.person].filter(Boolean).join(' – '):'Zákazník'):(v.otherName||'Ostatní návštěva');
+ $('visitDetailDate').textContent=v.date?new Date(v.date+'T12:00:00').toLocaleDateString('cs-CZ'):'—';
+ $('visitDetailCity').textContent=v.city||'—';$('visitDetailTime').textContent=v.time||'Neuvedeno';
+ const groups=[['ordered','Objednáno'],['delivered','Dodáno'],['other','Ostatní']];
+ $('visitDetailActivities').innerHTML=groups.map(([g,title])=>{
+   const tags=(v.activities||[]).filter(key=>key.startsWith(g+':')).map(key=>{const id=key.slice(g.length+1);const label=VISIT_GROUPS[g]?.find(opt=>opt[0]===id)?.[1]||id;return '<span class="visit-history-tag">'+safe(label)+'</span>'}).join('');
+   return tags?'<div class="visit-detail-group"><strong>'+title+'</strong>'+tags+'</div>':'';
+ }).join('')||'<p class="empty-note">Bez označených činností</p>';
+ for(const [element,value] of [['visitDetailPrivate',v.privateNote],['visitDetailReport',v.reportNote]]){$(element).textContent=value||'Bez poznámky';$(element).classList.toggle('empty-note',!value)}
+ show('visitDetailView');
+}
+$('visitDetailBack').onclick=()=>{if(current){detail(current);setDetailTab('visits')}else show('homeView')};
+$('visitDetailEdit').onclick=()=>{if(!visitDetailId)return;const v=visits.find(x=>x.id===visitDetailId);if(!v)return;visitEditFromDetail=true;openVisit(v.customerId||'',v.id)};
+$('visitDetailDelete').onclick=()=>{
+  if(!visitDetailId)return;
+  const visit=visits.find(v=>v.id===visitDetailId);
+  if(!visit)return;
+  const label=visit.date?new Date(visit.date+'T12:00:00').toLocaleDateString('cs-CZ'):'bez data';
+  if(!confirm('Opravdu trvale smazat návštěvu ze dne '+label+'?\nTuto akci nelze vrátit jinak než ze zálohy.'))return;
+  const previous=visits;
+  visits=visits.filter(v=>v.id!==visitDetailId);
+  try{localStorage.setItem(VISIT_KEY,JSON.stringify(visits))}
+  catch(err){visits=previous;alert('Návštěvu se nepodařilo smazat.');return}
+  visitDetailId=null;
+  if(visit.mode==='own'&&visit.customerId&&data.some(c=>c.id===visit.customerId)){
+    detail(visit.customerId);setDetailTab('visits');
+  }else show('homeView');
+};
+$('addCustomerVisit').onclick=()=>openVisit(current);
+// Nové výchozí zobrazení podle zařízení; ruční volba se dál pamatuje.
+const HISTORY_VIEW_KEY='moje-avanti-history-view-v3';
+const isIPhone=/iPhone|iPod/i.test(navigator.userAgent);
+let historyView=isIPhone?'brief':'compact';
+try{const savedHistoryView=localStorage.getItem(HISTORY_VIEW_KEY);if(savedHistoryView==='compact'||savedHistoryView==='brief')historyView=savedHistoryView}catch(e){}
+function setHistoryView(mode){historyView=mode==='compact'?'compact':'brief';for(const [id,value] of [['historyBrief','brief'],['historyCompact','compact']]){const selected=historyView===value;$(id).classList.toggle('active',selected);$(id).setAttribute('aria-pressed',String(selected))}try{localStorage.setItem(HISTORY_VIEW_KEY,historyView)}catch(e){}renderVisitHistory()}
+$('historyBrief').onclick=()=>setHistoryView('brief');$('historyCompact').onclick=()=>setHistoryView('compact');
+function renderVisitHistory(){
+ const target=$('visitHistory');
+ const items=visits.filter(v=>v.mode==='own'&&v.customerId===current).sort((a,b)=>(b.date+' '+(b.time||'')).localeCompare(a.date+' '+(a.time||'')));
+ target.innerHTML=items.length?items.map(v=>{
+   const labels=(v.activities||[]).map(k=>{const [g,id]=k.split(':');const label=VISIT_GROUPS[g]?.find(x=>x[0]===id)?.[1]||id;const group={ordered:'Objednáno',delivered:'Dodáno',other:'Ostatní'}[g]||g;return group+' · '+label});
+   const date=v.date?new Date(v.date+'T12:00:00').toLocaleDateString('cs-CZ'):'Bez data';
+   const tags=labels.map(label=>`<span class="visit-history-tag">${safe(label)}</span>`).join('');
+   const reportOnly=!labels.length&&v.reportNote?'<span class="visit-history-tag">Poznámka do hlášení</span>':'';
+   const privateIndicator=v.privateNote?'<span class="visit-history-note-icon" title="Soukromá poznámka" aria-label="Soukromá poznámka">📝</span>':'';
+   const notePreview=v.privateNote||v.reportNote||'';
+    const preview=historyView==='compact'&&notePreview?`<span class="visit-history-preview">${safe(notePreview)}</span>`:'';
+   return `<button type="button" class="visit-history-card" data-visit-open="${safe(v.id)}" aria-label="Otevřít návštěvu ${safe(date)}"><span class="visit-history-top"><span class="visit-history-date">${safe(date)}${v.time?' · '+safe(v.time):''} ${privateIndicator}</span><span class="visit-history-city">${safe(v.city)}</span></span><span class="visit-history-tags">${tags}${reportOnly}</span>${preview}<span class="visit-history-edit">Zobrazit →</span></button>`;
+ }).join(''):'<p class="muted">Zatím žádné návštěvy. První můžeš přidat tlačítkem výše.</p>';
+ target.querySelectorAll('[data-visit-open]').forEach(b=>b.onclick=()=>openVisitDetail(b.dataset.visitOpen));
+}
+setHistoryView(historyView);
+$('homeCount').textContent=data.length;
+setCustomerView(customerView);
+
+// Nastavení: jednoduchá ochrana proti nechtěným zásahům, nikoliv kryptografické zabezpečení.
+const SETTINGS_PIN_KEY='moje-avanti-settings-pin-v1';
+const pinFingerprint=pin=>{let h=2166136261;for(const c of 'avanti-settings:'+pin){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return String(h>>>0)};
+const validPin=pin=>/^\d{4}$/.test(pin||'');
+function settingsPinGate(){
+  const stored=localStorage.getItem(SETTINGS_PIN_KEY);
+  if(!stored){
+    const first=prompt('Nastav čtyřmístný PIN pro vstup do Nastavení:');
+    if(first===null)return false;
+    if(!validPin(first)){alert('PIN musí mít přesně 4 číslice.');return false}
+    const again=prompt('Zopakuj nový čtyřmístný PIN:');
+    if(again===null)return false;
+    if(first!==again){alert('PINy se neshodují.');return false}
+    try{localStorage.setItem(SETTINGS_PIN_KEY,pinFingerprint(first));return true}catch(e){alert('PIN se nepodařilo uložit.');return false}
+  }
+  const attempt=prompt('Zadej čtyřmístný PIN pro Nastavení:');
+  if(attempt===null)return false;
+  if(!validPin(attempt)||pinFingerprint(attempt)!==stored){alert('Nesprávný PIN.');return false}
+  return true;
+}
+$('tileSettings').onclick=()=>{if(settingsPinGate())show('settingsView')};
+$('settingsBack').onclick=()=>show('homeView');
+$('changeSettingsPin').onclick=()=>{
+  const old=prompt('Zadej současný PIN:');if(old===null)return;
+  if(!validPin(old)||pinFingerprint(old)!==localStorage.getItem(SETTINGS_PIN_KEY)){alert('Nesprávný PIN.');return}
+  const next=prompt('Zadej nový čtyřmístný PIN:');if(next===null)return;
+  if(!validPin(next)){alert('PIN musí mít přesně 4 číslice.');return}
+  const again=prompt('Zopakuj nový PIN:');if(again===null)return;
+  if(next!==again){alert('PINy se neshodují.');return}
+  try{localStorage.setItem(SETTINGS_PIN_KEY,pinFingerprint(next));alert('PIN byl změněn.')}catch(e){alert('PIN se nepodařilo uložit.')}
+};
+$('backupAll').onclick=()=>{
+  const blob=new Blob([JSON.stringify({app:'Moje AVANTI',backupType:'complete',version:3,exportedAt:new Date().toISOString(),customers:data,visits:visits,settings:{historyView,customerView,customerFilter},deleted:readDeleted()},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='moje-avanti-uplna-zaloha-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000)
+};
+$('restoreAll').onclick=()=>$('restoreAllFile').click();
+$('restoreAllFile').onchange=async e=>{
+  const file=e.target.files?.[0];if(!file)return;
+  try{
+    const backup=JSON.parse(await file.text());
+    if(backup.app!=='Moje AVANTI'||backup.backupType!=='complete'||!Array.isArray(backup.customers)||!Array.isArray(backup.visits)||!backup.customers.every(x=>x&&typeof x.id==='string')||!backup.visits.every(x=>x&&typeof x.id==='string'))throw Error('Neplatná úplná záloha');
+    if(!confirm('POZOR: Obnovení nahradí všechny současné zákazníky i návštěvy na tomto zařízení. Opravdu pokračovat?'))return;
+    const oldCustomers=localStorage.getItem(KEY),oldVisits=localStorage.getItem(VISIT_KEY);
+    try{
+      localStorage.setItem(KEY,JSON.stringify(backup.customers));
+      localStorage.setItem(VISIT_KEY,JSON.stringify(backup.visits));
+      data=backup.customers;visits=backup.visits;
+      render();$('homeCount').textContent=data.length;
+      alert('Záloha byla obnovena.');
+    }catch(err){
+      try{if(oldCustomers===null)localStorage.removeItem(KEY);else localStorage.setItem(KEY,oldCustomers);if(oldVisits===null)localStorage.removeItem(VISIT_KEY);else localStorage.setItem(VISIT_KEY,oldVisits)}catch(_){}
+      alert('Obnovení se nezdařilo. Původní data byla podle možností vrácena.');
+    }
+  }catch(err){alert('Tento soubor není úplná záloha Moje AVANTI.')}finally{e.target.value=''}
+};
+
+// 1.6.1: pouze kontrolní porovnání, bez jakéhokoliv zápisu do úložiště.
+$('mergeBackup').onclick=()=>{$('mergeBackupStatus').textContent='Vyber JSON zálohu k porovnání.';$('mergeBackupFile').click()};
+$('mergeBackupFile').onchange=async e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ try{
+  const backup=JSON.parse(await file.text());
+  if(backup.app!=='Moje AVANTI'||!Array.isArray(backup.customers)||!Array.isArray(backup.visits)||!backup.customers.every(x=>x&&typeof x.id==='string')||!backup.visits.every(x=>x&&typeof x.id==='string'))throw Error('Neplatný formát zálohy');
+  const report=(local,incoming)=>{
+   const byId=new Map(local.map(x=>[x.id,x]));let added=0,same=0,different=0;
+   for(const item of incoming){const old=byId.get(item.id);if(!old)added++;else if(JSON.stringify(old)===JSON.stringify(item))same++;else different++}
+   return {added,same,different};
+  };
+  const c=report(data,backup.customers),v=report(visits,backup.visits);
+  $('mergeBackupStatus').textContent=`Pouze porovnání – nic nebylo změněno. Zákazníci: ${c.added} nových, ${c.same} shodných, ${c.different} rozdílných. Návštěvy: ${v.added} nových, ${v.same} shodných, ${v.different} rozdílných. Rozdíly se zatím automaticky neslučují.`;
+ }catch(err){$('mergeBackupStatus').textContent='Soubor nelze porovnat: '+err.message}
+ finally{e.target.value=''}
+};
+
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+const firebaseConfig = {
+    apiKey: "AIzaSyAQobrG_n5fUdnQgS9JSYyvWokSWrIhwzo",
+    authDomain: "moje-avanti.firebaseapp.com",
+    projectId: "moje-avanti",
+    storageBucket: "moje-avanti.firebasestorage.app",
+    messagingSenderId: "1075628554394",
+    appId: "1:1075628554394:web:0f9b8d925ae69d6b44c723"
+  };
+const status = document.getElementById('cloudStatus');
+const login = document.getElementById('cloudLogin');
+const logout = document.getElementById('cloudLogout');
+const upload = document.getElementById('cloudUpload');
+const download = document.getElementById('cloudDownload');
+const dataStatus = document.getElementById('cloudDataStatus');
+try {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  let activeUser = null;
+  const customersKey = "moje-avanti-customers-v1";
+  const visitsKey = "moje-avanti-visits-v1";
+  const getLocal = key => { const value = JSON.parse(localStorage.getItem(key) || "[]"); if (!Array.isArray(value)) throw new Error("Neplatná místní data"); return value; };
+  const cloudDoc = () => doc(db, "users", activeUser.uid);
+  const expectedUid = "Csg7Rlp3PWc8xahhfC2LvrPVWJn1";
+  const diagnostic = (stage, error) => `${stage}: ${error.code || "chyba"} – ${error.message}. Projekt: ${app.options.projectId}; UID: ${activeUser?.uid || "nepřihlášen"}; pravidlo UID: ${expectedUid}; shoda: ${activeUser?.uid === expectedUid ? "ANO" : "NE"}.`;
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({prompt:'select_account'});
+  onAuthStateChanged(auth, user => {
+    activeUser = user;
+    upload.hidden = !user;
+    download.hidden = !user;
+    dataStatus.textContent = user ? "Připraveno k ručnímu přenosu. Nejdříve vytvoř zálohu JSON." : "Přihlas se, abys mohl přenášet data.";
+    login.hidden = !!user;
+    logout.hidden = !user;
+    status.textContent = user ? `Přihlášeno: ${user.email} | UID: ${user.uid}` : 'Nepřihlášeno. Žádná data se nesynchronizují.';
+  }, error => { status.textContent = 'Chyba přihlášení: ' + error.message; });
+  getRedirectResult(auth).catch(error => { status.textContent = 'Chyba návratu z přihlášení: ' + error.message; });
+  login.addEventListener('click', async () => {
+    status.textContent = 'Otevírám přihlášení Google…';
+    try {
+      if (/iPad/.test(navigator.userAgent) && !/iPhone/.test(navigator.userAgent)) await signInWithRedirect(auth,provider);
+      else await signInWithPopup(auth,provider);
+    } catch(error) { status.textContent = 'Přihlášení se nezdařilo: ' + error.code + ' – ' + error.message; }
+  });
+  upload.addEventListener('click', async () => {
+    if (!activeUser) return;
+    let stage = "Příprava";
+    try {
+      const customers = getLocal(customersKey), visits = getLocal(visitsKey);
+      stage = "Čtení existujícího dokumentu";
+      dataStatus.textContent = "Kontroluji oprávnění čtení…";
+      const existing = await getDoc(cloudDoc());
+      const warning = existing.exists()
+        ? `V cloudu už jsou data. Odesláním je NAHRADÍŠ daty z tohoto zařízení (${customers.length} zákazníků, ${visits.length} návštěv). Máš staženou zálohu JSON?`
+        : `Odeslat do cloudu ${customers.length} zákazníků a ${visits.length} návštěv? Máš staženou zálohu JSON?`;
+      if (!confirm(warning)) return;
+      dataStatus.textContent = 'Odesílám…';
+      stage = "Zápis dokumentu";
+      await setDoc(cloudDoc(), {app:'Moje AVANTI',version:1,customers,visits,updatedAt:new Date().toISOString()});
+      dataStatus.textContent = `Odesláno: ${customers.length} zákazníků, ${visits.length} návštěv.`;
+    } catch(error) { dataStatus.textContent = diagnostic(stage, error); }
+  });
+  download.addEventListener('click', async () => {
+    if (!activeUser) return;
+    try {
+      dataStatus.textContent = 'Kontroluji cloud…';
+      const snapshot = await getDoc(cloudDoc());
+      if (!snapshot.exists()) { dataStatus.textContent = 'V cloudu zatím nejsou žádná data.'; return; }
+      const value = snapshot.data();
+      if (value.app !== 'Moje AVANTI' || !Array.isArray(value.customers) || !Array.isArray(value.visits) || !value.customers.every(x => x && typeof x.id === 'string') || !value.visits.every(x => x && typeof x.id === 'string')) throw new Error('Cloudová data nemají očekávaný formát.');
+      if (!confirm(`POZOR: Načtení NAHRADÍ všechna místní data (${getLocal(customersKey).length} zákazníků, ${getLocal(visitsKey).length} návštěv) cloudovými (${value.customers.length} zákazníků, ${value.visits.length} návštěv). Nejdříve vytvoř místní zálohu JSON. Pokračovat?`)) { dataStatus.textContent = 'Načtení zrušeno.'; return; }
+      const oldCustomers = localStorage.getItem(customersKey), oldVisits = localStorage.getItem(visitsKey);
+      try {
+        localStorage.setItem(customersKey, JSON.stringify(value.customers));
+        localStorage.setItem(visitsKey, JSON.stringify(value.visits));
+      } catch(error) {
+        if (oldCustomers === null) localStorage.removeItem(customersKey); else localStorage.setItem(customersKey, oldCustomers);
+        if (oldVisits === null) localStorage.removeItem(visitsKey); else localStorage.setItem(visitsKey, oldVisits);
+        throw error;
+      }
+      alert('Data byla načtena z cloudu. Aplikace se nyní znovu načte.');
+      location.reload();
+    } catch(error) { dataStatus.textContent = diagnostic('Čtení / načtení', error); }
+  });
+  logout.addEventListener('click', async () => { try { await signOut(auth); } catch(error) { status.textContent = error.message; } });
+} catch(error) { status.textContent = 'Firebase se nepodařilo spustit: ' + error.message; }
+</script></body></html>
