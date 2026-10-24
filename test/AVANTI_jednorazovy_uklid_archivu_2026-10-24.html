@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moje AVANTI – jednorázové vyčištění testovacích archivů</title>
+<style>
+:root{color-scheme:light}body{font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f4f6;color:#253044;margin:0}header{background:#a91f2c;color:#fff;padding:20px max(18px,calc((100vw - 800px)/2));font-weight:750;font-size:24px}main{max-width:800px;margin:28px auto;padding:0 18px 50px}section{background:#fff;border:1px solid #dfe3e9;border-radius:15px;padding:22px;margin:14px 0}h1{font-size:24px;margin:0 0 12px}h2{font-size:18px;margin:0 0 12px}p{margin:8px 0 14px}button{font:inherit;font-weight:650;border:1px solid #bfc8d5;background:white;color:#27364c;border-radius:10px;padding:11px 17px;cursor:pointer;margin:4px 7px 4px 0}button.primary{background:#a91f2c;color:#fff;border-color:#a91f2c}button:disabled{cursor:default;opacity:.42}button:focus-visible{outline:3px solid #4285f4}.small{color:#677184;font-size:14px}.warn{color:#8c321b;font-weight:600}.good{color:#12633a;font-weight:650}.status{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f4f8;border-radius:10px;padding:16px;margin-top:14px}.status.error{background:#ffeded;color:#922331}.status.success{background:#e7f6ee;color:#116636}.row{display:flex;gap:8px;flex-wrap:wrap}.identity{font-weight:650}ul{padding-left:22px}li{margin:4px 0}
+</style></head><body>
+<header>Moje AVANTI · technický úklid</header>
+<main>
+<section><h1>Trvalé odstranění 5 testovacích položek</h1><p>Jednorázový servisní nástroj. <strong>Neupravuje vzhled ani kód aplikace.</strong> Z Firestore odstraní výhradně pět předem určených archivovaných kontaktů a provozoven.</p>
+<ul><li><strong>A-Z FLOOR:</strong> Petr Svoboda, Petra Navrátilová, KOLÍN – prodejna, PRAHA – vzorkovna</li><li><strong>A P I studio:</strong> Testovací Kontakt 2948</li></ul>
+<p class="warn">Před spuštěním zavři všechny ostatní karty Moje AVANTI na Macu a iPadu. Žádnou úplnou zálohu neobnovuj.</p><p class="small">Podmínky bezpečného zásahu: cloud má revizi 72, 891 zákazníků a 9 návštěv; všech 5 cílových položek musí být archivovaných a nesmí být použité v návštěvách ani ve vzorcích. Jakákoliv odchylka úklid zablokuje.</p></section>
+<section><h2>1. Připojení a kontrola</h2><p id="identity" class="identity">Čekám na ověření přihlášení…</p><div class="row"><button id="login" hidden>Přihlásit přes Google</button><button id="inspect" disabled>Ověřit stav cloudu</button></div><div id="status" class="status" role="status" aria-live="polite">Zatím neproběhla kontrola. Data se nemění.</div></section>
+<section><h2>2. Záloha a cílené odstranění</h2><p>Než dojde k odstranění, stáhneš si úplnou kopii synchronizovaných zákazníků a návštěv z cloudu. Katalog vzorků se nemění. Pro jistotu ponech i předchozí úplné zálohy Macu a iPadu.</p><div class="row"><button id="download" disabled>Stáhnout zálohu cloudu před úklidem</button><button id="delete" class="primary" disabled>Trvale odstranit 5 položek</button></div><p class="small">Po úspěchu otevři běžnou verzi 2.9.55 nejprve na Macu, poté na iPadu. Její synchronizace přenese změnu do obou zařízení.</p></section>
+</main>
+<script>
+/* START_RULES */
+const TARGETS=[
+ {customerId:'c_1792508864720_pl07wzet6zs',company:'A - Z FLOOR, s.r.o.',field:'contacts',id:'ac_1792692795554_jan9kfyp',name:'Petr Svoboda'},
+ {customerId:'c_1792508864720_pl07wzet6zs',company:'A - Z FLOOR, s.r.o.',field:'contacts',id:'ac_1792693164113_1pugqaz2',name:'Petra Navrátilová'},
+ {customerId:'c_1792508864720_pl07wzet6zs',company:'A - Z FLOOR, s.r.o.',field:'branches',id:'ab_1792692795554_5fg58c1q',name:'KOLÍN - prodejna'},
+ {customerId:'c_1792508864720_pl07wzet6zs',company:'A - Z FLOOR, s.r.o.',field:'branches',id:'ab_1792693270031_lpwo8lwq',name:'PRAHA - vzorkovna'},
+ {customerId:'c_1792508864720_7d0aincne5',company:'A P I studio, spol. s r.o.',field:'contacts',id:'ac_1792701613833_8l8ei35a',name:'Testovací Kontakt 2948'}
+];
+function assertAvantiCleanup(doc,revision){
+ const fail=msg=>{throw Error('Ochrana dat: '+msg+' Žádná data se nesmí měnit.')};
+ if(revision!==72)fail('Cloudová revize není 72 (aktuální: '+revision+').');
+ if(!doc||!Array.isArray(doc.customers)||!Array.isArray(doc.visits))fail('Neplatná struktura cloudu.');
+ if(doc.customers.length!==891||doc.visits.length!==9)fail('Počty nejsou 891 zákazníků a 9 návštěv.');
+ if(new Set(doc.customers.map(c=>c.id)).size!==891||new Set(doc.visits.map(v=>v.id)).size!==9)fail('Duplicitní ID.');
+ const parents=new Map(doc.customers.map(c=>[c.id,c]));
+ for(const t of TARGETS){
+  const parent=parents.get(t.customerId);
+  if(!parent||parent.company!==t.company)fail('Cílová firma neodpovídá: '+t.company);
+  if(!Array.isArray(parent[t.field]))fail('Chybí seznam '+t.field+' u '+t.company);
+  const matches=parent[t.field].filter(v=>v.id===t.id);
+  if(matches.length!==1||matches[0].name!==t.name||matches[0].archived!==true)fail('Položka není jednoznačně archivovaná: '+t.name);
+  if(Array.isArray(parent.sampleEvents)&&parent.sampleEvents.length)fail('Firma má záznamy vzorků: '+t.company);
+ }
+ const floor=parents.get('c_1792508864720_pl07wzet6zs');
+ const api=parents.get('c_1792508864720_7d0aincne5');
+ if(floor.contacts.length!==2||floor.branches.length!==2||api.contacts.length!==1)fail('Testované firmy mají další kontakty nebo provozovny.');
+ for(const t of TARGETS){
+  if(doc.visits.some(v=>JSON.stringify(v).includes(t.id)))fail('Položka má vazbu na návštěvu: '+t.name);
+  if(doc.customers.some(c=>c.id!==t.customerId&&JSON.stringify(c).includes(t.id)))fail('Položka je odkazována jiným zákazníkem: '+t.name);
+ }
+ const ids=new Set(TARGETS.filter(t=>t.field==='contacts').map(t=>t.id));
+ for(const parent of [floor,api])for(const b of (parent.branches||[])){
+  // Odkaz uvnitř archivované provozovny je v pořádku, protože provozovna bude zároveň smazána.
+  if(!TARGETS.some(t=>t.id===b.id)&&ids.has(b.mainContactId))fail('Nesmazaná provozovna odkazuje na mazající se kontakt.');
+ }
+ return {customerCount:doc.customers.length,visitCount:doc.visits.length,matched:TARGETS.length};
+}
+function makeAvantiCleanup(doc){
+ const c={...doc,customers:doc.customers.map(parent=>{
+  const relevant=TARGETS.filter(t=>t.customerId===parent.id);
+  if(!relevant.length)return parent;
+  const cleaned={...parent};
+  for(const field of ['contacts','branches']){
+   const ids=new Set(relevant.filter(t=>t.field===field).map(t=>t.id));
+   if(ids.size)cleaned[field]=parent[field].filter(item=>!ids.has(item.id));
+  }
+  return cleaned;
+ })};
+ return c;
+}
+/* END_RULES */
+window.avantiArchiveCleanupRules={TARGETS,assertAvantiCleanup,makeAvantiCleanup};
+</script>
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
+import {getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+import {getFirestore,doc,getDocFromServer,runTransaction} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
+const app=initializeApp({apiKey:'AIzaSyAQobrG_n5fUdnQgS9JSYyvWokSWrIhwzo',authDomain:'moje-avanti.firebaseapp.com',projectId:'moje-avanti',storageBucket:'moje-avanti.firebasestorage.app',messagingSenderId:'1075628554394',appId:'1:1075628554394:web:0f9b8d925ae69d6b44c723'});
+const auth=getAuth(app),db=getFirestore(app),provider=new GoogleAuthProvider();
+provider.setCustomParameters({prompt:'select_account'});
+const $=id=>document.getElementById(id);
+const {assertAvantiCleanup,makeAvantiCleanup}=window.avantiArchiveCleanupRules;
+let user=null,cached=null,checkedRevision=null,backupDownloaded=false,busy=false,completed=false;
+const getRef=()=>doc(db,'users',user.uid,'sync','v2');
+function status(message,type){$('status').textContent=message;$('status').className='status'+(type?' '+type:'');}
+function controls(){
+ $('login').hidden=!!user;
+ $('inspect').disabled=!user||busy||completed;
+ $('download').disabled=!cached||busy||completed;
+ $('delete').disabled=!cached||!backupDownloaded||busy||completed;
+}
+function reset(){cached=null;checkedRevision=null;backupDownloaded=false;controls()}
+onAuthStateChanged(auth,u=>{
+ if(user?.uid!==u?.uid)reset();
+ user=u; $('identity').textContent=u?'Přihlášeno ke cloudu AVANTI.':'Nepřihlášeno. Použij stejný Google účet jako v aplikaci.';
+ status(u?'Připojeno. Klikni na „Ověřit stav cloudu“.':'Čekám na přihlášení.');controls();
+});
+$('login').addEventListener('click',async()=>{
+ try{busy=true;controls();await signInWithPopup(auth,provider);}catch(e){status('Přihlášení se nezdařilo: '+e.message,'error');}finally{busy=false;controls()}
+});
+$('inspect').addEventListener('click',async()=>{
+ try{
+  busy=true;reset();controls();status('Pouze čtu cloud a ověřuji přesná ID…');
+  const snap=await getDocFromServer(getRef());if(!snap.exists())throw Error('Synchronizační dokument neexistuje.');
+  const dat=snap.data(),revision=dat.revision||0;
+  assertAvantiCleanup(dat,revision);
+  cached=dat;checkedRevision=revision;
+  status('Kontrola úspěšná. Revize 72 · 891 zákazníků · 9 návštěv.\nNalezeno všech 5 správně archivovaných položek. Nejsou navázané na návštěvy ani vzorky.\nZatím nedošlo k žádné změně. Nejprve stáhni zálohu cloudu.','success');
+ }catch(e){reset();status(e.message,'error')}finally{busy=false;controls()}
+});
+$('download').addEventListener('click',()=>{
+ if(!cached)return;
+ try{
+  const payload={app:'Moje AVANTI',backupType:'cloud-before-test-archive-cleanup',exportedAt:new Date().toISOString(),...cached};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='AVANTI_CLOUD_pred_technickym_uklidem_2026-10-24.json';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),30000);backupDownloaded=true;
+  status('Záloha byla nabídnuta ke stažení. Zkontroluj, že soubor skutečně vidíš ve Stažených souborech.\nPokud ano, můžeš pokračovat cíleným odstraněním.','success');controls();
+ }catch(e){status('Nepodařilo se vytvořit zálohu: '+e.message,'error')}
+});
+$('delete').addEventListener('click',async()=>{
+ if(!cached||!backupDownloaded||busy||completed||!user)return;
+ const answer=confirm('TRVALÉ ODSTRANĚNÍ – Moje AVANTI\n\nOdebrat pouze 2 kontakty a 2 provozovny A-Z FLOOR a 1 kontakt A P I studio?\n\nVšech 891 zákazníků, 9 návštěv, vzorky, číselníky a ostatní údaje zůstanou beze změny.\n\nZkontroloval jsi staženou zálohu?');
+ if(!answer)return;
+ const uid=user.uid;
+ try{
+  busy=true;controls();status('Provádím transakci. Ověřuji poslední stav cloudu…');
+  let resultRev=null;
+  await runTransaction(db,async tx=>{
+   const ref=doc(db,'users',uid,'sync','v2');
+   const snap=await tx.get(ref);if(!snap.exists())throw Error('Cloudová data chybí.');
+   const current=snap.data();
+   assertAvantiCleanup(current,current.revision||0);
+   if(JSON.stringify(current)!==JSON.stringify(cached))throw Error('Cloud se změnil od předchozí kontroly. Nic se nesmazalo. Opakuj kontrolu.');
+   const next=makeAvantiCleanup(current);
+   const revision=(current.revision||0)+1;
+   // Každý další atribut dokumentu se zachová; měníme výhradně obsah pěti archivovaných položek.
+   tx.set(ref,{...next,revision});resultRev=revision;
+  });
+  completed=true;reset();
+  status('HOTOVO. Firestore potvrdil transakční smazání pěti testovacích položek.\nNová revize: '+resultRev+'. Počet zákazníků: 891. Počet návštěv: 9.\nŽádná lokální data tato stránka neupravovala. Nyní můžeš zavřít tento nástroj, otevřít verzi 2.9.55 na Macu a nechat proběhnout běžnou synchronizaci; poté zopakovat na iPadu.','success');
+ }catch(e){status('Úklid nebyl dokončen: '+e.message+'\nNa žádném zařízení teď nic neobnovuj; pošli mi tuto hlášku.','error');reset()}
+ finally{busy=false;controls()}
+});
+</script></body></html>
