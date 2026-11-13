@@ -3132,19 +3132,7 @@ if(!pendingGoogleEvent&&!isGoogleImportedVisit(visitEditing?visits.find(x=>x.id=
  const original=visitEditing?visits.find(x=>x.id===visitEditing):null;
  const hasManuallyChosenEnd=!!vf.elements.endTime.value;
  if(!v.time&&!v.calendarAllDay){alert('Vyplň čas začátku návštěvy.');return}
- if(hasManuallyChosenEnd){
-  v.endTime=vf.elements.endTime.value;
-  // Při posunu termínu musí jít původní datum konce s návštěvou.
-  // Zachováme délku přes půlnoc (0 nebo 1 den); nedotýkáme se jiné návštěvy.
-  if(original?.date&&original.date!==v.date){
-   const originalStart=new Date(original.date+'T12:00:00');
-   const originalEnd=new Date((original.endDate||original.date)+'T12:00:00');
-   const dayOffset=Math.round((originalEnd-originalStart)/86400000);
-   const newEnd=new Date(v.date+'T12:00:00');
-   newEnd.setDate(newEnd.getDate()+Math.max(0,Math.min(1,dayOffset)));
-   v.endDate=weekDateISO(newEnd);
-  }else v.endDate=original?.endDate||v.date;
- }
+ if(hasManuallyChosenEnd){v.endTime=vf.elements.endTime.value;v.endDate=original?.endDate||v.date;}
  else if(!visitEditing&&avantiVisitFormOpenedAt&&v.time){
   let autoEnd=avantiVisitEndFromElapsed(v.date,v.time,Date.now()-avantiVisitFormOpenedAt);
   // U dnesni navstevy je koncem skutecny cas ulozeni, i po rucni zmene zacatku.
@@ -3197,14 +3185,15 @@ if(visitNewPerson){
  visitCompany.contacts=[...(Array.isArray(visitCompany.contacts)?visitCompany.contacts:[]),visitNewPerson];
  if(!save()){visitCompany.contacts=oldContacts;if(sampleCustomer&&staged.length){sampleCustomer.sampleEvents=oldSampleEvents;save()}return}
 }
-// 2.9.127: rozlišit uložený rest od skutečného plánu. Staré záznamy bez
-// značky ponecháme plánované, aby migrace nezměnila jejich význam.
+// 2.9.127: při editaci zachovat původní typ plánované návštěvy.
+// Samotná změna termínu nesmí z běžného zeleného plánu vytvořit červený rest.
+// Nové plánované návštěvy jsou zelené; červený příznak zůstává jen tam,
+// kde už byl výslovně uložen. Dokončení jej vždy odstraní.
 const previousVisit126=visitEditing?visits.find(x=>x.id===visitEditing):null;
 if(v.status==='completed')v.avantiFollowUpPending=false;
-else if(pendingGoogleEvent)v.avantiFollowUpPending=false;
+else if(pendingGoogleEvent||v.calendarCreated||previousVisit126?.calendarCreated)v.avantiFollowUpPending=false;
 else if(previousVisit126)v.avantiFollowUpPending=previousVisit126.avantiFollowUpPending===true;
-else if(v.calendarCreated)v.avantiFollowUpPending=false;
-else v.avantiFollowUpPending=true;
+else v.avantiFollowUpPending=false;
 if(!visitEditing&&!v.googleCalendarId)v.googleSyncPending=true;
 if(visitEditing){const i=visits.findIndex(x=>x.id===visitEditing);if(i<0)return;visits[i]={...visits[i],...v};if(!visits[i].googleCalendarId)visits[i].googleSyncPending=true}else visits.push(v);try{localStorage.setItem(VISIT_KEY,JSON.stringify(visits));window.dispatchEvent(new Event('avanti-local-change'))}catch(err){visits=previous;if(sampleCustomer&&staged.length)sampleCustomer.sampleEvents=oldSampleEvents;if(visitNewPerson)visitCompany.contacts=oldContacts;if(visitNewPerson||(sampleCustomer&&staged.length))save();alert('Návštěvu se nepodařilo uložit.');return}window.avantiVisitTasksSavedVisitId=v.id;window.avantiVisitTasksCommit?.();window.avantiVisitTasksSavedVisitId='';visitSampleDraft=[];window.dispatchEvent(new CustomEvent('avanti-visit-saved',{detail:{visitId:v.id}}));if(visitEditFromDetail&&visitDetailId){visitCompleting=false;visitEditFromDetail=false;openVisitDetail(visitDetailId)}else visitBack();};
 
