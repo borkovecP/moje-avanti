@@ -1484,7 +1484,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 </div>
 <section id="settingsView" hidden><div class="topline"><button class="secondary" id="settingsBack">← Zpět</button><h1>Nastavení</h1></div><div class="panel settings-panel"><h2>Správa aplikace</h2><p class="muted">Tato část je chráněna čtyřmístným PINem proti nechtěným změnám.</p>
 <div class="settings-block"><h2>Kontakty</h2><p class="muted">Nového zákazníka z karty partnera PDF můžeš přidat zde. Údaje se před uložením vždy zobrazí ke kontrole.</p><div class="settings-actions"><button id="pdfImportOpen" type="button" class="secondary">Import nového zákazníka z PDF</button><input type="file" id="pdfImportInput" accept=".pdf,application/pdf" hidden></div><p class="muted">Import a export zákazníků přes Excel. Import nepřepisuje existující kontakty.</p><div class="toolbar-right"><button type="button" class="secondary" id="fillCustomerIco">Doplnit IČO z firemního Excelu</button><input id="fillCustomerIcoFile" type="file" accept=".xlsx,.xls,.csv" hidden><button class="secondary" id="exportContacts" title="Exportovat zákazníky do Excelu">Export</button><label class="filebutton" for="importContacts" title="Načíst zákazníky z Excelu">Import</label><input type="file" id="importContacts" accept=".xlsx,.xls,.csv"></div><label class="field" style="max-width:360px;margin-top:12px">Režim importu<select id="contactsImportMode"><option value="add">Přidat pouze nové (bez přepisu)</option><option value="replace">Nahradit seznam (jen při bezpečném vymazání)</option></select></label><p class="muted">Při nahrazení můžeš zachovat návštěvy jako historické záznamy v kalendáři. Před změnou si stáhni zálohu; synchronizace musí být vypnutá.</p><p id="contactsImportResult" role="status" aria-live="polite" style="font-weight:600;white-space:pre-wrap" hidden></p></div>
-<div class="settings-block"><details id="focusSettingsDetails" class="avanti-focus-details"><summary><span>Zaměření zákazníků <small id="focusCatalogCount"></small></span><span class="avanti-focus-chevron" aria-hidden="true">⌄</span></summary><p class="muted">Všechny kódy, které už používají zákazníci, jsou v seznamu automaticky. Upravovat lze jejich popisy, kódy zůstávají stejné.</p><div id="focusCatalogRows" class="avanti-focus-list"></div><div class="settings-actions avanti-focus-add"><input id="focusNewCode" placeholder="Nový kód" maxlength="16" style="max-width:140px"><input id="focusNewName" placeholder="Nový popis" maxlength="100"><button type="button" id="focusAdd">+ Přidat kód</button></div></details></div><div class="settings-block"><h2>Návštěvy</h2><p class="muted">Export týdenního hlášení do firemní šablony Excelu. Soukromé poznámky se neexportují.</p><div class="settings-actions"><label class="field" style="max-width:220px">Datum v týdnu<input type="date" id="reportWeekDate"></label><button type="button" class="secondary" id="exportWeeklyReport">↓ Týdenní hlášení (Excel)</button></div><p class="muted" id="reportWeekRange" role="status" aria-live="polite" style="margin:8px 0 0">Vyber datum v týdnu.</p></div>
+<div class="settings-block"><details id="focusSettingsDetails" class="avanti-focus-details"><summary><span>Zaměření zákazníků <small id="focusCatalogCount"></small></span><span class="avanti-focus-chevron" aria-hidden="true">⌄</span></summary><p class="muted">Všechny kódy, které už používají zákazníci, jsou v seznamu automaticky. Upravovat lze jejich popisy, kódy zůstávají stejné.</p><div id="focusCatalogRows" class="avanti-focus-list"></div><div class="settings-actions avanti-focus-add"><input id="focusNewCode" placeholder="Nový kód" maxlength="16" style="max-width:140px"><input id="focusNewName" placeholder="Nový popis" maxlength="100"><button type="button" id="focusAdd">+ Přidat kód</button></div></details></div><div class="settings-block"><h2>Návštěvy</h2><div class="settings-actions" style="margin-bottom:12px"><button type="button" class="secondary" id="historicalReportOpen">↑ Import starších týdenních hlášení</button><input type="file" id="historicalReportFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple hidden></div><p id="historicalReportStatus" class="muted" role="status" aria-live="polite" style="white-space:pre-wrap">Zkušební import vytváří nepřiřazené události v Google Kalendáři. Před zápisem ukáže počet a vyžádá potvrzení.</p><p class="muted">Export týdenního hlášení do firemní šablony Excelu. Soukromé poznámky se neexportují.</p><div class="settings-actions"><label class="field" style="max-width:220px">Datum v týdnu<input type="date" id="reportWeekDate"></label><button type="button" class="secondary" id="exportWeeklyReport">↓ Týdenní hlášení (Excel)</button></div><p class="muted" id="reportWeekRange" role="status" aria-live="polite" style="margin:8px 0 0">Vyber datum v týdnu.</p></div>
 <div class="settings-block"><h2>Evidence a import číselníků</h2>
 <p class="muted">Postupně naimportujeme Vzorky, Katalogy a Kufry. Stojany, Knihy a Ostatní lze později doplnit ručně nebo také importovat. Každá kategorie se spravuje zvlášť.</p>
 <div class="settings-actions"><button type="button" class="secondary" id="dbExport">↓ Export přehledu evidence</button></div><div class="avanti-issued-export" id="issuedExportBox"><h3>Vydané vzorky za období</h3><p class="muted">Pouze záznamy s činností „Dodáno“. Každý výdej tvoří samostatný řádek.</p><div class="avanti-issued-dates"><label class="field">Od<input type="date" id="issuedExportFrom"></label><label class="field">Do<input type="date" id="issuedExportTo"></label><button type="button" id="issuedExportRun">↓ Export vydaných vzorků (Excel)</button></div><p id="issuedExportStatus" class="muted" role="status" aria-live="polite"></p></div>
@@ -2197,9 +2197,8 @@ document.body.appendChild($('sampleEntry'));
 function visitSampleCategoryKey(ev){const n=(ev.categoryName||'').toLocaleLowerCase('cs');return n==='vzorky'?'delivered:samples':n==='katalogy'?'delivered:catalog':null}
 function visitSampleEffective(){const cid=vf.elements.customerId.value;return data.find(x=>x.id===cid)}
 function visitSampleEntries(){return visitSampleDraft}
-function visitDraftDeliveries(){return visitSampleDraft.filter(ev=>(!visitInventoryMode||ev.reminderTag)&&['Dodáno','Zapůjčeno'].includes(ev.action))}
-function syncVisitSampleChecks(){const auto=new Set(visitDraftDeliveries().map(visitSampleCategoryKey).filter(Boolean));for(const key of ['delivered:samples','delivered:catalog']){const input=vf.querySelector('input[type="checkbox"][name="'+key+'"]');if(!input)continue;if(auto.has(key)){input.checked=true;input.dataset.sampleAuto='1'}else if(input.dataset.sampleAuto==='1'){input.checked=false;delete input.dataset.sampleAuto}}}
-function renderVisitSampleDraft(){syncVisitSampleChecks();$('visitSampleList').innerHTML=visitSampleDraft.map((ev,i)=>`<div class="visit-sample-line"><span>${safe(ev.categoryName)} · ${safe(ev.itemName)}${ev.kind?' · '+safe(ev.kind):''}${sampleDisplayCode(ev)} — <strong>${safe(ev.action)}${sampleQuantityLabel(ev)}</strong></span><button type="button" class="secondary" data-sample-draft="${i}">Odebrat</button></div>`).join('');$('visitSampleList').querySelectorAll('[data-sample-draft]').forEach(b=>b.onclick=()=>{const [removed]=visitSampleDraft.splice(Number(b.dataset.sampleDraft),1);renderVisitSampleDraft();if(removed?.reminderTag)window.avantiVisitTasksRefresh?.(true)})}
+function syncVisitSampleChecks(){const auto=new Set((visitInventoryMode?[]:visitSampleDraft).filter(x=>['Dodáno','Zapůjčeno'].includes(x.action)).map(visitSampleCategoryKey).filter(Boolean));for(const key of ['delivered:samples','delivered:catalog']){const input=vf.querySelector('input[type="checkbox"][name="'+key+'"]');if(!input)continue;if(auto.has(key)){input.checked=true;input.dataset.sampleAuto='1'}else if(input.dataset.sampleAuto==='1'){input.checked=false;delete input.dataset.sampleAuto}}}
+function renderVisitSampleDraft(){syncVisitSampleChecks();$('visitSampleList').innerHTML=visitSampleDraft.map((ev,i)=>`<div class="visit-sample-line"><span>${safe(ev.categoryName)} · ${safe(ev.itemName)}${ev.kind?' · '+safe(ev.kind):''}${sampleDisplayCode(ev)} — <strong>${safe(ev.action)}${sampleQuantityLabel(ev)}</strong></span><button type="button" class="secondary" data-sample-draft="${i}">Odebrat</button></div>`).join('');$('visitSampleList').querySelectorAll('[data-sample-draft]').forEach(b=>b.onclick=()=>{visitSampleDraft.splice(Number(b.dataset.sampleDraft),1);renderVisitSampleDraft()})}
 $('visitInventory').onclick=()=>{visitInventoryMode=!visitInventoryMode;$('visitInventory').textContent='Inventura vzorků: '+(visitInventoryMode?'zapnuto':'vypnuto');$('visitInventory').setAttribute('aria-pressed',String(visitInventoryMode));renderVisitSampleDraft()};$('visitSampleAdd').onclick=()=>{if(visitMode!=='own'||!visitSampleEffective()){alert('Nejdříve vyber zákazníka.');return}sampleVisitMode=true;openSampleDialog();$('sampleDate').value=vf.elements.date.value||localToday()};
 $('visitCustomer').addEventListener('change',()=>{if(visitSampleDraft.length){if(!confirm('Změna zákazníka odstraní dosud připravené zápisy vzorků. Pokračovat?')){ $('visitCustomer').value=visitSampleCustomerId;return}visitSampleDraft=[];renderVisitSampleDraft()}visitSampleCustomerId=vf.elements.customerId.value;vf.elements.city.value=(pendingGoogleEvent?.location||data.find(c=>c.id===visitSampleCustomerId)?.city||'').trim();visitRefreshTargets();queueMicrotask(maybeShowInventoryReminder);});
 let visitSampleCustomerId='';
@@ -2855,6 +2854,80 @@ function resetWeeklyReportSelection(){
 $('reportWeekDate').addEventListener('input',updateReportWeekRange);
 $('reportWeekDate').addEventListener('change',updateReportWeekRange);
 resetWeeklyReportSelection();
+
+/* 2.9.136: Bezpecny import starych tydennich hlaseni. Jen nepriřazene Google udalosti. */
+const historicalReportFile=$('historicalReportFile');
+const historicalReportStatus=$('historicalReportStatus');
+let historicalReportBusy=false;
+$('historicalReportOpen').onclick=()=>{if(!historicalReportBusy)historicalReportFile.click()};
+function historicalCellText(cell,shared){
+ const type=cell.getAttribute('t');
+ const inline=cell.getElementsByTagName('is')[0];
+ if(inline)return [...inline.getElementsByTagName('t')].map(x=>x.textContent||'').join('');
+ const value=cell.getElementsByTagName('v')[0]?.textContent||'';
+ return type==='s'?shared[Number(value)]||'':value;
+}
+function historicalDate(raw){
+ const t=String(raw||'').trim();
+ if(!t)return '';
+ if(/^\d{4}-\d{2}-\d{2}$/.test(t))return t;
+ const d=t.match(/^(\d{1,2})[.\/]\s*(\d{1,2})[.\/]\s*(\d{4})/);
+ if(d){const x=new Date(Date.UTC(Number(d[3]),Number(d[2])-1,Number(d[1])));return x.toISOString().slice(0,10)}
+ if(/^\d+(?:\.\d+)?$/.test(t)){
+  const n=Number(t);if(n<30000||n>90000)throw Error('Nesprávné sériové datum v Excelu: '+t);
+  return new Date(Date.UTC(1899,11,30)+Math.floor(n)*86400000).toISOString().slice(0,10);
+ }
+ throw Error('Neznámý formát data: '+t);
+}
+async function historicalReadXlsx(file){
+ const Z=await loadWeeklyZip();const zip=await Z.loadAsync(await file.arrayBuffer());
+ const worksheet=zip.file('xl/worksheets/sheet1.xml');if(!worksheet)throw Error('Soubor nemá očekávaný list Týdenní hlášení.');
+ const doc=new DOMParser().parseFromString(await worksheet.async('string'),'application/xml');
+ if(doc.getElementsByTagName('parsererror').length)throw Error('Chybný XML obsah sešitu.');
+ const shared=[];const sx=zip.file('xl/sharedStrings.xml');
+ if(sx){const sd=new DOMParser().parseFromString(await sx.async('string'),'application/xml');for(const si of sd.getElementsByTagName('si'))shared.push([...si.getElementsByTagName('t')].map(n=>n.textContent||'').join(''))}
+ const labels={F:'Objednávka: koberce',G:'Objednávka: PVC',H:'Objednávka: chemie',I:'Objednávka: ostatní',J:'Objednávka: komise',N:'Dodáno: vzorky',O:'Dodáno: ceník',P:'Dodáno: katalog',Q:'Dodáno: komise',S:'Dodáno: prodej',T:'Další: poptávka',U:'Další: aktualizace',V:'Další: reklamace',W:'Další: kontrola komise',Z:'Další: závoz zboží'};
+ const results=[],clockByDay=new Map();let currentDate='';
+ for(const row of doc.getElementsByTagName('row')){
+  const nr=Number(row.getAttribute('r')||0);if(nr<9)continue;
+  const cells={};for(const c of row.getElementsByTagName('c')){const col=(c.getAttribute('r')||'').match(/^[A-Z]+/)?.[0];if(col)cells[col]=historicalCellText(c,shared).trim()}
+  if(cells.A)currentDate=historicalDate(cells.A);
+  const name=(cells.C||'').trim();if(!name)continue;
+  if(!currentDate)throw Error('Řádek '+nr+' nemá platné datum.');
+  // Zachovat všechny pojmenované záznamy, včetně kanceláře, dovolené a svátků.
+  const origMinutes=String(cells.E||'').match(/\d+/)?.[0];
+  const duration=origMinutes?Number(origMinutes):60;
+  if(duration<1||duration>1440)throw Error('Neplatná délka v řádku '+nr);
+  const start=clockByDay.has(currentDate)?clockByDay.get(currentDate):480;
+  if(start+duration>1440)throw Error('Příliš mnoho schůzek dne '+currentDate+' (řádek '+nr+').');
+  const hhmm=t=>String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');
+  const tasks=Object.entries(labels).filter(([col])=>/^(x|ano|1)$/i.test(cells[col]||'')).map(([,label])=>label);
+  const info=['Historické týdenní hlášení – nepřiřazená schůzka','Původní řádek: '+nr,'Město: '+(cells.B||'neuvedeno'),'Druh kontaktu: '+(cells.D||'neuvedeno'),'Původní délka: '+(cells.E||'neuvedena'),'Činnosti: '+(tasks.join(', ')||'neuvedeny')];
+  if(cells.AA)info.push('Poznámka: '+cells.AA);
+  const data=[currentDate,nr,name,cells.B||'',cells.D||'',cells.E||'',...tasks,cells.AA||''];
+  results.push({date:currentDate,time:hhmm(start),end:hhmm(start+duration),name,city:cells.B||'',description:info.join('\n'),key:data.join('|')});
+  clockByDay.set(currentDate,start+duration);
+ }
+ if(!results.length)throw Error('Soubor neobsahuje žádné záznamy pro kalendář.');
+ return {events:results};
+}
+historicalReportFile.addEventListener('change',async()=>{
+ const files=[...historicalReportFile.files||[]];if(!files.length)return;
+ historicalReportBusy=true;$('historicalReportOpen').disabled=true;
+ try{
+  const all=[];
+  for(const file of files){historicalReportStatus.textContent='Kontroluji '+file.name+'…';const parsed=await historicalReadXlsx(file);all.push(...parsed.events.map(e=>({...e,source:file.name})))}
+  if(all.length>300)throw Error('Najednou lze importovat nejvýše 300 událostí. Vyber méně souborů.');
+  const sample=all.slice(0,4).map(e=>e.date+' '+e.time+' '+e.name+' ('+(e.description.match(/Původní délka: ([^\n]+)/)?.[1]||'?')+')').join('\n');
+  historicalReportStatus.textContent='Připraveno '+all.length+' nepřiřazených událostí (včetně Kanceláře a Dovolené).\n'+sample;
+  if(!confirm('Import starších hlášení\n\nSouborů: '+files.length+'\nNepřiřazených událostí: '+all.length+'\n\nUkázka:\n'+sample+'\n\nZapsat do Google Kalendáře? Opakovaný import stejných řádků nevytváří duplicity.'))return;
+  historicalReportStatus.textContent='Import do Google Kalendáře: 0 z '+all.length;
+  window.dispatchEvent(new CustomEvent('avanti-historical-import-request',{detail:{events:all}}));
+ }catch(err){historicalReportStatus.textContent='Import nebyl proveden: '+err.message;alert('Import hlášení: '+err.message)}
+ finally{historicalReportBusy=false;$('historicalReportOpen').disabled=false;historicalReportFile.value=''}
+});
+window.addEventListener('avanti-historical-import-status',e=>{historicalReportStatus.textContent=e.detail?.message||'Import dokončen.'});
+
 $('exportWeeklyReport').onclick=async()=>{
  const btn=$('exportWeeklyReport');try{
   btn.disabled=true;btn.textContent='Připravuji hlášení…';
@@ -2888,7 +2961,7 @@ $('exportWeeklyReport').onclick=async()=>{
    if(v.__holiday){setXmlCell(doc,'A'+row,fmt(v.date));setXmlCell(doc,'C'+row,'svátek');return}
    setXmlCell(doc,'A'+row,fmt(v.date));setXmlCell(doc,'B'+row,isInternalVisit(v)?'':(v.city||''));setXmlCell(doc,'C'+row,isInternalVisit(v)?(v.calendarTitle||v.googleEventTitle||'Interní událost'):(()=>{const c=data.find(x=>x.id===v.customerId);return v.mode==='other'?(v.otherName||''):(c?(c.shortName?.trim()||c.company?.trim()||c.person?.trim()||''):'Neznámý zákazník')})());
    setXmlCell(doc,'D'+row,isInternalVisit(v)?'':reportContactType(v));
-    setXmlCell(doc,'E'+row,isInternalVisit(v)?'':(v.time?(v.endTime&&Number.isFinite(v.durationMinutes)?v.time+'–'+v.endTime+' ('+v.durationMinutes+' min)':v.time):''));setXmlCell(doc,'AA'+row,v.reportNote||'');
+    setXmlCell(doc,'E'+row,isInternalVisit(v)?'':((Number.isFinite(v.durationMinutes)&&v.durationMinutes>0?v.durationMinutes:avantiVisitTiming(v.date,v.time,v.endTime,v.endDate))||'')+(Number.isFinite(v.durationMinutes)&&v.durationMinutes>0||avantiVisitTiming(v.date,v.time,v.endTime,v.endDate)?' min':''));setXmlCell(doc,'AA'+row,v.reportNote||'');
    for(const activity of isInternalVisit(v)?[]:(v.activities||[])){const col=columns[activity];if(col)setXmlCell(doc,col+row,'X')}
   });
   zip.file('xl/worksheets/sheet1.xml',new XMLSerializer().serializeToString(doc));
@@ -3068,8 +3141,7 @@ $('visitBranch').onchange=()=>{
  const customer=visitSelectedCustomer();if(!customer)return;
  const branch=avBranches(customer).find(b=>b.id===$('visitBranch').value&&!b.archived);
  vf.elements.city.value=branch?.city||(pendingGoogleEvent?.location||'').trim()||customer.city||'';
- visitSampleDraft=visitSampleDraft.filter(ev=>!ev.reminderTag||ev.branchId===$('visitBranch').value);
- renderVisitSampleDraft();visitRefreshPeople('',true);window.avantiVisitTasksRefresh?.();
+ visitRefreshPeople('',true);window.avantiVisitTasksRefresh?.();
 };
 $('visitContact').onchange=()=>{$('visitNewContactFields').hidden=$('visitContact').value!==visitNewContactKey};
 $('visitAddContact').onclick=()=>{$('visitContact').value=visitNewContactKey;$('visitNewContactFields').hidden=false;vf.elements.newContactName.focus()};
@@ -3128,9 +3200,9 @@ function openGoogleAssignmentFull(event){
  visitCustomerLookup.refresh();
 }
 
-vf.onsubmit=e=>{e.preventDefault();if(!avLoanPrepare())return;syncVisitSampleChecks();const v={id:visitEditing||('v_'+Date.now()+'_'+Math.random().toString(36).slice(2)),mode:visitMode,customerId:visitMode==='own'?vf.elements.customerId.value:'',branchId:visitMode==='own'?vf.elements.branchId.value:'',contactId:visitMode==='own'&&vf.elements.contactId.value!==visitNewContactKey?vf.elements.contactId.value:'',otherName:visitMode==='other'?vf.elements.otherName.value.trim():'',date:vf.elements.date.value,city:vf.elements.city.value.trim(),time:vf.elements.time.value,privateNote:vf.elements.privateNote.value.trim(),reportNote:vf.elements.reportNote.value.trim(),contactType:vf.elements.contactType.value,activities:[...vf.querySelectorAll('.visit-options input:checked')].map(x=>x.name),status:vf.elements.completed.checked?'completed':'planned'};
+vf.onsubmit=e=>{e.preventDefault();syncVisitSampleChecks();if(!avLoanPrepare())return;const v={id:visitEditing||('v_'+Date.now()+'_'+Math.random().toString(36).slice(2)),mode:visitMode,customerId:visitMode==='own'?vf.elements.customerId.value:'',branchId:visitMode==='own'?vf.elements.branchId.value:'',contactId:visitMode==='own'&&vf.elements.contactId.value!==visitNewContactKey?vf.elements.contactId.value:'',otherName:visitMode==='other'?vf.elements.otherName.value.trim():'',date:vf.elements.date.value,city:vf.elements.city.value.trim(),time:vf.elements.time.value,privateNote:vf.elements.privateNote.value.trim(),reportNote:vf.elements.reportNote.value.trim(),contactType:vf.elements.contactType.value,activities:[...new Set([...vf.querySelectorAll('.visit-options input:checked')].map(x=>x.name).concat((visitInventoryMode?[]:visitSampleDraft).filter(x=>['Dodáno','Zapůjčeno'].includes(x.action)).map(visitSampleCategoryKey).filter(Boolean)))],status:vf.elements.completed.checked?'completed':'planned'};
 if(pendingGoogleEvent){if(visitMode!=='own'){alert('Google schůzku přiřaď ke konkrétnímu zákazníkovi.');return}if(visits.some(x=>x.googleCalendarId===pendingGoogleEvent.id)){alert('Tato schůzka už byla přiřazena. Obnov kalendář.');return}v.googleCalendarId=pendingGoogleEvent.id;v.googleCalendarSource='AVANTI – schůzky';v.googleEventOrigin='google';v.googleEventTitle=pendingGoogleEvent.summary||'';v.googleEventLocation=pendingGoogleEvent.location||'';v.googleEventEnd=pendingGoogleEvent.end?.dateTime||pendingGoogleEvent.end?.date||'';v.googleAllDay=!pendingGoogleEvent.start?.dateTime;}
-if(v.mode==='own'&&!data.some(c=>c.id===v.customerId)){alert('Vyber zákazníka.');return}if(v.mode==='other'&&!v.otherName){alert('Vyplň název zákazníka nebo místa.');return}if(!v.date||(!v.city&&!(v.mode==='own'&&isInternalCustomer(data.find(x=>x.id===v.customerId))))){alert('Vyplň datum a město.');return}
+if(v.mode==='own'&&window.avantiVisitTasksValidate&&!window.avantiVisitTasksValidate())return;if(v.mode==='own'&&!data.some(c=>c.id===v.customerId)){alert('Vyber zákazníka.');return}if(v.mode==='other'&&!v.otherName){alert('Vyplň název zákazníka nebo místa.');return}if(!v.date||(!v.city&&!(v.mode==='own'&&isInternalCustomer(data.find(x=>x.id===v.customerId))))){alert('Vyplň datum a město.');return}
 const visitCompany=v.mode==='own'?data.find(c=>c.id===v.customerId):null;
 if(visitEditing&&visits.find(x=>x.id===visitEditing)?.calendarCreated){
  const ownAllDay=isInternalCustomer(visitCompany)&&!$('visitCalendarAllDayWrap').hidden&&$('visitCalendarAllDay').checked;
@@ -3183,19 +3255,18 @@ if(visitCompany&&vf.elements.contactId.value===visitNewContactKey){
 }
 // Zaškrtnutí Vzorků nebo Katalogu musí být podloženo skutečným předáním při této návštěvě.
 const visitLinkedEvents=v.mode==='own'?(data.find(c=>c.id===v.customerId)?.sampleEvents||[]).filter(ev=>ev.visitId===v.id):[];
-const visitDeliveryEvents=[...visitLinkedEvents,...visitDraftDeliveries()].filter(ev=>['Dodáno','Zapůjčeno'].includes(ev.action));
+const visitDeliveryEvents=[...visitLinkedEvents,...(visitInventoryMode?[]:visitSampleDraft)].filter(ev=>['Dodáno','Zapůjčeno'].includes(ev.action));
 for(const [key,label] of [['delivered:samples','Vzorky'],['delivered:catalog','Katalog']]){
  if(v.mode==='own'&&v.activities.includes(key)&&!visitDeliveryEvents.some(ev=>visitSampleCategoryKey(ev)===key)){
   alert('V části Dodáno je zaškrtnuto „'+label+'“, ale pro tuto návštěvu není zapsané žádné odpovídající dodání ani zapůjčení.\n\nDoplň položku přes „+ Zapsat vzorky“, nebo zruš zaškrtnutí v části Dodáno.');
   return;
  }
 }
-if(visitInventoryMode)v.activities=v.activities.filter(key=>!['delivered:samples','delivered:catalog'].includes(key)||visitDraftDeliveries().some(ev=>visitSampleCategoryKey(ev)===key));
-if(!v.activities.length){alert('Zaškrtni alespoň jednu činnost.');return}
-if(v.status==='completed'&&v.mode!=='other'&&!isInternalCustomer(visitCompany)&&!v.activities.some(x=>x.startsWith('delivered:'))&&!visitSampleDraft.length&&!confirm('Nebylo zaznamenáno žádné dodané zboží ani změna vzorků.\n\nPřesto uložit návštěvu?'))return;
-const sampleCustomer=v.mode==='own'?data.find(x=>x.id===v.customerId):null;const oldSampleEvents=sampleCustomer?.sampleEvents;const originalNoSamples=sampleCustomer?.sampleInventoryNoSamples;const staged=visitSampleDraft.map(ev=>({...ev,branchId:ev.avantiLoanReturn?ev.branchId||'':v.branchId||'',visitId:v.id}));
+if(v.status==='completed'&&!v.activities.length&&!v.reportNote&&!visitSampleDraft.length&&!isInternalCustomer(visitCompany)){alert('Zaškrtni alespoň jednu činnost, zapiš vzorky nebo vyplň poznámku do hlášení.');return}if(v.status==='completed'&&v.mode!=='other'&&!isInternalCustomer(visitCompany)&&!v.activities.some(x=>x.startsWith('delivered:'))&&!visitSampleDraft.length&&!confirm('Nebylo zaznamenáno žádné dodané zboží ani změna vzorků.\n\nPřesto uložit návštěvu?'))return;
+if(visitInventoryMode)v.activities=v.activities.filter(x=>x!=='delivered:samples'&&x!=='delivered:catalog');const sampleCustomer=v.mode==='own'?data.find(x=>x.id===v.customerId):null;const oldSampleEvents=sampleCustomer?.sampleEvents;const staged=visitSampleDraft.map(ev=>({...ev,branchId:ev.avantiLoanReturn?ev.branchId||'':v.branchId||'',visitId:v.id}));
 if(staged.some(ev=>ev.action==='Inventura'))v.inventoryDone=true;
 if(sampleCustomer&&staged.length){
+ const originalNoSamples=sampleCustomer.sampleInventoryNoSamples;
  sampleCustomer.sampleEvents=[...(oldSampleEvents||[]),...staged];
  if(staged.some(ev=>ev.categoryName==='Vzorky'&&['Dodáno','Zapůjčeno'].includes(ev.action)))sampleCustomer.sampleInventoryNoSamples=false;
  if(!save()){sampleCustomer.sampleEvents=oldSampleEvents;sampleCustomer.sampleInventoryNoSamples=originalNoSamples;return}
@@ -3203,7 +3274,7 @@ if(sampleCustomer&&staged.length){
 const oldContacts=visitNewPerson?visitCompany.contacts:undefined;
 if(visitNewPerson){
  visitCompany.contacts=[...(Array.isArray(visitCompany.contacts)?visitCompany.contacts:[]),visitNewPerson];
- if(!save()){visitCompany.contacts=oldContacts;if(sampleCustomer&&staged.length){sampleCustomer.sampleEvents=oldSampleEvents;sampleCustomer.sampleInventoryNoSamples=originalNoSamples;save()}return}
+ if(!save()){visitCompany.contacts=oldContacts;if(sampleCustomer&&staged.length){sampleCustomer.sampleEvents=oldSampleEvents;save()}return}
 }
 // 2.9.128: při editaci zachovat původní typ plánované návštěvy a přidat rychlou změnu termínu.
 // Samotná změna termínu nesmí z běžného zeleného plánu vytvořit červený rest.
@@ -3215,7 +3286,7 @@ else if(pendingGoogleEvent||v.calendarCreated||previousVisit126?.calendarCreated
 else if(previousVisit126)v.avantiFollowUpPending=previousVisit126.avantiFollowUpPending===true;
 else v.avantiFollowUpPending=false;
 if(!visitEditing&&!v.googleCalendarId)v.googleSyncPending=true;
-if(visitEditing){const i=visits.findIndex(x=>x.id===visitEditing);if(i<0)return;visits[i]={...visits[i],...v};if(!visits[i].googleCalendarId)visits[i].googleSyncPending=true}else visits.push(v);try{localStorage.setItem(VISIT_KEY,JSON.stringify(visits));window.dispatchEvent(new Event('avanti-local-change'))}catch(err){visits=previous;if(sampleCustomer&&staged.length){sampleCustomer.sampleEvents=oldSampleEvents;sampleCustomer.sampleInventoryNoSamples=originalNoSamples}if(visitNewPerson)visitCompany.contacts=oldContacts;if(visitNewPerson||(sampleCustomer&&staged.length))save();alert('Návštěvu se nepodařilo uložit.');return}window.avantiVisitTasksSavedVisitId=v.id;window.avantiVisitTasksCommit?.();window.avantiVisitTasksSavedVisitId='';visitSampleDraft=[];window.dispatchEvent(new CustomEvent('avanti-visit-saved',{detail:{visitId:v.id}}));if(visitEditFromDetail&&visitDetailId){visitCompleting=false;visitEditFromDetail=false;openVisitDetail(visitDetailId)}else visitBack();};
+if(visitEditing){const i=visits.findIndex(x=>x.id===visitEditing);if(i<0)return;visits[i]={...visits[i],...v};if(!visits[i].googleCalendarId)visits[i].googleSyncPending=true}else visits.push(v);try{localStorage.setItem(VISIT_KEY,JSON.stringify(visits));window.dispatchEvent(new Event('avanti-local-change'))}catch(err){visits=previous;if(sampleCustomer&&staged.length)sampleCustomer.sampleEvents=oldSampleEvents;if(visitNewPerson)visitCompany.contacts=oldContacts;if(visitNewPerson||(sampleCustomer&&staged.length))save();alert('Návštěvu se nepodařilo uložit.');return}window.avantiVisitTasksSavedVisitId=v.id;window.avantiVisitTasksCommit?.();window.avantiVisitTasksSavedVisitId='';visitSampleDraft=[];window.dispatchEvent(new CustomEvent('avanti-visit-saved',{detail:{visitId:v.id}}));if(visitEditFromDetail&&visitDetailId){visitCompleting=false;visitEditFromDetail=false;openVisitDetail(visitDetailId)}else visitBack();};
 
 
 // Měsíční kalendář používá pouze existující návštěvy; nepřidává žádná data do synchronizace.
@@ -4037,29 +4108,6 @@ if(!isInternalCustomer(customer)&&!String(city||'').trim())throw Error('Pro bě�
    return visit;
   }
  };
-window.avantiVisitReminderDelivery=(reminder,choice)=>{
- const tag='reminder:'+reminder.id;
- const prepared=visitSampleDraft.find(ev=>ev.reminderTag===tag);
- if(choice==='Dodáno'){
-  const customer=visitSelectedCustomer();
-  if(visitMode!=='own'||!customer)return false;
-  if(prepared)return true;
-  const cat=sampleCat(reminder.categoryId);
-  const item=cat?.items?.find(x=>avantiSearchKey(x.name)===avantiSearchKey(reminder.productName));
-  if(!item){alert('Vzorek z připomínky už není v databázi. Výdej nebyl připraven.');return false}
-  const kind=reminder.sampleKind==='Velké'?'Velké':'Ruční',branchId=vf.elements.branchId.value;
-  const existing=[...(customer.sampleEvents||[]),...visitSampleDraft].filter(ev=>(ev.branchId||'')===branchId&&ev.categoryId===cat.id&&avantiSearchKey(ev.itemName)===avantiSearchKey(item.name)&&(ev.kind||'')===kind);
-  const status=sampleStatus(existing);
-  if(['Dodáno','Zapůjčeno'].includes(status)&&!confirm('Vzorek „'+item.name+'“ je už u zákazníka vedený jako '+status+'. Přesto zaznamenat další dodání?'))return false;
-  visitSampleDraft.push({id:'se_'+Date.now()+'_'+Math.random().toString(36).slice(2),categoryId:cat.id,categoryName:'Vzorky',itemName:item.name,kind,stockCode:item.codes?.[kind]||'',action:'Dodáno',quantity:1,branchId,date:vf.elements.date.value||localToday(),note:'Dodáno na základě připomínky',reminderTag:tag});
- }else if(prepared){
-  visitSampleDraft=visitSampleDraft.filter(ev=>ev!==prepared);
- }
- renderVisitSampleDraft();
- if(choice==='Dodáno')vf.elements['delivered:samples'].closest('details').open=true;
- return true;
-};
-window.avantiVisitReminderHasDelivery=id=>visitSampleDraft.some(ev=>ev.reminderTag==='reminder:'+id);
 window.avantiReminderContext=()=>({customers:data,visits,catalog:getSampleCatalog()});
 window.avantiReminderShowView=()=>show('remindersView');
 window.avantiReminderBackHome=()=>show('homeView');
@@ -4424,11 +4472,7 @@ function taskList(){if($('visitOther')?.classList.contains('active')||!customer(
  if(!inventoryDone&&c.sampleInventoryNoSamples!==true)list.unshift({key:'inventory',type:'Inventura',name:'Inventura vzorků',items:[]});
  return list;
 }
-function currentDecision(task){
- const choice=chosen[task.key];
- if(choice==='Dodáno'&&!window.avantiVisitReminderHasDelivery?.(task.items[0]?.id))return '';
- return choice||'';
-}
+function currentDecision(task){return chosen[task.key]||''}
 function renderVisitTasks(){const root=$('avantiVisitTasks');if(!root)return;
  const k=scopeKey();if(k!==taskContext){chosen={};collapsedTaskKeys.clear();taskContext=k;expanded=true}
  pendingTasks=taskList();const total=pendingTasks.length;root.hidden=!customer()||$('visitOther')?.classList.contains('active');$('avantiVisitTaskCount').textContent=String(total);$('avantiVisitTasksToggle').setAttribute('aria-expanded',String(expanded));$('avantiVisitTasksBody').hidden=!expanded;
@@ -4439,22 +4483,38 @@ function renderVisitTasks(){const root=$('avantiVisitTasks');if(!root)return;
  const choices=t.type==='Zákazníci'?[label,'Později']:t.type==='Novinky'?[label,'Nemá zájem','Později']:t.type==='Inventura'?[label,'Zákazník nemá vzorky','Později']:[label,'Netýká se','Později'];
  return '<div class="avanti-visit-task"><strong>'+safe(taskTitle)+'</strong>'+(t.type==='Inventura'?'<p>U zákazníka dosud není zaznamenaná inventura.</p>':t.items.filter(x=>x.detail||isSampleDelivery).map(x=>'<p class="avanti-task-detail"><span class="avanti-task-date">'+safe(fmt(x.date))+'</span><span class="avanti-task-description">'+safe(x.detail||(isSampleDelivery?'Dodat':''))+'</span></p>').join(''))+'<div class="avanti-visit-task-actions">'+choices.map(choice=>'<button type="button" class="secondary '+(choice===status?'chosen':'')+'" data-task="'+safe(t.key)+'" data-choice="'+safe(choice)+'">'+safe(choice)+'</button>').join('')+'</div>'+(status?'<p class="avanti-visit-task-hint">Zvoleno: '+safe(status)+'</p>':'')+'</div>';}).join(''):'<p class="muted">U tohoto zákazníka nejsou žádné otevřené úkoly.</p>';
  $('avantiVisitTasksBody').querySelectorAll('[data-task-reopen]').forEach(btn=>btn.onclick=()=>{collapsedTaskKeys.delete(btn.dataset.taskReopen);renderVisitTasks()});
- $('avantiVisitTasksBody').querySelectorAll('[data-task]').forEach(btn=>btn.onclick=()=>{const t=pendingTasks.find(x=>x.key===btn.dataset.task);if(!t)return;const choice=btn.dataset.choice;
+ $('avantiVisitTasksBody').querySelectorAll('[data-task]').forEach(btn=>btn.onclick=()=>{const t=pendingTasks.find(x=>x.key===btn.dataset.task);if(!t)return;const choice=btn.dataset.choice;chosen[t.key]=choice;
+ // U připomínky na nový vzorek znamená volba Dodáno skutečný výdej vzorku
+ // v rámci právě zapisované návštěvy. Zápis se připraví do stejného mechanismu
+ // jako ručně zadané vzorky, takže získá visitId, provozovnu a týdenní hlášení.
  if(t.type==='Novinky'&&t.items.some(x=>String(x.categoryName||'').toLocaleLowerCase('cs')==='vzorky')){
-  if(!window.avantiVisitReminderDelivery(t.items[0],choice))return;
+  const reminder=t.items[0],tag='reminder:'+reminder.id;
+  visitSampleDraft=visitSampleDraft.filter(ev=>ev.reminderTag!==tag);
+  if(choice==='Dodáno'){
+   const cat=sampleCat(reminder.categoryId);
+   const item=cat?.items?.find(x=>String(x.name||'').toLocaleLowerCase('cs')===String(reminder.productName||'').toLocaleLowerCase('cs'))
+    ||cat?.items?.find(x=>String(x.name||'').toLocaleLowerCase('cs')===String(reminder.productName||'').toLocaleLowerCase('cs'));
+   if(!cat||!item){delete chosen[t.key];alert('Vzorek z připomínky už není v databázi. Výdej nebyl připraven.');renderVisitTasks();return}
+   const kind=reminder.sampleKind==='Velké'?'Velké':'Ruční';
+   const existing=[...(customer()?.sampleEvents||[]),...visitSampleDraft].filter(ev=>(ev.branchId||'')===(branch()||'')&&ev.categoryId===reminder.categoryId&&String(ev.itemName||'').toLocaleLowerCase('cs')===String(reminder.productName||'').toLocaleLowerCase('cs')&&(ev.kind||'')===kind);
+   const status=sampleStatus(existing);
+   if(['Dodáno','Zapůjčeno'].includes(status)&&!confirm('Vzorek „'+reminder.productName+'“ je už u zákazníka vedený jako '+status+'. Přesto zaznamenat další dodání?')){delete chosen[t.key];renderVisitTasks();return}
+   visitSampleDraft.push({id:'se_'+Date.now()+'_'+Math.random().toString(36).slice(2),categoryId:reminder.categoryId,categoryName:reminder.categoryName||cat.name,itemName:reminder.productName,kind,stockCode:item.codes?.[kind]||'',action:'Dodáno',quantity:1,branchId:branch()||'',date:vf.elements.date.value||localToday(),note:'Dodáno na základě připomínky',reminderTag:tag});
+   renderVisitSampleDraft();
+  }
  }
- chosen[t.key]=choice;
  if(t.type==='Inventura'&&choice==='Provést inventuru'&&!$('visitInventory').textContent.includes('zapnuto'))$('visitInventory').click();
  collapsedTaskKeys.add(t.key);
  // Zavřít celý panel teprve po vyjádření ke všem úkolům.
- expanded=!pendingTasks.every(x=>!!currentDecision(x));renderVisitTasks();});
+ expanded=!pendingTasks.every(x=>!!chosen[x.key]);renderVisitTasks();});
 }
 $('avantiVisitTasksToggle').onclick=()=>{expanded=!expanded;renderVisitTasks()};
 window.avantiVisitTasksStart=()=>{chosen={};collapsedTaskKeys.clear();taskContext='';expanded=true;renderVisitTasks()};
-window.avantiVisitTasksRefresh=(reopen=false)=>{if(reopen)expanded=true;renderVisitTasks()};
+window.avantiVisitTasksRefresh=renderVisitTasks;
+window.avantiVisitTasksValidate=()=>{if(!customer())return true;renderVisitTasks();const remaining=pendingTasks.filter(t=>!chosen[t.key]);if(!remaining.length)return true;expanded=true;renderVisitTasks();$('avantiVisitTasks').scrollIntoView({behavior:'smooth',block:'center'});alert('Před uložením návštěvy se vyjádři ke všem úkolům. Můžeš u nich zvolit i „Později“.');return false};
 window.avantiVisitTasksCommit=()=>{
- if(!customer())return;const r=read(),k=scopeKey(),now=new Date().toISOString();let changed=false;
- for(const t of pendingTasks){const choice=currentDecision(t);if(!choice||choice==='Později')continue;
+ if(!customer())return;const r=read(),k=scopeKey(),now=new Date().toISOString(),decisions={...chosen};let changed=false;
+ for(const t of pendingTasks){const choice=decisions[t.key];if(!choice||choice==='Později')continue;
   if(t.type==='Zákazníci'){
    const item=r.find(x=>x.id===t.items[0]?.id);if(!item)continue;
    const target=t.targetScope||k;
@@ -5117,7 +5177,7 @@ window.addEventListener('avanti-library-records-change',()=>{
 });
 
 let user=null,busy=false,timer=null,pending=false,lastVerifiedAt=0,lastVerifiedRev=null;
-// 2.9.135: Úkoly mají samostatný cloudový dokument; nemění data návštěv, připomínek ani historii.
+// 2.9.136: Úkoly mají samostatný cloudový dokument; nemění data návštěv, připomínek ani historii.
 const TASKS_KEY='moje-avanti-calendar-tasks-v1';
 const tasksDoc=uid=>doc(db,'users',uid,'sync','calendarTasksV1');
 let tasksCloudBusy=false,tasksCloudPending=false,tasksCloudTimer=null;
@@ -5664,6 +5724,40 @@ getRedirectResult(auth).catch(e=>report('Přihlášení: '+e.message));
  const $=id=>document.getElementById(id);
  let token=null,tokenClient=null,events=[],loadedMonth='',connected=false,loading=false,selectedEvent=null,calendarVerified=false,calendarExpires=0;
  let linkedCheckTimer=null,checkingLinked=false,linkedScanOffset=0;
+
+ // 2.9.136: idempotent import unassigned historical Google events, no AVANTI visit creation.
+ window.addEventListener('avanti-historical-import-request',async e=>{
+  const items=e.detail?.events||[];
+  const report=message=>window.dispatchEvent(new CustomEvent('avanti-historical-import-status',{detail:{message}}));
+  if(!connected||!token){report('Import pozastaven: Google Kalendář není připojen. Nic se neodeslalo.');alert('Nejprve připoj Google Kalendář.');return}
+  if(!Array.isArray(items)||items.length===0||items.length>300){report('Neplatná dávka importu.');return}
+  let created=0,duplicates=0;
+  // Lowercase hex makes a deterministic Google Event ID valid under base32hex alphabet.
+  function historicalId(event){
+   const data=new TextEncoder().encode(event.key);
+   let h=2166136261,g=0x9e3779b9;
+   for(const b of data){h=Math.imul(h^b,16777619)>>>0;g=(Math.imul(g,33)+b)>>>0}
+   return 'a'+h.toString(16).padStart(8,'0')+g.toString(16).padStart(8,'0');
+  }
+  const endpoint='https://www.googleapis.com/calendar/v3/calendars/'+encodeURIComponent(CALENDAR_ID)+'/events';
+  for(let i=0;i<items.length;i++){
+   const v=items[i];const id=historicalId(v);
+   const body={id,summary:v.name,location:v.city||'',description:v.description,transparency:'transparent',
+    start:{dateTime:v.date+'T'+v.time+':00',timeZone:'Europe/Prague'},end:{dateTime:v.date+'T'+v.end+':00',timeZone:'Europe/Prague'},
+    extendedProperties:{private:{avantiHistoricalImport:'1'}}};
+   try{
+    const response=await fetch(endpoint,{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(response.status===409){duplicates++;}
+    else if(response.ok){created++;}
+    else{const info=await response.json().catch(()=>({}));throw Error('HTTP '+response.status+' '+(info.error?.message||''))}
+   }catch(err){report('Import zastaven na '+(i+1)+'. řádku. Vytvořeno '+created+', již existovalo '+duplicates+'. Chyba: '+err.message);return}
+   if(i%4===0||i===items.length-1)report('Import: '+(i+1)+'/'+items.length+' · nových '+created+' · již existovalo '+duplicates);
+  }
+  loadedMonth='';lastGlobalFetchAt=0;globalLoaded=false;
+  report('Hotovo. Nových nepřiřazených schůzek: '+created+'. Přeskočené duplicity: '+duplicates+'. Celkem: '+items.length+'.');
+  if(connected)void refresh();
+ });
+
  const LINKED_CHECK_MS=120000,LINKED_BATCH_MAX=40;
  let lastCalendarFetchAt=0;
  // Oddělený index pro celkový počet a přehled nepřiřazených událostí.
@@ -6499,7 +6593,7 @@ if(/^Složka: /.test(t))driveVerified=true;
 })();
 </script>
 <script>
-/* Moje AVANTI 2.9.135 – samostatné Úkoly v kalendáři; bez zápisu do návštěv či Připomínek. */
+/* Moje AVANTI 2.9.136 – samostatné Úkoly v kalendáři; bez zápisu do návštěv či Připomínek. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const KEY='moje-avanti-calendar-tasks-v1';
