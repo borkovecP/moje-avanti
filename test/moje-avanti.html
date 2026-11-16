@@ -2116,22 +2116,30 @@ function av163Chart(customers,year,mode){
  const years=av163Years(customers),sum=(y,m)=>customers.reduce((a,c)=>a+(m?av163Amount(c,y,m):av163Annual(c,y)),0),
   entries=mode==='yearly'?years.map(y=>({label:String(y),current:sum(y),prev:null})):
   av163Months.map((name,i)=>({label:name.slice(0,3),current:sum(year,i+1),prev:sum(year-1,i+1)}));
- const max=Math.max(1,...entries.flatMap(e=>[e.current,e.prev||0]));const w=900,h=320,left=76,right=15,top=25,bottom=45,chartW=w-left-right,chartH=h-top-bottom;
- const parts=[`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Graf obratů" style="display:block;width:100%;height:auto;min-height:210px;font-family:system-ui,sans-serif">`];
- for(let k=0;k<=4;k++){const n=max*k/4,y=top+chartH*(1-k/4);parts.push(`<line x1="${left}" x2="${w-right}" y1="${y}" y2="${y}" stroke="#e6e8ed"/><text x="${left-7}" y="${y+4}" fill="#6c7481" text-anchor="end" font-size="12">${n>=1000000?(n/1000000).toFixed(1)+' mil.':n>=1000?Math.round(n/1000)+' tis.':Math.round(n)}</text>`)}
- entries.forEach((e,i)=>{const slot=chartW/entries.length,x=left+slot*i,center=x+slot/2,gap=mode==='monthly'?3:0,bw=mode==='monthly'?Math.min(24,(slot-8)/2):Math.min(64,slot*.65);const height=e.current/max*chartH;parts.push(`<rect x="${center-(mode==='monthly'?bw+gap/2:bw/2)}" y="${top+chartH-height}" width="${bw}" height="${Math.max(0,height)}" fill="#3379be"><title>${e.label}: ${av163Fmt(e.current)}</title></rect>`);if(mode==='monthly'){const hh=(e.prev||0)/max*chartH;parts.push(`<rect x="${center+gap/2}" y="${top+chartH-hh}" width="${bw}" height="${Math.max(0,hh)}" fill="#bec4cb"><title>${e.label} minulý rok: ${av163Fmt(e.prev)}</title></rect>`)}parts.push(`<text x="${center}" y="${h-14}" text-anchor="middle" fill="#5c6471" font-size="12">${e.label}</text>`)});
+ // Dobropisy a vratky se zobrazují pod nulovou osou a snižují celkový obrat.
+ const values=entries.flatMap(e=>[e.current,...(e.prev===null?[]:[e.prev])]);
+ const max=Math.max(0,...values),min=Math.min(0,...values),span=Math.max(1,max-min);
+ const w=900,h=320,left=76,right=15,top=25,bottom=45,chartW=w-left-right,chartH=h-top-bottom;
+ const axisY=top+max/span*chartH;
+ const bar=(x,bw,value,color,label)=>{const y=top+(max-value)/span*chartH;const upper=Math.min(y,axisY),hh=Math.abs(y-axisY);return `<rect x="${x}" y="${upper}" width="${bw}" height="${Math.max(0,hh)}" fill="${color}"><title>${label}: ${av163Fmt(value)}</title></rect>`};
+ const parts=[`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Graf obratů včetně záporných dobropisů" style="display:block;width:100%;height:auto;min-height:210px;font-family:system-ui,sans-serif">`];
+ for(let k=0;k<=4;k++){const n=min+span*k/4,y=top+chartH*(1-k/4);parts.push(`<line x1="${left}" x2="${w-right}" y1="${y}" y2="${y}" stroke="${Math.abs(n)<0.01?'#8f98a5':'#e6e8ed'}"/><text x="${left-7}" y="${y+4}" fill="#6c7481" text-anchor="end" font-size="12">${n<=-1000000||n>=1000000?(n/1000000).toFixed(1)+' mil.':Math.abs(n)>=1000?Math.round(n/1000)+' tis.':Math.round(n)}</text>`)}
+ entries.forEach((e,i)=>{const slot=chartW/entries.length,x=left+slot*i,center=x+slot/2,gap=mode==='monthly'?3:0,bw=mode==='monthly'?Math.min(24,(slot-8)/2):Math.min(64,slot*.65);
+  parts.push(bar(center-(mode==='monthly'?bw+gap/2:bw/2),bw,e.current,'#3379be',e.label));
+  if(mode==='monthly')parts.push(bar(center+gap/2,bw,e.prev||0,'#bec4cb',e.label+' minulý rok'));
+  parts.push(`<text x="${center}" y="${h-14}" text-anchor="middle" fill="#5c6471" font-size="12">${e.label}</text>`)});
  parts.push('</svg>');return parts.join('');
 }
 function av163ChartShell(customers,year,mode){const cur=customers.reduce((a,c)=>a+av163Annual(c,year),0),prev=customers.reduce((a,c)=>a+av163Annual(c,year-1),0);return `<div class="av163-summary"><div><small>Rok ${year}</small><strong>${av163Fmt(cur)}</strong></div><div><small>Rok ${year-1}</small><strong>${av163Fmt(prev)}</strong></div></div><div class="av163-graph-head"><div class="av163-switch"><button type="button" data-av163-mode="yearly" class="${mode==='yearly'?'active':''}">Roční přehled</button><button type="button" data-av163-mode="monthly" class="${mode==='monthly'?'active':''}">Měsíční přehled</button></div></div>${mode==='monthly'?`<p class="av163-legend"><span class="av163-blue"></span> ${year} &nbsp; <span class="av163-gray"></span> ${year-1}</p>`:''}${av163Chart(customers,year,mode)}`}
 function av163RenderCustomerTurnover(){
  const c=data.find(x=>x.id===current);if(!c)return;
  const el=$('av163CustomerTurnover'),years=av163Years([c]);if(!years.includes(av163SelectedYear))av163SelectedYear=av163TodayYear();
- el.innerHTML=`<div class="av163-entry"><label>Rok<select id="av163Year">${years.map(y=>`<option value="${y}">${y}</option>`).join('')}</select></label><label>Měsíc<select id="av163Month">${av163Months.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('')}</select></label><label>Měsíční obrat (Kč)<input id="av163Amount" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></label><button id="av163Save" type="button">Uložit</button><button id="av163AddYear" type="button" class="secondary">+ Přidat rok</button></div><div id="av163CustomerChart"></div>`;
+ el.innerHTML=`<div class="av163-entry"><label>Rok<select id="av163Year">${years.map(y=>`<option value="${y}">${y}</option>`).join('')}</select></label><label>Měsíc<select id="av163Month">${av163Months.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('')}</select></label><label>Měsíční obrat (Kč)<input id="av163Amount" type="number" step="1" inputmode="numeric" placeholder="0"></label><button id="av163Save" type="button">Uložit</button><button id="av163AddYear" type="button" class="secondary">+ Přidat rok</button></div><div id="av163CustomerChart"></div>`;
  $('av163Year').value=String(av163SelectedYear);$('av163Month').value=String(av163SelectedMonth);
  const load=()=>{const r=av163Records(c)[String(av163SelectedYear)];const value=r?.[String(av163SelectedMonth)];$('av163Amount').value=value===undefined?'':String(value)};
  const draw=()=>{const chart=$('av163CustomerChart');chart.innerHTML=av163ChartShell([c],av163SelectedYear,av163View);chart.querySelectorAll('[data-av163-mode]').forEach(b=>b.onclick=()=>{av163View=b.dataset.av163Mode;draw()})};
  $('av163Year').onchange=()=>{av163SelectedYear=+$('av163Year').value;load();draw()};$('av163Month').onchange=()=>{av163SelectedMonth=+$('av163Month').value;load()};
- $('av163Save').onclick=()=>{const raw=$('av163Amount').value.trim().replace(',','.');if(!raw)return alert('Vyplň měsíční obrat. Pro nulový obrat zadej 0.');const amount=Number(raw);if(!Number.isFinite(amount)||amount<0)return alert('Obrat musí být nezáporné číslo.');const backup=JSON.stringify(c.turnovers||{});c.turnovers=av163Records(c);c.turnovers[String(av163SelectedYear)]={...(c.turnovers[String(av163SelectedYear)]||{}),[String(av163SelectedMonth)]:Math.round(amount)};if(!save()){c.turnovers=JSON.parse(backup);return}window.dispatchEvent(new Event('avanti-local-change'));draw()};
+ $('av163Save').onclick=()=>{const raw=$('av163Amount').value.trim().replace(',','.');if(!raw)return alert('Vyplň měsíční obrat. Pro nulový obrat zadej 0.');const amount=Number(raw);if(!Number.isFinite(amount))return alert('Obrat musí být platné číslo.');const backup=JSON.stringify(c.turnovers||{});c.turnovers=av163Records(c);c.turnovers[String(av163SelectedYear)]={...(c.turnovers[String(av163SelectedYear)]||{}),[String(av163SelectedMonth)]:Math.round(amount)};if(!save()){c.turnovers=JSON.parse(backup);return}window.dispatchEvent(new Event('avanti-local-change'));draw()};
  $('av163AddYear').onclick=()=>{const year=Number(prompt('Přidat rok (například 2027):',String(Math.max(...years)+1)));if(!Number.isInteger(year)||year<1990||year>2200)return;const backup=JSON.stringify(c.turnovers||{});c.turnovers=av163Records(c);if(!c.turnovers[String(year)])c.turnovers[String(year)]={};if(!save()){c.turnovers=JSON.parse(backup);return}window.dispatchEvent(new Event('avanti-local-change'));av163SelectedYear=year;av163RenderCustomerTurnover()};
  load();draw();
 }
@@ -2370,7 +2378,7 @@ async function av165ParseExcel(file){
   if(ico&&ico.length>8)throw Error('Neplatné IČO na řádku '+(i+1));
   if(ico)ico=ico.padStart(8,'0');
   const amounts={};
-  for(const m of months){const cell=arr[m.col];const val=typeof cell==='number'?cell:Number(String(cell||'0').replace(/\s/g,'').replace(',','.'));if(!Number.isFinite(val)||val<0)throw Error('Neplatný obrat u '+name+', měsíc '+m.month);amounts[m.month]=av165Round(val)}
+  for(const m of months){const cell=arr[m.col];const val=typeof cell==='number'?cell:Number(String(cell||'0').replace(/\s/g,'').replace(',','.'));if(!Number.isFinite(val))throw Error('Neplatný obrat u '+name+', měsíc '+m.month);amounts[m.month]=av165Round(val)}
   const total=typeof arr[2]==='number'?arr[2]:Number(String(arr[2]||'0').replace(/\s/g,'').replace(',','.'));
   if(!Number.isFinite(total)||Math.abs(Object.values(amounts).reduce((a,b)=>a+b,0)-total)>months.length/2+1)throw Error('Součet měsíčních částek nesouhlasí u '+name+' (řádek '+(i+1)+').');
   rows.push({name,ico,amounts});
