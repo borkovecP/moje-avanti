@@ -1,4 +1,4 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Moje AVANTI · 2.9.173</title>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Moje AVANTI · 2.9.174</title>
 <link rel="apple-touch-icon" sizes="180x180" href="./moje-avanti-icon-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./moje-avanti-icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="./moje-avanti-icon-512.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Moje AVANTI">
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#25262a;background:#f4f5f7}*{box-sizing:border-box}body{margin:0}header{background:#a71f2b;color:white;padding:13px 25px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}header strong{font-size:23px}header small{display:block;opacity:.85;margin-top:3px}main{max-width:1480px;margin:25px auto;padding:0 18px}h1{font-size:25px;margin:0 0 8px}h2{font-size:21px;margin:0 0 16px}p{line-height:1.5}button,.filebutton{border:0;background:#a71f2b;color:#fff;border-radius:9px;padding:10px 14px;font:600 14px inherit;cursor:pointer}button{font-size:14px;font-weight:600}button.secondary,.filebutton{background:white;color:#34353a;border:1px solid #d7d9df}button.danger{background:#fff0f1;color:#9a1a24}button:hover,.tile:hover{filter:brightness(.97)}.panel{background:white;border:1px solid #e0e2e6;border-radius:14px;padding:20px;box-shadow:0 3px 14px #1c26300a}.muted{color:#737780}.lead{color:#737780;margin:0 0 22px}.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.tile{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:11px;min-height:155px;padding:20px;background:white;border:1px solid #e0e2e6;border-radius:15px;color:#27282b;box-shadow:0 3px 12px #1c263008}.tile .symbol{display:grid;place-items:center;width:45px;height:45px;border-radius:12px;background:#f9e8ea;color:#a71f2b;font-size:24px}.tile b{font-size:18px}.tile small{color:#737780;font-size:13px;font-weight:400}.tile.placeholder{opacity:.75}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.topline h1{margin:0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}input,textarea{width:100%;padding:11px;border:1px solid #cfd2d9;border-radius:9px;font:inherit;background:white}input[type=file]{display:none}.search{margin-bottom:14px}.customer{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #eee;padding:9px 0}.customer:first-child{border-top:0}.customer h3{margin:0 0 3px;font-size:15px}.customer p{margin:0;font-size:13px;color:#737780}.customer button{padding:8px 11px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}.wide{grid-column:1/-1}.address-group{border:1px solid #e0e2e6;border-radius:10px;padding:12px;margin-top:2px}.address-group summary{font-weight:700;cursor:pointer;padding:4px}.address-group .formgrid{margin-top:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.notice{font-size:12px;color:#777;margin-top:20px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:18px}.detail section{border-bottom:1px solid #eee;padding-bottom:12px}.detail h3{font-size:13px;color:#777;margin:0 0 7px}.detail p{margin:4px 0}.detail a{color:#a71f2b;text-decoration:none}.detail .full{grid-column:1/-1}[hidden]{display:none!important}@media(max-width:700px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{min-height:140px}.detail{grid-template-columns:1fr}.detail .full{grid-column:auto}.formgrid{grid-template-columns:1fr}.toolbar button,.toolbar .filebutton{flex:1;text-align:center}header{padding:18px}main{margin:18px auto}}@media(max-width:420px){.tiles{gap:10px}.tile{padding:14px;min-height:135px}.tile b{font-size:16px}.topline{flex-wrap:wrap}}
@@ -619,11 +619,27 @@ header nav button[data-module].active{background:transparent!important}
 #detailView .av167-heading h1{min-width:0;flex:1 1 220px}
 #detailView .av167-heading .av167-detail-trend{margin-top:5px;margin-left:auto}
 @media(max-width:470px){.av167-detail-trend{gap:6px;font-size:11px}.av167-detail-trend .av167-arrow{font-size:16px}}
-/* 2.9.173: jednotné stavy návštěv na kartě zákazníka */
+/* 2.9.174: jednotné stavy návštěv na kartě zákazníka */
 .visit-history-card.av173-visit-done{background:#f2ebfb!important;border-color:#dacbee!important;border-left-color:#7440ae!important}
 .visit-history-card.av173-visit-planned{background:#e9f6ed!important;border-color:#b5dec3!important;border-left-color:#168453!important}
 .visit-history-card.av173-visit-overdue{background:#fff0f1!important;border-color:#edc2c7!important;border-left-color:#bc2638!important}
-.av173-cal-search{margin:0 0 15px;padding:15px;background:#f8f6fc;border:1px solid #ded4ed;border-radius:12px}
+/* 2.9.174: vyhledavani se otevre jako pevny panel pod ovladanim kalendare,
+   nezavisle na poloze posunuteho mesice/tydne/dne. */
+.av173-cal-search{position:fixed;z-index:400;box-sizing:border-box;margin:0;padding:17px;
+ background:#f8f6fc;border:1px solid #ded4ed;border-radius:12px;
+ box-shadow:0 13px 30px rgba(24,29,45,.23);overflow-y:auto;overscroll-behavior:contain;
+ max-height:calc(100dvh - 120px);-webkit-overflow-scrolling:touch}
+.av173-cal-controls label{font-size:15px;min-width:135px}
+.av173-cal-controls input,.av173-cal-controls select{min-height:56px;height:56px;
+ padding:12px 14px;font-size:17px;line-height:1.3;box-sizing:border-box}
+.av173-cal-states label{font-size:15px;min-height:38px}
+.av173-cal-states input{width:21px;height:21px;flex:0 0 21px}
+@media(min-width:701px) and (max-width:1200px){
+ .av173-cal-controls label{flex:1 1 180px}
+ .av173-cal-controls select{min-height:60px;height:60px}}
+@media(max-width:700px){.av173-cal-search{padding:12px;border-radius:10px}
+ .av173-cal-controls label{flex:1 1 130px}.av173-cal-controls select{min-height:56px}}
+
 .av173-cal-search[hidden]{display:none!important}
 .av173-cal-controls{display:flex;gap:9px;align-items:end;flex-wrap:wrap}
 .av173-cal-controls label{display:grid;gap:5px;flex:1 1 140px;font-size:13px;font-weight:650}
@@ -635,6 +651,13 @@ header nav button[data-module].active{background:transparent!important}
 .av173-result[data-state=planned]{border-left-color:#168453}.av173-result[data-state=overdue]{border-left-color:#bc2638}.av173-result[data-state=unassigned]{border-left-color:#1758aa}
 .av173-result small{font-size:12px;color:#626f7e}
 .av173-quick{min-height:42px;box-sizing:border-box;width:100%;margin:10px 0;border:1px solid #cbd4e5;border-radius:8px;padding:8px 12px;background:#fff}
+/* 2.9.174: posledni pravidla vyhraji i nad puvodnim stylem 2.9.173. */
+#calendarView .av173-cal-controls label{font-size:15px;min-width:135px}
+#calendarView .av173-cal-controls input,#calendarView .av173-cal-controls select{min-height:56px;height:56px;padding:12px 14px;font-size:17px;box-sizing:border-box}
+#calendarView .av173-cal-states label{font-size:15px;min-height:38px}
+#calendarView .av173-cal-states input{width:21px;height:21px;flex:0 0 21px}
+@media(min-width:701px) and (max-width:1200px){#calendarView .av173-cal-controls select{min-height:60px;height:60px}}
+
 </style><style>
 .sample-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.sample-record,.sample-manager-cat{border:1px solid #d9dde5;border-radius:10px;margin:9px 0;padding:10px 13px}.sample-record summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.sample-record summary span{font-size:13px;color:#5d6675}.sample-timeline{padding:10px 0 0}.sample-timeline>div{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;padding:7px 0;border-top:1px solid #e7e9ee}.sample-timeline p{width:100%;margin:0;font-size:13px;color:#596273}.sample-history-toggle{margin:16px 0}.sample-history-toggle>summary{cursor:pointer}.sample-manager-actions{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.sample-manager-actions button,.sample-manager-item button{font-size:12px;padding:7px 10px}.sample-manager-item{display:flex;align-items:center;gap:7px;padding:6px 0;border-top:1px solid #eee}.sample-manager-item span{flex:1}#sampleEntry{border-top:1px solid #ddd;margin-top:18px;padding-top:12px}
 
@@ -1373,7 +1396,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 /* Kontrola aktuální schválené verze: pouze čtení, bez změn databáze. */
 (function(){
  'use strict';
- const THIS_VERSION='2.9.173';
+ const THIS_VERSION='2.9.174';
  const MANIFEST='./moje-avanti-release.json';
  let latestChecked=0, checking=false;
  function showWarning(message, version, canUpdate){
@@ -1575,7 +1598,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
  };
 })();
 </script>
-<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.173</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><button data-module="Disk">▣ Disk</button><button data-module="Ceníky">▤ Ceníky</button></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
+<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.174</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><button data-module="Disk">▣ Disk</button><button data-module="Ceníky">▤ Ceníky</button></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
 <main>
 <section id="homeView"><div class="tiles">
 <button class="tile" id="tileCustomers"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2"/><path d="M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></svg></span><b>Zákazníci <span id="tileCustomerIncomplete" class="unassigned-badge" hidden></span></b><small>Kontakty a karty zákazníků · <span id="homeCount">0</span></small></button>
@@ -1774,7 +1797,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 <option value="300000">Každých 5 minut (Mac)</option>
 </select></label>
 <p class="muted" id="syncIntervalInfo" style="font-size:13px;margin:8px 0 0">Nastavení platí jen pro toto zařízení. Po uložení změn se synchronizuje bez čekání na interval. Tlačítko „Synchronizovat nyní“ funguje kdykoliv.</p>
-</div><div class="settings-block settings-backup" id="cloudReceivePanel"><h2>První připojení Macu</h2><p class="muted">Jednorázově převezme zákazníky, návštěvy a číselník vzorků z cloudu pouze do tohoto prohlížeče. Místní data předtím zazálohuje. <strong>Do cloudu nic nezapisuje.</strong> Používej jen v nové prázdné testovací aplikaci na Macu (nebo se starými testovacími daty 1+1), vždy s vypnutou synchronizací.</p><div class="settings-actions"><button class="secondary" disabled="" id="syncReceiveCloud" type="button">↓ Převzít data z cloudu do Macu</button></div><p aria-live="polite" class="muted" id="syncReceiveStatus" role="status" style="white-space:pre-wrap"></p></div><h2>O aplikaci</h2><p>Moje AVANTI · 2.9.173</p><p class="muted">Stav synchronizace se zobrazuje vpravo v červené liště.</p></div></details></div></section><section id="av164ExportsView" hidden><div class="topline"><button type="button" class="secondary" id="av164ExportsBack">← Zpět</button><h1>EXPORTY</h1></div><div class="panel av164-exports-panel"><p class="muted">Pravidelné týdenní exporty. Stejné funkce zůstávají dostupné také v Nastavení.</p><div class="settings-block"><h2>Týdenní hlášení návštěv</h2><p class="muted">Celý týden od pondělí do neděle. Předvolen je poslední dokončený týden.</p><div class="settings-actions"><label class="field">Datum v týdnu<input type="date" id="av164QuickWeek"></label><button type="button" id="av164QuickReport">↓ Export týdenního hlášení (Excel)</button></div><p id="av164QuickWeekText" class="muted"></p></div><div class="settings-block"><h2>Vydané vzorky</h2><p class="muted">Záznamy s činností „Dodáno“ za zvolené období.</p><div class="settings-actions"><label class="field">Od<input type="date" id="av164QuickFrom"></label><label class="field">Do<input type="date" id="av164QuickTo"></label><button type="button" id="av164QuickIssued">↓ Export vydaných vzorků (Excel)</button></div><p id="av164QuickIssuedStatus" class="muted" role="status"></p></div></div></section>
+</div><div class="settings-block settings-backup" id="cloudReceivePanel"><h2>První připojení Macu</h2><p class="muted">Jednorázově převezme zákazníky, návštěvy a číselník vzorků z cloudu pouze do tohoto prohlížeče. Místní data předtím zazálohuje. <strong>Do cloudu nic nezapisuje.</strong> Používej jen v nové prázdné testovací aplikaci na Macu (nebo se starými testovacími daty 1+1), vždy s vypnutou synchronizací.</p><div class="settings-actions"><button class="secondary" disabled="" id="syncReceiveCloud" type="button">↓ Převzít data z cloudu do Macu</button></div><p aria-live="polite" class="muted" id="syncReceiveStatus" role="status" style="white-space:pre-wrap"></p></div><h2>O aplikaci</h2><p>Moje AVANTI · 2.9.174</p><p class="muted">Stav synchronizace se zobrazuje vpravo v červené liště.</p></div></details></div></section><section id="av164ExportsView" hidden><div class="topline"><button type="button" class="secondary" id="av164ExportsBack">← Zpět</button><h1>EXPORTY</h1></div><div class="panel av164-exports-panel"><p class="muted">Pravidelné týdenní exporty. Stejné funkce zůstávají dostupné také v Nastavení.</p><div class="settings-block"><h2>Týdenní hlášení návštěv</h2><p class="muted">Celý týden od pondělí do neděle. Předvolen je poslední dokončený týden.</p><div class="settings-actions"><label class="field">Datum v týdnu<input type="date" id="av164QuickWeek"></label><button type="button" id="av164QuickReport">↓ Export týdenního hlášení (Excel)</button></div><p id="av164QuickWeekText" class="muted"></p></div><div class="settings-block"><h2>Vydané vzorky</h2><p class="muted">Záznamy s činností „Dodáno“ za zvolené období.</p><div class="settings-actions"><label class="field">Od<input type="date" id="av164QuickFrom"></label><label class="field">Do<input type="date" id="av164QuickTo"></label><button type="button" id="av164QuickIssued">↓ Export vydaných vzorků (Excel)</button></div><p id="av164QuickIssuedStatus" class="muted" role="status"></p></div></div></section>
 </main>
 <div id="av163TotalOverlay" class="av163-overlay" hidden role="dialog" aria-modal="true" aria-label="Celkové obraty"><div class="av163-modal"><div class="av163-modal-head"><h2>Celkové obraty</h2><button type="button" class="secondary" id="av163TotalClose">Zavřít</button></div><div id="av163TotalContent"></div></div></div><div id="avantiTaskModal" class="avanti-new-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="avantiTaskTitle"><div class="avanti-new-dialog avanti-task-dialog"><h2 id="avantiTaskTitle">Nový úkol</h2><form id="avantiTaskForm"><div class="formgrid"><label class="field wide">Zákazník *<select id="avantiTaskCustomer" required></select></label><label class="field">Typ úkolu *<select id="avantiTaskType"><option>Volat</option><option>E-mail</option><option>Nabídka</option><option>Ostatní</option></select></label><label class="field" id="avantiTaskOtherWrap" hidden>Jiný typ *<input id="avantiTaskOther" maxlength="120" placeholder="Vlastní označení"></label><label class="field">Datum *<input id="avantiTaskDate" type="date" required></label><label class="field">Čas *<input id="avantiTaskTime" type="time" required></label><label class="field">Upozornění předem<select id="avantiTaskAlert"><option value="0">V čase události</option><option value="15">15 minut</option><option value="30">30 minut</option><option value="60">60 minut</option></select></label><label class="field wide">Poznámka<textarea id="avantiTaskNote" rows="3" maxlength="3000"></textarea></label></div><div class="actions"><button type="submit">Uložit úkol</button><button class="secondary" type="button" id="avantiTaskCancel">Zrušit</button><button class="secondary" type="button" id="avantiTaskPostpone" hidden>Odložit</button><button class="secondary" type="button" id="avantiTaskDone" hidden>✓ Splněno</button><button class="danger" type="button" id="avantiTaskDelete" hidden>Smazat</button></div><div id="avantiTaskPostponeOptions" hidden><h3>Odložit úkol</h3><div class="actions"><button type="button" class="secondary" id="avantiTaskPostpone30">O 30 minut</button><button type="button" class="secondary" id="avantiTaskPostpone60">O 60 minut</button></div><div class="formgrid"><label class="field">Jiné datum<input type="date" id="avantiTaskPostponeDate"></label><label class="field">Čas<input type="time" id="avantiTaskPostponeTime" value="10:00"></label></div><div class="actions"><button type="button" id="avantiTaskPostponeDateButton">Uložit nový termín</button></div></div></form></div></div>
 <div id="avantiHistoryDialog" class="avanti-new-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="avantiHistoryTitle"><div class="avanti-new-dialog"><h2 id="avantiHistoryTitle">Ruční zápis do historie</h2><form id="avantiHistoryForm"><div class="formgrid"><label class="field">Datum *<input type="date" id="avantiHistoryDate" required></label><label class="field wide" id="avantiHistoryBranchWrap">Provozovna<select id="avantiHistoryBranch" class="touch-select"></select></label><label class="field">Způsob zápisu<select id="avantiHistoryMethod" class="touch-select"><option value="manual">✎ Ručně</option><option value="email">✉ E-mail</option><option value="phone">☎ Telefon</option></select></label><label class="field wide">Zápis *<textarea id="avantiHistoryText" rows="5" maxlength="5000" required placeholder="Co se u zákazníka změnilo nebo co je důležité vědět?"></textarea></label></div><div class="actions"><button type="submit">Uložit zápis</button><button type="button" class="secondary" id="avantiHistoryCancel">Zrušit</button></div></form></div></div>
@@ -2691,7 +2714,7 @@ const SAMPLE_CATALOG_KEY='moje-avanti-sample-catalog-v1';
 const SAMPLE_DEFAULT=['Vzorky','Katalogy','Kufry','Stojany','Knihy','Ostatní'];
 function getSampleCatalog(){try{const x=JSON.parse(localStorage.getItem(SAMPLE_CATALOG_KEY)||'null');if(x&&Array.isArray(x.categories))return x}catch(e){}return {categories:SAMPLE_DEFAULT.map((name,i)=>({id:'sc'+i,name,active:true,items:[]}))}}
 function saveSampleCatalog(x){localStorage.setItem(SAMPLE_CATALOG_KEY,JSON.stringify(x));window.dispatchEvent(new Event('avanti-local-change'))}
-// 2.9.173 – provedení vzorků: oddělený číselník; historické pohyby se nemigrují.
+// 2.9.174 – provedení vzorků: oddělený číselník; historické pohyby se nemigrují.
 const AV173_DEFAULT_KINDS=['Ruční','Velké','Parabola','Polystyl','Stojan vinyl'];
 function av173Kinds(catalog=getSampleCatalog()){
  const cat=catalog.categories.find(x=>x.name==='Vzorky');
@@ -2947,7 +2970,7 @@ $('sampleMultiClear').onclick=()=>{sampleMultiNames.clear();$('sampleItem').valu
 
 // Dialog je sdílený mezi kartou zákazníka a zápisem návštěvy.
 document.body.appendChild($('sampleEntry'));
-// 2.9.173: Všechny dodané/zapůjčené materiály kromě Katalogů plní činnost Vzorky.
+// 2.9.174: Všechny dodané/zapůjčené materiály kromě Katalogů plní činnost Vzorky.
 // Rozlišování kategorií zůstává v číselníku a historii jednotlivých položek.
 function visitSampleCategoryKey(ev){const n=String(ev?.categoryName||'').trim().toLocaleLowerCase('cs');return !n?null:n==='katalogy'?'delivered:catalog':'delivered:samples'}
 function visitSampleEffective(){const cid=vf.elements.customerId.value;return data.find(x=>x.id===cid)}
@@ -3556,7 +3579,7 @@ function avantiGoogleNoteForDisplay(note){
 }
 function isInternalCustomer(c){return !!c&&[c.company,c.person].some(n=>String(n||'').trim().toLocaleLowerCase('cs-CZ')==='pavel borkovec')}
 function isInternalVisit(v){return !!v&&v.mode==='own'&&isInternalCustomer(data.find(c=>c.id===v.customerId))}
-// 2.9.173: úprava času je dostupná u všech přiřazených Google událostí.
+// 2.9.174: úprava času je dostupná u všech přiřazených Google událostí.
 function avantiEditableInternalGoogle(v){return isGoogleImportedVisit(v)&&v.googleCalendarDeleted!==true;}
 function avantiGoogleEndClock(v){const raw=String(v?.googleEventEnd||'');if(!raw.includes('T'))return '';const d=new Date(raw);return Number.isFinite(d.getTime())?[d.getHours(),d.getMinutes()].map(n=>String(n).padStart(2,'0')).join(':'):'';}
 function visitDisplayName(v){const c=data.find(x=>x.id===v.customerId);if(v.calendarCreated&&v.calendarTitle)return v.calendarTitle;if(isGoogleImportedVisit(v)&&v.mode==='other'&&v.otherName)return v.otherName;if(isGoogleImportedVisit(v)&&v.googleEventTitle)return v.googleEventTitle;return v.mode==='other'?(v.otherName||'Jednorázová návštěva'):(c?(c.company||c.person||'Zákazník'):'Neznámý zákazník')}
@@ -4034,7 +4057,7 @@ if(!pendingGoogleEvent&&!isGoogleImportedVisit(visitEditing?visits.find(x=>x.id=
   v.durationMinutes=duration;
  }else{v.durationMinutes=null;}
 }
-// 2.9.173: jednotna editace casu pro vsechny Google-propojene navstevy.
+// 2.9.174: jednotna editace casu pro vsechny Google-propojene navstevy.
 // Bez zmeny casu se do puvodni Google udalosti nesaha.
 const googleVisitOriginal=visitEditing?visits.find(x=>x.id===visitEditing):null;
 const googleOriginal=googleVisitOriginal||pendingGoogleEvent;
@@ -5664,7 +5687,7 @@ function safeLocalCatalogSeed(device,cloud,base){
 }
 // Samostatný dokument nezasahuje do existujícího schématu zákazníků a návštěv.
 // Při prvním nasazení se zdrojem stává pouze zařízení s naplněným číselníkem.
-// 2.9.173: třícestné sloučení číselníku po jednotlivých ID.
+// 2.9.174: třícestné sloučení číselníku po jednotlivých ID.
 // Nezávisle přidané položky se spojí, záměrná smazání se zachovají.
 // Současné protichůdné změny stejného údaje zůstávají zablokované.
 function mergeCatalog(base,device,cloud){
@@ -6251,7 +6274,7 @@ function merge(base,loc,remote){
        pendingFlagConflict=true;
        continue;
       }
-      // 2.9.173: Pomocny priznak ceka na zapsani casu do Google.
+      // 2.9.174: Pomocny priznak ceka na zapsani casu do Google.
       // Vetsinou jde o soubeh: na jedne strane prislo true, na druhe
       // false (napr. po dokonceni Google PATCH). Neni to konflikt casu.
       // Pokud jedna strana stale ceka, zachovame cekajici zapis.
@@ -7865,7 +7888,7 @@ draw();void syncGoogle();
 </script>
 
 <script>
-/* 2.9.173: vyhledávání je pouze čtecí. Nepřepisuje návštěvy ani Google události. */
+/* 2.9.174: vyhledávání je pouze čtecí. Nepřepisuje návštěvy ani Google události. */
 (function(){
  function init(){
   const $=id=>document.getElementById(id),panel=$('av173SearchPanel'),query=$('av173Query'),period=$('av173Period'),month=$('av173Month'),year=$('av173Year');
@@ -7874,7 +7897,28 @@ draw();void syncGoogle();
   month.innerHTML=months.map((m,i)=>'<option value="'+(i+1)+'">'+m+'</option>').join('');
   month.value=String(new Date().getMonth()+1);
   const now=new Date().getFullYear();year.innerHTML=Array.from({length:15},(_,i)=>now+1-i).map(y=>'<option value="'+y+'">'+y+'</option>').join('');year.value=String(now);
-  $('av173SearchToggle').onclick=()=>{panel.hidden=!panel.hidden;$('av173SearchToggle').setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden){draw();query.focus()}};
+  const toggle=$('av173SearchToggle'),calendar=$('calendarView'),actions=calendar.querySelector('.cal-sticky-actions');
+  function placeSearchPanel(){
+   if(panel.hidden||calendar.hidden)return;
+   const rect=actions.getBoundingClientRect(),vw=document.documentElement.clientWidth;
+   const left=Math.max(8,Math.min(rect.left,vw-280));
+   const width=Math.max(260,Math.min(rect.width,vw-left-8));
+   const top=Math.max(8,Math.min(window.innerHeight-110,rect.bottom+5));
+   panel.style.left=left+'px';panel.style.width=width+'px';panel.style.top=top+'px';
+   panel.style.maxHeight=Math.max(105,window.innerHeight-top-9)+'px';
+  }
+  function closeSearch(){panel.hidden=true;toggle.setAttribute('aria-expanded','false')}
+  toggle.onclick=()=>{
+   if(!panel.hidden){closeSearch();return}
+   panel.hidden=false;toggle.setAttribute('aria-expanded','true');
+   placeSearchPanel();draw();query.focus({preventScroll:true});
+  };
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)closeSearch()});
+  window.addEventListener('resize',placeSearchPanel,{passive:true});
+  window.addEventListener('scroll',placeSearchPanel,{passive:true});
+  // Jine zobrazeni aplikace nesmi ponechat plovouci hledani na obrazovce.
+  new MutationObserver(()=>{if(calendar.hidden&&!panel.hidden)closeSearch()})
+    .observe(calendar,{attributes:true,attributeFilter:['hidden']});
   function norm(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('cs')}
   function dateOk(date){if(!date)return false;if(period.value==='all')return true;if(!date.startsWith(year.value+'-'))return false;return period.value==='year'||Number(date.slice(5,7))===Number(month.value)}
   function labelVisit(v){try{return visitDisplayName(v)||''}catch(e){return v.title||v.name||''}}
@@ -7900,7 +7944,7 @@ draw();void syncGoogle();
     const b=document.createElement('button');b.type='button';b.className='av173-result';b.dataset.state=r.st;
     const title=document.createElement('strong');title.textContent=r.name;const meta=document.createElement('small');
     meta.textContent=[r.date?r.date.split('-').reverse().join('. '):'',r.time,r.city,{done:'Dokončená',planned:'Plánovaná',overdue:'Nedokončená',unassigned:'Nepřiřazená'}[r.st]].filter(Boolean).join(' · ');
-    b.append(title,meta);b.onclick=()=>{panel.hidden=true;$('av173SearchToggle').setAttribute('aria-expanded','false');if(r.event)window.av173OpenGoogleEvent?.(r.event);else{visitDetailOrigin='calendarView';openVisitDetail(r.id)}};
+    b.append(title,meta);b.onclick=()=>{closeSearch();if(r.event)window.av173OpenGoogleEvent?.(r.event);else{visitDetailOrigin='calendarView';openVisitDetail(r.id)}};
     fragment.append(b);
    }
    root.append(fragment);
