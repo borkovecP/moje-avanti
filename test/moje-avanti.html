@@ -1,4 +1,4 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Moje AVANTI · 2.9.167</title>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Moje AVANTI · 2.9.168</title>
 <link rel="apple-touch-icon" sizes="180x180" href="./moje-avanti-icon-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./moje-avanti-icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="./moje-avanti-icon-512.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Moje AVANTI">
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#25262a;background:#f4f5f7}*{box-sizing:border-box}body{margin:0}header{background:#a71f2b;color:white;padding:13px 25px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}header strong{font-size:23px}header small{display:block;opacity:.85;margin-top:3px}main{max-width:1480px;margin:25px auto;padding:0 18px}h1{font-size:25px;margin:0 0 8px}h2{font-size:21px;margin:0 0 16px}p{line-height:1.5}button,.filebutton{border:0;background:#a71f2b;color:#fff;border-radius:9px;padding:10px 14px;font:600 14px inherit;cursor:pointer}button{font-size:14px;font-weight:600}button.secondary,.filebutton{background:white;color:#34353a;border:1px solid #d7d9df}button.danger{background:#fff0f1;color:#9a1a24}button:hover,.tile:hover{filter:brightness(.97)}.panel{background:white;border:1px solid #e0e2e6;border-radius:14px;padding:20px;box-shadow:0 3px 14px #1c26300a}.muted{color:#737780}.lead{color:#737780;margin:0 0 22px}.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.tile{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:11px;min-height:155px;padding:20px;background:white;border:1px solid #e0e2e6;border-radius:15px;color:#27282b;box-shadow:0 3px 12px #1c263008}.tile .symbol{display:grid;place-items:center;width:45px;height:45px;border-radius:12px;background:#f9e8ea;color:#a71f2b;font-size:24px}.tile b{font-size:18px}.tile small{color:#737780;font-size:13px;font-weight:400}.tile.placeholder{opacity:.75}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.topline h1{margin:0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}input,textarea{width:100%;padding:11px;border:1px solid #cfd2d9;border-radius:9px;font:inherit;background:white}input[type=file]{display:none}.search{margin-bottom:14px}.customer{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #eee;padding:9px 0}.customer:first-child{border-top:0}.customer h3{margin:0 0 3px;font-size:15px}.customer p{margin:0;font-size:13px;color:#737780}.customer button{padding:8px 11px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}.wide{grid-column:1/-1}.address-group{border:1px solid #e0e2e6;border-radius:10px;padding:12px;margin-top:2px}.address-group summary{font-weight:700;cursor:pointer;padding:4px}.address-group .formgrid{margin-top:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.notice{font-size:12px;color:#777;margin-top:20px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:18px}.detail section{border-bottom:1px solid #eee;padding-bottom:12px}.detail h3{font-size:13px;color:#777;margin:0 0 7px}.detail p{margin:4px 0}.detail a{color:#a71f2b;text-decoration:none}.detail .full{grid-column:1/-1}[hidden]{display:none!important}@media(max-width:700px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{min-height:140px}.detail{grid-template-columns:1fr}.detail .full{grid-column:auto}.formgrid{grid-template-columns:1fr}.toolbar button,.toolbar .filebutton{flex:1;text-align:center}header{padding:18px}main{margin:18px auto}}@media(max-width:420px){.tiles{gap:10px}.tile{padding:14px;min-height:135px}.tile b{font-size:16px}.topline{flex-wrap:wrap}}
@@ -1357,7 +1357,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 /* Kontrola aktuální schválené verze: pouze čtení, bez změn databáze. */
 (function(){
  'use strict';
- const THIS_VERSION='2.9.167';
+ const THIS_VERSION='2.9.168';
  const MANIFEST='./moje-avanti-release.json';
  let latestChecked=0, checking=false;
  function showWarning(message, version, canUpdate){
@@ -1485,6 +1485,40 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
     background:linear-gradient(to bottom,#fff 0,#fff 47px,#1b1d22 47px,#1b1d22 100%);}
 }
 </style>
+
+<style id="avanti-ipad-fixed-header-29168">
+/* iPad Safari: keep red navigation as a viewport layer, not a sticky scroller. */
+@media (min-width:701px){
+ html.avanti-ipad-header body{padding-top:var(--avanti-ipad-header-height,80px)!important;}
+ html.avanti-ipad-header body>header{
+  position:fixed!important;top:0!important;left:0!important;right:0!important;
+  z-index:900!important;width:100%!important;box-sizing:border-box;
+  background:#a71f2b!important;isolation:isolate;
+ }
+ html.avanti-ipad-header #calendarView>.cal-sticky-actions{top:var(--avanti-ipad-header-height,80px)!important;}
+ html.avanti-ipad-header #calendarView .cal-weekdays{top:calc(var(--avanti-ipad-header-height,80px) + var(--avanti-calendar-actions-height,66px))!important;}
+}
+</style>
+<script id="avanti-ipad-fixed-header-sizing-29168">
+(function(){'use strict';
+ const isiPad= /iPad/.test(navigator.userAgent) ||
+  (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+ if(!isiPad)return;
+ document.documentElement.classList.add('avanti-ipad-header');
+ function measure(){
+  const header=document.querySelector('body>header');if(!header)return;
+  document.documentElement.style.setProperty('--avanti-ipad-header-height',Math.ceil(header.getBoundingClientRect().height)+'px');
+  document.documentElement.style.setProperty('--avanti-header-height',Math.ceil(header.getBoundingClientRect().height)+'px');
+ }
+ document.addEventListener('DOMContentLoaded',()=>{
+  measure();
+  if(typeof ResizeObserver!=='undefined')new ResizeObserver(measure).observe(document.querySelector('body>header'));
+ });
+ window.addEventListener('resize',measure,{passive:true});
+ window.addEventListener('orientationchange',measure,{passive:true});
+ window.addEventListener('pageshow',measure);
+})();
+</script>
 </head><body>
 <script>
 /* České státní a ostatní svátky (dny pracovního klidu); bez nových oprávnění ke Google účtu. */
@@ -1525,7 +1559,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
  };
 })();
 </script>
-<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.167</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><button data-module="Disk">▣ Disk</button><button data-module="Ceníky">▤ Ceníky</button></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
+<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.168</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><button data-module="Disk">▣ Disk</button><button data-module="Ceníky">▤ Ceníky</button></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
 <main>
 <section id="homeView"><div class="tiles">
 <button class="tile" id="tileCustomers"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2"/><path d="M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></svg></span><b>Zákazníci <span id="tileCustomerIncomplete" class="unassigned-badge" hidden></span></b><small>Kontakty a karty zákazníků · <span id="homeCount">0</span></small></button>
@@ -1724,7 +1758,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 <option value="300000">Každých 5 minut (Mac)</option>
 </select></label>
 <p class="muted" id="syncIntervalInfo" style="font-size:13px;margin:8px 0 0">Nastavení platí jen pro toto zařízení. Po uložení změn se synchronizuje bez čekání na interval. Tlačítko „Synchronizovat nyní“ funguje kdykoliv.</p>
-</div><div class="settings-block settings-backup" id="cloudReceivePanel"><h2>První připojení Macu</h2><p class="muted">Jednorázově převezme zákazníky, návštěvy a číselník vzorků z cloudu pouze do tohoto prohlížeče. Místní data předtím zazálohuje. <strong>Do cloudu nic nezapisuje.</strong> Používej jen v nové prázdné testovací aplikaci na Macu (nebo se starými testovacími daty 1+1), vždy s vypnutou synchronizací.</p><div class="settings-actions"><button class="secondary" disabled="" id="syncReceiveCloud" type="button">↓ Převzít data z cloudu do Macu</button></div><p aria-live="polite" class="muted" id="syncReceiveStatus" role="status" style="white-space:pre-wrap"></p></div><h2>O aplikaci</h2><p>Moje AVANTI · 2.9.167</p><p class="muted">Stav synchronizace se zobrazuje vpravo v červené liště.</p></div></details></div></section><section id="av164ExportsView" hidden><div class="topline"><button type="button" class="secondary" id="av164ExportsBack">← Zpět</button><h1>EXPORTY</h1></div><div class="panel av164-exports-panel"><p class="muted">Pravidelné týdenní exporty. Stejné funkce zůstávají dostupné také v Nastavení.</p><div class="settings-block"><h2>Týdenní hlášení návštěv</h2><p class="muted">Celý týden od pondělí do neděle. Předvolen je poslední dokončený týden.</p><div class="settings-actions"><label class="field">Datum v týdnu<input type="date" id="av164QuickWeek"></label><button type="button" id="av164QuickReport">↓ Export týdenního hlášení (Excel)</button></div><p id="av164QuickWeekText" class="muted"></p></div><div class="settings-block"><h2>Vydané vzorky</h2><p class="muted">Záznamy s činností „Dodáno“ za zvolené období.</p><div class="settings-actions"><label class="field">Od<input type="date" id="av164QuickFrom"></label><label class="field">Do<input type="date" id="av164QuickTo"></label><button type="button" id="av164QuickIssued">↓ Export vydaných vzorků (Excel)</button></div><p id="av164QuickIssuedStatus" class="muted" role="status"></p></div></div></section>
+</div><div class="settings-block settings-backup" id="cloudReceivePanel"><h2>První připojení Macu</h2><p class="muted">Jednorázově převezme zákazníky, návštěvy a číselník vzorků z cloudu pouze do tohoto prohlížeče. Místní data předtím zazálohuje. <strong>Do cloudu nic nezapisuje.</strong> Používej jen v nové prázdné testovací aplikaci na Macu (nebo se starými testovacími daty 1+1), vždy s vypnutou synchronizací.</p><div class="settings-actions"><button class="secondary" disabled="" id="syncReceiveCloud" type="button">↓ Převzít data z cloudu do Macu</button></div><p aria-live="polite" class="muted" id="syncReceiveStatus" role="status" style="white-space:pre-wrap"></p></div><h2>O aplikaci</h2><p>Moje AVANTI · 2.9.168</p><p class="muted">Stav synchronizace se zobrazuje vpravo v červené liště.</p></div></details></div></section><section id="av164ExportsView" hidden><div class="topline"><button type="button" class="secondary" id="av164ExportsBack">← Zpět</button><h1>EXPORTY</h1></div><div class="panel av164-exports-panel"><p class="muted">Pravidelné týdenní exporty. Stejné funkce zůstávají dostupné také v Nastavení.</p><div class="settings-block"><h2>Týdenní hlášení návštěv</h2><p class="muted">Celý týden od pondělí do neděle. Předvolen je poslední dokončený týden.</p><div class="settings-actions"><label class="field">Datum v týdnu<input type="date" id="av164QuickWeek"></label><button type="button" id="av164QuickReport">↓ Export týdenního hlášení (Excel)</button></div><p id="av164QuickWeekText" class="muted"></p></div><div class="settings-block"><h2>Vydané vzorky</h2><p class="muted">Záznamy s činností „Dodáno“ za zvolené období.</p><div class="settings-actions"><label class="field">Od<input type="date" id="av164QuickFrom"></label><label class="field">Do<input type="date" id="av164QuickTo"></label><button type="button" id="av164QuickIssued">↓ Export vydaných vzorků (Excel)</button></div><p id="av164QuickIssuedStatus" class="muted" role="status"></p></div></div></section>
 </main>
 <div id="av163TotalOverlay" class="av163-overlay" hidden role="dialog" aria-modal="true" aria-label="Celkové obraty"><div class="av163-modal"><div class="av163-modal-head"><h2>Celkové obraty</h2><button type="button" class="secondary" id="av163TotalClose">Zavřít</button></div><div id="av163TotalContent"></div></div></div><div id="avantiTaskModal" class="avanti-new-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="avantiTaskTitle"><div class="avanti-new-dialog avanti-task-dialog"><h2 id="avantiTaskTitle">Nový úkol</h2><form id="avantiTaskForm"><div class="formgrid"><label class="field wide">Zákazník *<select id="avantiTaskCustomer" required></select></label><label class="field">Typ úkolu *<select id="avantiTaskType"><option>Volat</option><option>E-mail</option><option>Nabídka</option><option>Ostatní</option></select></label><label class="field" id="avantiTaskOtherWrap" hidden>Jiný typ *<input id="avantiTaskOther" maxlength="120" placeholder="Vlastní označení"></label><label class="field">Datum *<input id="avantiTaskDate" type="date" required></label><label class="field">Čas *<input id="avantiTaskTime" type="time" required></label><label class="field">Upozornění předem<select id="avantiTaskAlert"><option value="0">V čase události</option><option value="15">15 minut</option><option value="30">30 minut</option><option value="60">60 minut</option></select></label><label class="field wide">Poznámka<textarea id="avantiTaskNote" rows="3" maxlength="3000"></textarea></label></div><div class="actions"><button type="submit">Uložit úkol</button><button class="secondary" type="button" id="avantiTaskCancel">Zrušit</button><button class="secondary" type="button" id="avantiTaskPostpone" hidden>Odložit</button><button class="secondary" type="button" id="avantiTaskDone" hidden>✓ Splněno</button><button class="danger" type="button" id="avantiTaskDelete" hidden>Smazat</button></div><div id="avantiTaskPostponeOptions" hidden><h3>Odložit úkol</h3><div class="actions"><button type="button" class="secondary" id="avantiTaskPostpone30">O 30 minut</button><button type="button" class="secondary" id="avantiTaskPostpone60">O 60 minut</button></div><div class="formgrid"><label class="field">Jiné datum<input type="date" id="avantiTaskPostponeDate"></label><label class="field">Čas<input type="time" id="avantiTaskPostponeTime" value="10:00"></label></div><div class="actions"><button type="button" id="avantiTaskPostponeDateButton">Uložit nový termín</button></div></div></form></div></div>
 <div id="avantiHistoryDialog" class="avanti-new-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="avantiHistoryTitle"><div class="avanti-new-dialog"><h2 id="avantiHistoryTitle">Ruční zápis do historie</h2><form id="avantiHistoryForm"><div class="formgrid"><label class="field">Datum *<input type="date" id="avantiHistoryDate" required></label><label class="field wide" id="avantiHistoryBranchWrap">Provozovna<select id="avantiHistoryBranch" class="touch-select"></select></label><label class="field">Způsob zápisu<select id="avantiHistoryMethod" class="touch-select"><option value="manual">✎ Ručně</option><option value="email">✉ E-mail</option><option value="phone">☎ Telefon</option></select></label><label class="field wide">Zápis *<textarea id="avantiHistoryText" rows="5" maxlength="5000" required placeholder="Co se u zákazníka změnilo nebo co je důležité vědět?"></textarea></label></div><div class="actions"><button type="submit">Uložit zápis</button><button type="button" class="secondary" id="avantiHistoryCancel">Zrušit</button></div></form></div></div>
@@ -5515,60 +5549,126 @@ function safeLocalCatalogSeed(device,cloud,base){
 }
 // Samostatný dokument nezasahuje do existujícího schématu zákazníků a návštěv.
 // Při prvním nasazení se zdrojem stává pouze zařízení s naplněným číselníkem.
+// 2.9.168: třícestné sloučení číselníku po jednotlivých ID.
+// Nezávisle přidané položky se spojí, záměrná smazání se zachovají.
+// Současné protichůdné změny stejného údaje zůstávají zablokované.
+function mergeCatalog(base,device,cloud){
+ checkCatalog(device);checkCatalog(cloud);if(base)checkCatalog(base);
+ if(eq(device,cloud))return device;
+ if(!base){
+  if(itemCount(device)===0&&eq(categoryMetadata(device),categoryMetadata(cloud)))return cloud;
+  throw Error('Číselník nemá společný základ pro bezpečné sloučení. Nic se nepřepsalo.');
+ }
+ const missing=Symbol('chybí');
+ function value(b,l,r,where){
+  if(eq(l,r))return l;
+  if(eq(l,b))return r;
+  if(eq(r,b))return l;
+  throw Error('Rozdílné úpravy číselníku: '+where+'. Nic se nepřepsalo.');
+ }
+ function record(b,l,r,where){
+  if(l===undefined||r===undefined){
+   if(l===undefined&&r===undefined)return undefined;
+   if(b===undefined)return l===undefined?r:l;
+   const present=l===undefined?r:l;
+   if(eq(present,b))return undefined; // smazání vs beze změny
+   throw Error('Současné smazání a úprava číselníku: '+where+'. Nic se nepřepsalo.');
+  }
+  if(b===undefined){if(!eq(l,r))throw Error('Stejné nové ID s odlišným obsahem: '+where);return l;}
+  const out={};
+  for(const key of new Set([...Object.keys(b),...Object.keys(l),...Object.keys(r)])){
+   const bv=Object.hasOwn(b,key)?b[key]:missing;
+   const lv=Object.hasOwn(l,key)?l[key]:missing;
+   const rv=Object.hasOwn(r,key)?r[key]:missing;
+   // Údaje codes (Ruční / Velké) mohou být změněny samostatně.
+   if(key==='codes'&&bv!==missing&&lv!==missing&&rv!==missing&&
+      bv&&lv&&rv&&typeof bv==='object'&&typeof lv==='object'&&typeof rv==='object'){
+    const codes={};
+    for(const code of new Set([...Object.keys(bv),...Object.keys(lv),...Object.keys(rv)])){
+     const merged=value(bv[code]??missing,lv[code]??missing,rv[code]??missing,where+' / '+code);
+     if(merged!==missing)codes[code]=merged;
+    }
+    out[key]=codes;
+   }else{
+    const merged=value(bv,lv,rv,where+' / '+key);
+    if(merged!==missing)out[key]=merged;
+   }
+  }
+  return out;
+ }
+ function ids(arr,where){
+  const a=arr.map(x=>x.id);if(new Set(a).size!==a.length)throw Error('Duplicitní identifikátor: '+where);
+  return a;
+ }
+ function collection(b,l,r,where,mergeOne){
+  const bm=new Map(b.map(x=>[x.id,x])),lm=new Map(l.map(x=>[x.id,x])),rm=new Map(r.map(x=>[x.id,x]));
+  ids(b,where);ids(l,where);ids(r,where);
+  const all=[...new Set([...r.map(x=>x.id),...l.map(x=>x.id),...b.map(x=>x.id)])];
+  const result=new Map();
+  for(const id of all){
+   const merged=mergeOne(bm.get(id),lm.get(id),rm.get(id),where+' / '+id);
+   if(merged!==undefined)result.set(id,merged);
+  }
+  // Zachovat pořadí z cloudu, nové místní položky připojit na konec.
+  // Pokud jedna strana pouze změnila pořadí společných ID, použít její pořadí.
+  const shared=b.map(x=>x.id).filter(id=>result.has(id));
+  const order=arr=>arr.map(x=>x.id).filter(id=>shared.includes(id));
+  const localOrder=order(l),cloudOrder=order(r),baseOrder=order(b);
+  const locallyReordered=localOrder.length===baseOrder.length&&!eq(localOrder,baseOrder);
+  const cloudReordered=cloudOrder.length===baseOrder.length&&!eq(cloudOrder,baseOrder);
+  if(locallyReordered&&cloudReordered&&!eq(localOrder,cloudOrder))
+   throw Error('Konfliktní pořadí položek: '+where+'. Nic se nepřepsalo.');
+  const ordered=locallyReordered&&!cloudReordered?l:r;
+  return [...ordered.map(x=>x.id),...l.map(x=>x.id),...r.map(x=>x.id),...b.map(x=>x.id)]
+   .filter((id,i,a)=>result.has(id)&&a.indexOf(id)===i).map(id=>result.get(id));
+ }
+ const mergedCategories=collection(base.categories,device.categories,cloud.categories,'kategorie',
+  (b,l,r,where)=>{
+   if(b&&(!l||!r))return record(b,l,r,where);
+   const merged=record(b&&Object.fromEntries(Object.entries(b).filter(([k])=>k!=='items')),
+    l&&Object.fromEntries(Object.entries(l).filter(([k])=>k!=='items')),
+    r&&Object.fromEntries(Object.entries(r).filter(([k])=>k!=='items')),where);
+   if(!merged)return undefined;
+   merged.items=collection(b?.items||[],l?.items||[],r?.items||[],where+' / položky',record);
+   return merged;
+  });
+ const out={...record(Object.fromEntries(Object.entries(base).filter(([k])=>k!=='categories')),
+  Object.fromEntries(Object.entries(device).filter(([k])=>k!=='categories')),
+  Object.fromEntries(Object.entries(cloud).filter(([k])=>k!=='categories')),'číselník'),categories:mergedCategories};
+ checkCatalog(out);return out;
+}
 async function syncCatalog(uid){
  const before=readCatalog(),rawBase=localStorage.getItem(CATALOG_BASE);
  const base=rawBase?JSON.parse(rawBase):null;if(base)checkCatalog(base);
- // Samostatne a bez zapisu nacist posledni cloudovy stav. Mimo transakci
- // lze zobrazit potvrzeni; transakce pak hlida ze se mezitim NIC nezmenilo.
  const priorSnap=await getDoc(catalogRef(uid));
-let seedLocal=false,expectedCloud=null,expectedRevision=0;
+ let seedLocal=false,expectedCloud=null,expectedRevision=0;
  if(priorSnap.exists()){
   expectedCloud=priorSnap.data().catalog;checkCatalog(expectedCloud);
   expectedRevision=priorSnap.data().revision||0;
   seedLocal=safeLocalCatalogSeed(before,expectedCloud,base)&&!eq(before,expectedCloud);
   if(seedLocal){
-   const agreed=confirm('BEZPECNY PRENOS CISELNIKU VZORKU\n\n'+
-    'Toto zařízení: '+itemCount(before)+' polozek v '+before.categories.length+' kategoriich.\n'+
-    'Cloud: 0 polozek ve stejnych kategoriich.\n\n'+
-    'Do cloudu se prenese cely ciselnik z iPadu ('+itemCount(before)+' polozek).\n'+
-    'Zakaznici ani navstevy se timto krokem nemeni.\n\n'+
-    'Pred synchronizaci se nabidla uplna zaloha vcetne ciselniku.\n'+
-    'Over, ze je stazena. Pokud si nejsi jisty, zvol Zrusit.\n\n'+
-    'Potvrzuj jen na tomto iPadu. Pokracovat?');
-   if(!agreed)throw Error('Prenos ciselniku byl zrusen. Zadna polozka ciselniku se nezmenila.');
-   if(user?.uid!==uid||!eq(readCatalog(),before))throw Error('Ucet nebo ciselnik se behem potvrzovani zmenil.');
+   const agreed=confirm('BEZPEČNÝ PŘENOS ČÍSELNÍKU VZORKŮ\n\nCloud je prázdný, místní číselník obsahuje '+itemCount(before)+' položek.\n\nPokračovat?');
+   if(!agreed)throw Error('Přenos číselníku zrušen.');
+   if(user?.uid!==uid||!eq(readCatalog(),before))throw Error('Číselník se během potvrzování změnil.');
   }
  }
  let result,revision=0;
  await runTransaction(db,async tx=>{
   const snap=await tx.get(catalogRef(uid));
   if(!snap.exists()){
-   if(priorSnap.exists())throw Error('Cloudovy ciselnik zmizel. Nic se nezapsalo.');
-   result=before;revision=1;
-   tx.set(catalogRef(uid),{catalog:result,revision});
-   return;
+   if(priorSnap.exists())throw Error('Cloudový číselník zmizel. Nic se nezapsalo.');
+   result=before;revision=1;tx.set(catalogRef(uid),{catalog:result,revision});return;
   }
-  const cloud=snap.data().catalog;checkCatalog(cloud);
-  revision=snap.data().revision||0;
+  const cloud=snap.data().catalog;checkCatalog(cloud);revision=snap.data().revision||0;
   if(seedLocal){
    if(!eq(cloud,expectedCloud)||revision!==expectedRevision||
       !safeLocalCatalogSeed(before,cloud,base)||!eq(readCatalog(),before))
-    throw Error('Cloud nebo iPad se zmenil od potvrzeni. Ciselnik nebyl prepsan.');
+    throw Error('Cloud nebo místní číselník se od potvrzení změnil.');
    result=before;
-   revision++;
-   tx.set(catalogRef(uid),{catalog:result,revision});
-   return;
-  }
-  if(!base){
-   if(itemCount(before)>0&&!eq(before,cloud))throw Error('Na zarizeni je odlisny ciselnik. Nic se neprepsalo; nutna kontrola.');
-   result=cloud;return;
-  }
-  const localChanged=!eq(before,base),cloudChanged=!eq(cloud,base);
-  if(localChanged&&cloudChanged&&!eq(before,cloud))throw Error('Konflikt zmen ciselniku mezi zarizenimi. Nic se neprepsalo.');
-  result=localChanged?before:cloud;
+  }else result=mergeCatalog(base,before,cloud);
   if(!eq(result,cloud)){revision++;tx.set(catalogRef(uid),{catalog:result,revision})}
  });
- if(user?.uid!==uid||!eq(readCatalog(),before))throw Error('Ciselnik se behem synchronizace zmenil. Opakuj synchronizaci.');
+ if(user?.uid!==uid||!eq(readCatalog(),before))throw Error('Číselník se během synchronizace změnil. Opakuj synchronizaci.');
  localStorage.setItem(CATALOG_KEY,JSON.stringify(result));
  localStorage.setItem(CATALOG_BASE,JSON.stringify(result));
  if(!eq(before,result))window.dispatchEvent(new Event('avanti-cloud-applied'));
@@ -5605,9 +5705,8 @@ async function auditCatalogBeforeEnable(uid){
  const snap=await getDoc(catalogRef(uid));
  if(!snap.exists())return null;
  const cloud=snap.data().catalog;checkCatalog(cloud);
- const problem=base?(!eq(onDevice,base)&&!eq(cloud,base)&&!eq(onDevice,cloud)):(itemCount(onDevice)>0&&!eq(onDevice,cloud));
- // Povolime POUZE predbezne zobrazeni potvrzeni bezpecneho prenosu 75 -> prazdny cloud.
- // Vlastni zapis si jeste jednou overi zdroj, cloud a revizi ve Firebase transakci.
+ let problem=false,mergeError='';
+ try{mergeCatalog(base,onDevice,cloud)}catch(e){problem=true;mergeError=e.message}
  if(problem&&safeLocalCatalogSeed(onDevice,cloud,base))return null;
  if(!problem)return null;
  const describe=c=>c.categories.length+' kategorií, '+itemCount(c)+' položek';
@@ -5616,7 +5715,7 @@ async function auditCatalogBeforeEnable(uid){
   'iPad: '+describe(onDevice)+'\nCloud: '+describe(cloud)+'\nSpolečný základ: '+(base?describe(base):'není uložen')+'\n\n'+
   (preview.length?'Zjištěné rozdíly:\n• '+preview.join('\n• '):'Struktura vypadá stejně, ale data se v něčem liší.')+
   (differences.length>preview.length?'\n... a dalších '+(differences.length-preview.length)+' rozdílů.':'')+
-  '\n\nSynchronizace se preventivně nezapne. Žádná data nebyla změněna. Pošli snímek tohoto hlášení.';
+  '\n\nDůvod: '+mergeError+'\nSynchronizace se preventivně nezapne. Žádná data nebyla změněna.';
 }
 
 
