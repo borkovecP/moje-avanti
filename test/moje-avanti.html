@@ -1,4 +1,4 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Moje AVANTI · 2.9.192</title>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1b1d22" media="(prefers-color-scheme: dark)"><meta name="apple-mobile-web-app-status-bar-style" content="default"><title>Moje AVANTI · 2.9.193</title>
 <link rel="apple-touch-icon" sizes="180x180" href="./moje-avanti-icon-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./moje-avanti-icon-192.png"><link rel="icon" type="image/png" sizes="512x512" href="./moje-avanti-icon-512.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Moje AVANTI">
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#25262a;background:#f4f5f7}*{box-sizing:border-box}body{margin:0}header{background:#a71f2b;color:white;padding:13px 25px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}header strong{font-size:23px}header small{display:block;opacity:.85;margin-top:3px}main{max-width:1480px;margin:25px auto;padding:0 18px}h1{font-size:25px;margin:0 0 8px}h2{font-size:21px;margin:0 0 16px}p{line-height:1.5}button,.filebutton{border:0;background:#a71f2b;color:#fff;border-radius:9px;padding:10px 14px;font:600 14px inherit;cursor:pointer}button{font-size:14px;font-weight:600}button.secondary,.filebutton{background:white;color:#34353a;border:1px solid #d7d9df}button.danger{background:#fff0f1;color:#9a1a24}button:hover,.tile:hover{filter:brightness(.97)}.panel{background:white;border:1px solid #e0e2e6;border-radius:14px;padding:20px;box-shadow:0 3px 14px #1c26300a}.muted{color:#737780}.lead{color:#737780;margin:0 0 22px}.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.tile{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:11px;min-height:155px;padding:20px;background:white;border:1px solid #e0e2e6;border-radius:15px;color:#27282b;box-shadow:0 3px 12px #1c263008}.tile .symbol{display:grid;place-items:center;width:45px;height:45px;border-radius:12px;background:#f9e8ea;color:#a71f2b;font-size:24px}.tile b{font-size:18px}.tile small{color:#737780;font-size:13px;font-weight:400}.tile.placeholder{opacity:.75}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}.topline h1{margin:0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}input,textarea{width:100%;padding:11px;border:1px solid #cfd2d9;border-radius:9px;font:inherit;background:white}input[type=file]{display:none}.search{margin-bottom:14px}.customer{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #eee;padding:9px 0}.customer:first-child{border-top:0}.customer h3{margin:0 0 3px;font-size:15px}.customer p{margin:0;font-size:13px;color:#737780}.customer button{padding:8px 11px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}.wide{grid-column:1/-1}.address-group{border:1px solid #e0e2e6;border-radius:10px;padding:12px;margin-top:2px}.address-group summary{font-weight:700;cursor:pointer;padding:4px}.address-group .formgrid{margin-top:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.notice{font-size:12px;color:#777;margin-top:20px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:18px}.detail section{border-bottom:1px solid #eee;padding-bottom:12px}.detail h3{font-size:13px;color:#777;margin:0 0 7px}.detail p{margin:4px 0}.detail a{color:#a71f2b;text-decoration:none}.detail .full{grid-column:1/-1}[hidden]{display:none!important}@media(max-width:700px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{min-height:140px}.detail{grid-template-columns:1fr}.detail .full{grid-column:auto}.formgrid{grid-template-columns:1fr}.toolbar button,.toolbar .filebutton{flex:1;text-align:center}header{padding:18px}main{margin:18px auto}}@media(max-width:420px){.tiles{gap:10px}.tile{padding:14px;min-height:135px}.tile b{font-size:16px}.topline{flex-wrap:wrap}}
@@ -709,6 +709,58 @@ header nav button[data-module].active{background:transparent!important}
 .av191-settings-grid label{display:flex;flex-direction:column;gap:4px;font-size:13px}
 .av191-settings-grid input{width:100%;max-width:140px;padding:8px;border:1px solid #bdc4cf;border-radius:8px;font-size:16px}
 @media(max-width:720px){.av191-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.av191-head-stat{font-size:11px;padding:5px}}
+
+/* 2.9.193 – sjednocení podnabídek Nástroje / Úložiště s hlavní plochou */
+#av193ToolsView .av193-subtiles,#av193StorageView .av193-subtiles{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;
+  max-width:1100px;margin:24px auto 0;
+}
+#av193ToolsView .av193-subtiles .tile,#av193StorageView .av193-subtiles .tile{
+  --accent:#4e6388;--soft:#e9edf5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:14px;min-height:205px;padding:20px;
+  background:var(--soft)!important;
+  border:2px solid color-mix(in srgb,var(--accent) 76%,#253443);
+  border-radius:15px;box-shadow:0 4px 13px #14233712;
+  color:var(--accent)!important;opacity:1;
+}
+#av193ToolsView .av193-subtiles .tile .symbol,#av193StorageView .av193-subtiles .tile .symbol{
+  display:grid;place-items:center;width:82px;height:82px;
+  background:transparent;color:var(--accent);border-radius:12px;
+}
+#av193ToolsView .av193-subtiles .tile .symbol svg,#av193StorageView .av193-subtiles .tile .symbol svg{width:65px;height:65px}
+#av193ToolsView .av193-subtiles .tile b,#av193StorageView .av193-subtiles .tile b{font-size:19px;color:var(--accent)}
+#av193ToolsView .av193-subtiles .tile small,#av193StorageView .av193-subtiles .tile small{font-size:12px;color:#606977}
+#av193ToolsView #tileWarehouse{--accent:#66519d!important;--soft:#efeaf9!important}
+#av193ToolsView #tileExports{--accent:#66519d!important;--soft:#efeaf9!important}
+#av193ToolsView #tileLibrary{--accent:#66519d!important;--soft:#efeaf9!important}
+#av193StorageView .tile[data-module="Disk"]{--accent:#147d83!important;--soft:#e3f5f5!important}
+#av193StorageView .tile[data-module="Ceníky"]{--accent:#147d83!important;--soft:#e3f5f5!important}
+@media(max-width:700px){
+  #av193ToolsView .av193-subtiles,#av193StorageView .av193-subtiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  #av193ToolsView .av193-subtiles .tile,#av193StorageView .av193-subtiles .tile{min-height:155px;padding:14px}
+  #av193ToolsView .av193-subtiles .tile .symbol,#av193StorageView .av193-subtiles .tile .symbol{height:65px;width:65px}
+  #av193ToolsView .av193-subtiles .tile .symbol svg,#av193StorageView .av193-subtiles .tile .symbol svg{height:55px;width:55px}
+  #av193ToolsView .av193-subtiles .tile b,#av193StorageView .av193-subtiles .tile b{font-size:16px}
+}
+
+/* 2.9.193 – barevné dlaždice, podnabídky a nastavení */
+.av193-header-settings{align-self:center;flex-shrink:0}.av193-subtiles{max-width:1100px;margin:16px auto}.av193-subtiles .tile{min-height:175px}
+.av193-home-tile{min-height:220px}
+.av193-settings-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.av193-setting-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center;min-height:145px;padding:15px 8px;border:2px solid var(--accent,#61728d);border-radius:16px;background:var(--soft,#eef2f7);color:var(--accent,#61728d);cursor:pointer;font-family:inherit;font-weight:700;font-size:18px;transition:filter .15s,transform .15s}
+.av193-setting-tile:hover,.av193-setting-tile:focus-visible{filter:brightness(.97);transform:translateY(-1px)}
+.av193-setting-tile .av193-ico{font-size:35px;line-height:1.15}.av193-setting-tile small{font-size:12px;font-weight:500;line-height:1.3}
+.av193-settings-nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 12px}
+.av193-settings-nav .secondary{font-size:15px}
+.av193-settings-host>.av164-settings-group{display:block}
+.av193-settings-host>.av164-settings-group>summary{display:none}
+.av193-settings-host>.av164-settings-group>.av164-settings-content{padding:14px 8px}
+.av193-settings-host>.av164-settings-group{border:none;box-shadow:none;margin:0}
+.av193-trend-indicator{font-weight:800}
+.av191-trend.av167-up{color:#15834e;font-weight:800}.av191-trend.av167-down{color:#c22f45;font-weight:800}.av191-trend.av167-flat{color:#6f7b88;font-weight:700}
+#av193SettingsRoot[hidden],#av193SettingsCategory[hidden],#av193SettingsDetail[hidden],#av193SettingsLegacy[hidden]{display:none!important}
+@media(max-width:700px){.av193-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.av193-setting-tile{min-height:110px;font-size:15px}.av193-subtiles .tile{min-height:145px}}
 </style><style>
 .sample-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.sample-record,.sample-manager-cat{border:1px solid #d9dde5;border-radius:10px;margin:9px 0;padding:10px 13px}.sample-record summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.sample-record summary span{font-size:13px;color:#5d6675}.sample-timeline{padding:10px 0 0}.sample-timeline>div{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;padding:7px 0;border-top:1px solid #e7e9ee}.sample-timeline p{width:100%;margin:0;font-size:13px;color:#596273}.sample-history-toggle{margin:16px 0}.sample-history-toggle>summary{cursor:pointer}.sample-manager-actions{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.sample-manager-actions button,.sample-manager-item button{font-size:12px;padding:7px 10px}.sample-manager-item{display:flex;align-items:center;gap:7px;padding:6px 0;border-top:1px solid #eee}.sample-manager-item span{flex:1}#sampleEntry{border-top:1px solid #ddd;margin-top:18px;padding-top:12px}
 
@@ -1447,7 +1499,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 /* Kontrola aktuální schválené verze: pouze čtení, bez změn databáze. */
 (function(){
  'use strict';
- const THIS_VERSION='2.9.192';
+ const THIS_VERSION='2.9.193';
  const MANIFEST='./moje-avanti-release.json';
  let latestChecked=0, checking=false;
  function showWarning(message, version, canUpdate){
@@ -1701,7 +1753,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
  };
 })();
 </script>
-<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.192</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><span class="av191-head-stat" id="av191VisitsCount" title="Uskutečněné osobní návštěvy tento měsíc / měsíční plán">Návštěvy —/—</span><span class="av191-head-stat" id="av191CustomersCount" title="Různí zákazníci navštívení letos / aktivní zákazníci v databázi">Zákazníci —/—</span></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
+<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.193</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><span class="av191-head-stat" id="av191VisitsCount" title="Uskutečněné osobní návštěvy tento měsíc / měsíční plán">Návštěvy —/—</span><span class="av191-head-stat" id="av191CustomersCount" title="Různí zákazníci navštívení letos / aktivní zákazníci v databázi">Zákazníci —/—</span></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
 <main>
 <section id="homeView"><div class="tiles">
 <button class="tile" id="tileCustomers"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2"/><path d="M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></svg></span><b>Zákazníci <span id="tileCustomerIncomplete" class="unassigned-badge" hidden></span></b><small>Kontakty a karty zákazníků · <span id="homeCount">0</span></small></button>
@@ -1717,6 +1769,8 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 <button class="tile" id="tileExports" type="button"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M12 14v5m-3-3 3 3 3-3"/></svg></span><b>EXPORTY</b><small>Týdenní hlášení a vzorky</small></button>
 <button class="tile" id="tileSettings"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4l.7 2.3 2 1.1 2.3-.6 2 3.4-1.6 1.7v2.2l1.6 1.7-2 3.4-2.3-.6-2 1.1L14 20h-4l-.7-2.3-2-1.1-2.3.6-2-3.4 1.6-1.7V9.9L3 8.2l2-3.4 2.3.6 2-1.1z"/><circle cx="12" cy="11" r="3"/></svg></span><b>Nastavení</b><small>Správa aplikace a zálohování</small></button>
 </div></section>
+<section id="av193ToolsView" hidden><div class="topline"><button type="button" class="secondary" id="av193ToolsBack">← Domů</button><h1>Nástroje</h1></div><div class="tiles av193-subtiles" id="av193ToolsTiles"></div></section>
+<section id="av193StorageView" hidden><div class="topline"><button type="button" class="secondary" id="av193StorageBack">← Domů</button><h1>Úložiště</h1></div><div class="tiles av193-subtiles" id="av193StorageTiles"></div></section>
 <section id="warehouseView" hidden>
 <div class="topline"><button type="button" id="whBack" class="secondary">← Domů</button><h1>Sklady</h1></div>
 <div class="panel wh-panel" id="whOverview">
@@ -1929,7 +1983,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 <option value="300000">Každých 5 minut (Mac)</option>
 </select></label>
 <p class="muted" id="syncIntervalInfo" style="font-size:13px;margin:8px 0 0">Nastavení platí jen pro toto zařízení. Po uložení změn se synchronizuje bez čekání na interval. Tlačítko „Synchronizovat nyní“ funguje kdykoliv.</p>
-</div><div class="settings-block settings-backup" id="cloudReceivePanel"><h2>První připojení Macu</h2><p class="muted">Jednorázově převezme zákazníky, návštěvy a číselník vzorků z cloudu pouze do tohoto prohlížeče. Místní data předtím zazálohuje. <strong>Do cloudu nic nezapisuje.</strong> Používej jen v nové prázdné testovací aplikaci na Macu (nebo se starými testovacími daty 1+1), vždy s vypnutou synchronizací.</p><div class="settings-actions"><button class="secondary" disabled="" id="syncReceiveCloud" type="button">↓ Převzít data z cloudu do Macu</button></div><p aria-live="polite" class="muted" id="syncReceiveStatus" role="status" style="white-space:pre-wrap"></p></div><h2>O aplikaci</h2><p>Moje AVANTI · 2.9.192</p><p class="muted">Stav synchronizace se zobrazuje vpravo v červené liště.</p></div></details></div></section><section id="av164ExportsView" hidden><div class="topline"><button type="button" class="secondary" id="av164ExportsBack">← Zpět</button><h1>EXPORTY</h1></div><div class="panel av164-exports-panel"><p class="muted">Pravidelné týdenní exporty. Stejné funkce zůstávají dostupné také v Nastavení.</p><div class="settings-block"><h2>Týdenní hlášení návštěv</h2><p class="muted">Celý týden od pondělí do neděle. Předvolen je poslední dokončený týden.</p><div class="settings-actions"><label class="field">Datum v týdnu<input type="date" id="av164QuickWeek"></label><button type="button" id="av164QuickReport">↓ Export týdenního hlášení (Excel)</button></div><p id="av164QuickWeekText" class="muted"></p></div><div class="settings-block"><h2>Vydané vzorky</h2><p class="muted">Záznamy s činností „Dodáno“ za zvolené období.</p><div class="settings-actions"><label class="field">Od<input type="date" id="av164QuickFrom"></label><label class="field">Do<input type="date" id="av164QuickTo"></label><button type="button" id="av164QuickIssued">↓ Export vydaných vzorků (Excel)</button></div><p id="av164QuickIssuedStatus" class="muted" role="status"></p></div></div></section>
+</div><div class="settings-block settings-backup" id="cloudReceivePanel"><h2>První připojení Macu</h2><p class="muted">Jednorázově převezme zákazníky, návštěvy a číselník vzorků z cloudu pouze do tohoto prohlížeče. Místní data předtím zazálohuje. <strong>Do cloudu nic nezapisuje.</strong> Používej jen v nové prázdné testovací aplikaci na Macu (nebo se starými testovacími daty 1+1), vždy s vypnutou synchronizací.</p><div class="settings-actions"><button class="secondary" disabled="" id="syncReceiveCloud" type="button">↓ Převzít data z cloudu do Macu</button></div><p aria-live="polite" class="muted" id="syncReceiveStatus" role="status" style="white-space:pre-wrap"></p></div><h2>O aplikaci</h2><p>Moje AVANTI · 2.9.193</p><p class="muted">Stav synchronizace se zobrazuje vpravo v červené liště.</p></div></details></div></section><section id="av164ExportsView" hidden><div class="topline"><button type="button" class="secondary" id="av164ExportsBack">← Zpět</button><h1>EXPORTY</h1></div><div class="panel av164-exports-panel"><p class="muted">Pravidelné týdenní exporty. Stejné funkce zůstávají dostupné také v Nastavení.</p><div class="settings-block"><h2>Týdenní hlášení návštěv</h2><p class="muted">Celý týden od pondělí do neděle. Předvolen je poslední dokončený týden.</p><div class="settings-actions"><label class="field">Datum v týdnu<input type="date" id="av164QuickWeek"></label><button type="button" id="av164QuickReport">↓ Export týdenního hlášení (Excel)</button></div><p id="av164QuickWeekText" class="muted"></p></div><div class="settings-block"><h2>Vydané vzorky</h2><p class="muted">Záznamy s činností „Dodáno“ za zvolené období.</p><div class="settings-actions"><label class="field">Od<input type="date" id="av164QuickFrom"></label><label class="field">Do<input type="date" id="av164QuickTo"></label><button type="button" id="av164QuickIssued">↓ Export vydaných vzorků (Excel)</button></div><p id="av164QuickIssuedStatus" class="muted" role="status"></p></div></div></section>
 </main>
 <div id="av163TotalOverlay" class="av163-overlay" hidden role="dialog" aria-modal="true" aria-label="Celkové obraty"><div class="av163-modal"><div class="av163-modal-head"><h2>Celkové obraty</h2><button type="button" class="secondary" id="av163TotalClose">Zavřít</button></div><div id="av163TotalContent"></div></div></div><style id="avanti-task-customer-search-29178">
 #avantiTaskModal .av178-task-search{position:relative;min-width:0}
@@ -2119,7 +2173,7 @@ $('customerUnavailableButton').onclick=()=>{
 };
 $('customerIcoNone').onchange=()=>{const f=$('form').elements.ico;f.disabled=$('customerIcoNone').checked;if(f.disabled)f.value='';};
 function show(id){if(id==='settingsView'){document.querySelectorAll('#settingsView .av164-settings-group').forEach(g=>g.open=false);renderFocusCatalog();resetWeeklyReportSelection()}updateIncompleteBadge();const wasVisible=!$(id).hidden;const section=({listView:'navCustomers',detailView:'navCustomers',branchView:'navCustomers',editView:'navCustomers',visitView:'navVisits',visitsListView:'navVisits',visitDetailView:'navVisits',calendarView:'navCalendar',calNewView:'navCalendar',googleEventDetailView:'navCalendar'})[id]||'';
-document.querySelectorAll('header nav button').forEach(b=>{b.classList.toggle('active',!!section&&b.id===section);b.blur()});for(const name of ['homeView','listView','detailView','branchView','editView','visitView','visitsListView','visitDetailView','calendarView','calNewView','googleEventDetailView','settingsView','av164ExportsView','databaseView','driveView','notesView','remindersView','libraryView','warehouseView'])$(name).hidden=name!==id;if(id==='listView'){if(!wasVisible)resetCustomerSearchFilters();setCustomerView('rows');}if(id==='homeView')$('homeCount').textContent=ownCustomerCount();if(!wasVisible)window.scrollTo(0,0)}
+document.querySelectorAll('header nav button').forEach(b=>{b.classList.toggle('active',!!section&&b.id===section);b.blur()});for(const name of ['homeView','listView','detailView','branchView','editView','visitView','visitsListView','visitDetailView','calendarView','calNewView','googleEventDetailView','settingsView','av164ExportsView','databaseView','driveView','notesView','remindersView','libraryView','warehouseView','av193ToolsView','av193StorageView'])$(name).hidden=name!==id;if(id==='listView'){if(!wasVisible)resetCustomerSearchFilters();setCustomerView('rows');}if(id==='homeView')$('homeCount').textContent=ownCustomerCount();if(!wasVisible)window.scrollTo(0,0)}
 const FOCUS_KEY='moje-avanti-focus-catalog-v1';
 function focusCatalog(){try{const a=JSON.parse(localStorage.getItem(FOCUS_KEY)||'null');if(Array.isArray(a))return a.filter(x=>x&&x.code)}catch(e){}return [{code:'POD',name:'podlahář'},{code:'POF',name:'podlahářská firma'}]}
 function saveFocusCatalog(a){localStorage.setItem(FOCUS_KEY,JSON.stringify(a));window.dispatchEvent(new Event('avanti-local-change'))}
@@ -2174,7 +2228,7 @@ function av183InputFor(kind){return document.getElementById(kind==='focus'?'av18
 function av183ButtonFor(kind){return document.getElementById(kind==='focus'?'customerFocusFilter':'customerGroupFilter')}
 function av183ReadMulti(kind){return [...av183InputFor(kind).querySelectorAll('input[type="checkbox"]:checked')].map(e=>e.value)}
 function av183SelectedMulti(kind,values){const set=new Set(values);av183InputFor(kind).querySelectorAll('input[type="checkbox"]').forEach(e=>e.checked=set.has(e.value));av183UpdateMulti(kind)}
-function av183UpdateMulti(kind){const selected=av183ReadMulti(kind),button=av183ButtonFor(kind);const all=kind==='focus'?'Všechna zaměření':'Všechny skupiny';button.replaceChildren(document.createTextNode(selected.length?(kind==='focus'?'Zaměření: ':'Skupiny: ')+selected.join(', '):all+' '));const arrow=document.createElement('span');arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');button.append(arrow);button.title=selected.length?selected.join(', '):all;}
+function av183UpdateMulti(kind){const selected=av183ReadMulti(kind),button=av183ButtonFor(kind);const all=kind==='focus'?'Všechna zaměření':'Všechny skupiny';button.replaceChildren(document.createTextNode(selected.length?(kind==='focus'?'Zaměření: ':'Skupiny: ')+selected.join(', '):all+' '));const arrow=document.createElement('span');arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');button.append(arrow);button.title=selected.length?selected.join(', '):all;button.classList.toggle('active',selected.length>0);}
 function av183FillMulti(kind,values){const wrap=av183InputFor(kind),keep=new Set(av183ReadMulti(kind));wrap.replaceChildren();for(const value of values){const label=document.createElement('label');label.className='av183-checkbox-row';const input=document.createElement('input');input.type='checkbox';input.value=String(value);input.checked=keep.has(String(value));input.addEventListener('change',()=>av183UpdateMulti(kind));label.append(input,document.createTextNode(String(value)));wrap.append(label)}av183UpdateMulti(kind)}
 function av183CloseMulti(){for(const kind of ['focus','group']){av183InputFor(kind).hidden=true;av183ButtonFor(kind).setAttribute('aria-expanded','false')}}
 for(const kind of ['focus','group'])av183ButtonFor(kind).addEventListener('click',()=>{const choices=av183InputFor(kind);const opening=choices.hidden;av183CloseMulti();choices.hidden=!opening;av183ButtonFor(kind).setAttribute('aria-expanded',String(opening))});
@@ -2238,7 +2292,7 @@ function av191ActualVisits(){return visits.filter(v=>v&&v.mode==='own'&&v.custom
 function av191VisitsFor(c,year){return av191ActualVisits().filter(v=>v.customerId===c.id&&String(v.date||'').slice(0,4)===String(year)).length}
 function av191VisitDiff(c){const plan=av191AnnualPlans[String(c.ownVisitGroup||'')];return plan===undefined?null:av191VisitsFor(c,new Date().getFullYear())-plan}
 function av191Indicator(c){const diff=av191VisitDiff(c);return diff===null?'<span class="av191-visit-indicator" title="Roční plán se určí výběrem vlastní skupiny">—</span>':`<span class="av191-visit-indicator ${diff<0?'neg':diff>0?'pos':''}" title="Uskutečněné návštěvy minus roční plán">${diff>0?'+':''}${diff}</span>`}
-function av191Extra(c){const own=c.ownVisitGroup?`<span class="av191-group" title="Vlastní skupina">Moje sk. ${safe(c.ownVisitGroup)}</span>`:'<span class="av191-group">Moje sk. —</span>';const trend=av167Trend(c);const turnover=trend?`<span class="av191-trend" title="Meziroční obrat: ${safe(trend.signed)}">Obrat ${trend.arrow}</span>`:'<span class="av191-trend">Obrat —</span>';return `<div class="av191-customer-extra">${own}${turnover}<span title="Roční bilance návštěv">Návštěvy ${av191Indicator(c)}</span></div>`}
+function av191Extra(c){const own=c.ownVisitGroup?`<span class="av191-group" title="Vlastní skupina">Moje sk. ${safe(c.ownVisitGroup)}</span>`:'<span class="av191-group">Moje sk. —</span>';const trend=av167Trend(c);const turnover=trend?`<span class="av191-trend av167-${trend.tone}" title="Meziroční obrat: ${safe(trend.signed)}">Obrat ${trend.arrow}</span>`:'<span class="av191-trend">Obrat —</span>';return `<div class="av191-customer-extra">${own}${turnover}<span title="Roční bilance návštěv">Návštěvy ${av191Indicator(c)}</span></div>`}
 function av191UpdateCounters(){const now=new Date(),year=now.getFullYear(),prefix=year+'-'+String(now.getMonth()+1).padStart(2,'0');const actual=av191ActualVisits(),monthCount=actual.filter(v=>String(v.date||'').startsWith(prefix)).length,target=av191MonthTarget(year,now.getMonth()+1);const active=data.filter(c=>c.archived!==true),activeIds=new Set(active.map(c=>c.id)),unique=new Set(actual.filter(v=>String(v.date||'').startsWith(year+'-')&&activeIds.has(v.customerId)).map(v=>v.customerId)).size;const first=$('av191VisitsCount'),second=$('av191CustomersCount');if(first){first.textContent='Návštěvy '+monthCount+' / '+(target||'—');first.classList.toggle('av191-complete',target>0&&monthCount>=target)}if(second)second.textContent='Zákazníci '+unique+' / '+active.length;}
 function render(){av191UpdateCounters();const q=avantiSearchKey($('search').value),items=data.filter(x=>(customerOwnershipFilter==='vsichni'||customerOwner(x)===(customerOwnershipFilter==='moji'?'muj':'cizi'))&&(!appliedCustomerFocus.length||appliedCustomerFocus.includes(String(x.focusCode||'')))&&(!appliedCustomerGroup.length||appliedCustomerGroup.includes(String(x.groupCode||'')))&&(!appliedCustomerCity||customerCityNormalized(x.city).includes(customerCityNormalized(appliedCustomerCity)))&&(customerFilter==='all'||(customerFilter==='archived'?x.archived===true:x.archived!==true))&&(!customerUnavailableOnly||customerUnavailableKinds(x).length>0)&&avantiWordMatch(q,...fields.map(f=>x[f]))).sort((a,b)=>(a.company||a.person||'').localeCompare(b.company||b.person||'','cs'));$('count').textContent='('+items.length+')';$('ownedCustomerCount').textContent='Moji: '+ownCustomerCount()+' · Cizí: '+data.filter(x=>customerOwner(x)==='cizi'&&x.archived!==true).length;updateIncompleteBadge();if(!$('incompletePanel').hidden)renderIncompleteList();$('customers').className=customerView==='tiles'?'customer-grid':'';$('customers').innerHTML=items.length?items.map(x=>{const name=x.company||x.person||'Zákazník',parts=name.trim().split(/\s+/),initials=(parts.length>1?parts[0][0]+parts[parts.length-1][0]:name.slice(0,2)).toLocaleUpperCase('cs');let colors=['#e9e8fc','#dff2e9','#fce9dc','#e1effb','#f9e5f1','#f4ebd9'];let hash=[...name].reduce((h,c)=>h+c.charCodeAt(0),0),bg=colors[hash%colors.length];const info=[x.person&&x.company?x.company:'',x.city,x.focusCode,x.groupCode?'Sk. '+x.groupCode:''].filter(Boolean).join(' · ');const links=[x.phone,x.phone2].filter(Boolean).map(v=>`<span class="contact-text">☎ ${safe(v)}</span>`).concat([x.email,x.email2].filter(Boolean).map(v=>`<span class="contact-text">✉ ${safe(v)}</span>`)).join('');const ownerBadge=customerOwner(x)==='cizi'?'<span class="customer-owner-badge">Cizí</span>':'';const unavailableBadge=customerUnavailableKinds(x).length?` <span class="customer-unavailable-label" title="Nedohledatelné: ${safe(customerUnavailableKinds(x).join(', '))}">Nedohledatelné</span>`:'';const tick=bulkCustomerMode?`<label style="display:block;padding:5px"><input type="checkbox" data-bulk-id="${safe(x.id)}" ${bulkCustomerIds.has(x.id)?'checked':''}> Vybrat</label>`:'';return customerView==='tiles'?`<div class="customer${x.archived===true?' archived':''}${av167Trend(x)?' av167-with-trend':''}" data-card="${safe(x.id)}" tabindex="0" role="button" aria-label="Otevřít zákazníka ${safe(name)}">${tick}${av167TileTrend(x)}<div class="customer-top"><span class="avatar" style="background:${bg}">${safe(initials)}</span><div><h3>${safe(name)}${ownerBadge}${unavailableBadge}</h3><p>${safe(x.person&&x.person.toLocaleLowerCase('cs')!==x.company.toLocaleLowerCase('cs')&&!x.primaryContactArchived?x.person:'')}</p></div></div><div class="customer-links">${links}</div>${x.city?`<p class="customer-city">⌖ ${safe(x.city)}</p>`:''}${av191Extra(x)}<button class="secondary" data-id="${safe(x.id)}">Otevřít kartu →</button></div>`:`<div class="customer${x.archived===true?' archived':''}" data-card="${safe(x.id)}" tabindex="0" role="button" aria-label="Otevřít zákazníka ${safe(name)}">${tick}<div><h3>${safe(name)}${ownerBadge}${unavailableBadge}</h3><p>${safe(info)}</p>${av191Extra(x)}</div><button class="secondary" data-id="${safe(x.id)}">Otevřít</button></div>`}).join(''):'<p class="muted">Žádní zákazníci k zobrazení.</p>' ;$('customers').querySelectorAll('[data-bulk-id]').forEach(b=>b.onchange=e=>{e.stopPropagation();if(b.checked)bulkCustomerIds.add(b.dataset.bulkId);else bulkCustomerIds.delete(b.dataset.bulkId);updateBulkControls()});$('customers').querySelectorAll('[data-id]').forEach(b=>b.onclick=e=>{e.stopPropagation();detail(b.dataset.id)});$('customers').querySelectorAll('[data-card]').forEach(b=>{b.onclick=e=>{if(!e.target.closest('button,input,label'))detail(b.dataset.card)};b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();detail(b.dataset.card)}}})}
 // v2.9.45: firemní kontakty a provozovny jsou uloženy přímo na zákaznickém záznamu.
@@ -8739,4 +8793,107 @@ window.avantiWarehouseCloud={
 load();render();
 })();
 </script>
+<script>
+/* Moje AVANTI 2.9.193 – only navigation/presentation; no change to persistence or sync */
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const home=$('homeView')?.querySelector('.tiles');
+if(!home)return;
+const all=[...home.querySelectorAll(':scope > button.tile')];
+const byId=id=>all.find(b=>b.id===id);
+const disk=all.find(b=>b.dataset.module==='Disk');
+const prices=all.find(b=>b.dataset.module==='Ceníky');
+const archive=document.createElement('div');archive.id='av193InactiveTiles';archive.hidden=true;
+home.after(archive);
+all.forEach(b=>archive.appendChild(b));
+function makeTile(id,title,desc,accent,soft,icon){const b=document.createElement('button');b.type='button';b.id=id;b.className='tile av193-home-tile';b.style.setProperty('--accent',accent);b.style.setProperty('--soft',soft);b.innerHTML=`<span class="symbol" aria-hidden="true" style="font-size:45px;line-height:1">${icon}</span><b>${title}</b><small>${desc}</small>`;return b}
+const homeTiles=[byId('tileCalendar'),byId('tileNewVisit'),byId('tileCustomers'),byId('tileReminders')];
+for(const button of homeTiles){if(button){home.appendChild(button);button.classList.add('av193-home-tile');if(button.id==='tileNewVisit'){button.querySelector('b').textContent='Návštěvy'}}}
+const tools=makeTile('av193ToolsOpen','Nástroje','Sklady, exporty a knihovna','#66519d','#efeaf9','⚒');
+const storage=makeTile('av193StorageOpen','Úložiště','Disk a ceníky','#147d83','#e3f5f5','▣');
+home.append(tools,storage);
+const t=$('av193ToolsTiles'),st=$('av193StorageTiles');
+for(const b of [byId('tileWarehouse'),byId('tileExports'),byId('tileLibrary')])if(b)t.appendChild(b);
+for(const b of [disk,prices])if(b)st.appendChild(b);
+// Independent navigation for grouped tiles. The previous handlers relied on
+// the legacy navigation function across script scopes and could fail silently.
+function av193OpenSubpage(id){
+ const target=$(id);
+ if(!target)return;
+ document.querySelectorAll('main > section').forEach(section=>{section.hidden=section!==target});
+ document.querySelectorAll('header nav button').forEach(button=>button.classList.remove('active'));
+ window.scrollTo(0,0);
+}
+tools.addEventListener('click',()=>av193OpenSubpage('av193ToolsView'));
+storage.addEventListener('click',()=>av193OpenSubpage('av193StorageView'));
+$('av193ToolsBack').addEventListener('click',()=>$('brandHome').click());
+$('av193StorageBack').addEventListener('click',()=>$('brandHome').click());
+// Nastavení přes číslo verze; horní ozubené kolečko již nevytváříme.
+const existingSettings=byId('tileSettings');
+const versionLabel=document.querySelector('#brandHome .brand-version');
+if(versionLabel){
+ versionLabel.setAttribute('role','button');
+ versionLabel.setAttribute('tabindex','0');
+ versionLabel.setAttribute('title','Otevřít Nastavení');
+ versionLabel.setAttribute('aria-label','Otevřít Nastavení');
+ versionLabel.style.cursor='pointer';
+ versionLabel.addEventListener('click',event=>{event.stopPropagation();existingSettings?.click()});
+ versionLabel.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();existingSettings?.click()}});
+}
+// Original grouped settings remain intact; the new menu navigates to those exact controls.
+const settingsView=$('settingsView'),originalPanel=settingsView?.querySelector('.settings-panel');
+if(!settingsView||!originalPanel)return;
+const groups=[...originalPanel.querySelectorAll(':scope > details.av164-settings-group')];
+const groupNames=['Plány návštěv','Kontakty','Týdenní hlášení','Číselníky','Databáze','Zálohování a obnova','Ostatní'];
+const savedContainer=document.createElement('div');savedContainer.id='av193SettingsLegacy';savedContainer.hidden=true;originalPanel.before(savedContainer);savedContainer.appendChild(originalPanel);
+const panel=document.createElement('div');panel.className='panel settings-panel';settingsView.appendChild(panel);
+const root=document.createElement('div');root.id='av193SettingsRoot';panel.appendChild(root);
+root.innerHTML='<p class="muted">Vyber oblast nastavení.</p><div class="av193-settings-grid" id="av193SettingsCategories"></div>';
+const sub=document.createElement('div');sub.id='av193SettingsCategory';sub.hidden=true;panel.appendChild(sub);
+const detail=document.createElement('div');detail.id='av193SettingsDetail';detail.hidden=true;panel.appendChild(detail);
+const cats=[
+ {id:'customer',name:'Zákazníci',icon:'♧',accent:'#245fa8',soft:'#e5effc',items:[['Plány návštěv',0,'Měsíční cíle'],['Import zákazníků',1,'PDF a IČO'],['Zaměření a skupiny',3,'Číselníky zákazníků'],['Import a export dat',4,'Zákazníci a obraty']]},
+ {id:'stock',name:'Sklad / Vzorky',icon:'▤',accent:'#277b65',soft:'#e2f4ea',items:[['Číselníky vzorků',3,'Druhy a kategorie'],['Evidence a katalogy',4,'Import a export'],['Databáze',-3,'Katalogy a vzorky']]},
+ {id:'backup',name:'Zálohování',icon:'↻',accent:'#ad7132',soft:'#fff1dc',items:[['Zálohování a obnova',5,'JSON zálohy']]},
+ {id:'other',name:'Ostatní',icon:'◈',accent:'#7658a0',soft:'#f0eaf8',items:[['Synchronizace a zabezpečení',6,'Připojení a stav']]},
+ {id:'app',name:'Aplikace',icon:'⚙',accent:'#5b687d',soft:'#ebedf2',items:[['Uspořádání dlaždic',-1,'Rozložení hlavní plochy'],['Nápady a postřehy',-2,'Update']]}
+];
+function tile(name,subtitle,cat,fn){const b=document.createElement('button');b.type='button';b.className='av193-setting-tile';b.style.setProperty('--accent',cat.accent);b.style.setProperty('--soft',cat.soft);b.innerHTML=`<span class="av193-ico" aria-hidden="true">${cat.icon}</span><span>${name}</span><small>${subtitle}</small>`;b.onclick=fn;return b}
+function goRoot(){root.hidden=false;sub.hidden=true;detail.hidden=true;const host=detail.querySelector('.av193-settings-host');if(host){[...host.children].forEach(node=>{node.open=false;originalPanel.appendChild(node)})}}
+function goCat(cat){goRoot();root.hidden=true;sub.hidden=false;sub.replaceChildren();const nav=document.createElement('div');nav.className='av193-settings-nav';const back=document.createElement('button');back.className='secondary';back.textContent='← Nastavení';back.onclick=goRoot;nav.append(back);const heading=document.createElement('h2');heading.textContent=cat.name;nav.append(heading);sub.append(nav);const grid=document.createElement('div');grid.className='av193-settings-grid';sub.append(grid);cat.items.forEach(([name,index,subtitle])=>grid.appendChild(tile(name,subtitle,cat,()=>openLeaf(cat,name,index))))}
+function openLeaf(cat,name,index){if(index===-2){byId('tileNotes')?.click();return}if(index===-3){byId('tileDatabase')?.click();return}
+ root.hidden=true;sub.hidden=true;detail.hidden=false;detail.replaceChildren();const nav=document.createElement('div');nav.className='av193-settings-nav';const back=document.createElement('button');back.className='secondary';back.textContent='← '+cat.name;back.onclick=()=>goCat(cat);nav.append(back);const h=document.createElement('h2');h.textContent=name;nav.append(h);detail.append(nav);
+ if(index===-1){const info=document.createElement('div');info.innerHTML='<p>Pořadí hlavních dlaždic odpovídá jejich využití: Kalendář, Návštěvy, Zákazníci, Připomínky, Nástroje a Úložiště.</p><p class="muted">V této verzi je pořadí pevné; individuální přesouvání dlaždic připravíme samostatně, aby se neporušilo fungování podnabídek.</p>';detail.append(info);return}
+ const host=document.createElement('div');host.className='av193-settings-host';detail.append(host);
+ groups.forEach(g=>{g.open=false;originalPanel.appendChild(g)});
+ const g=groups[index];if(g){host.append(g);g.open=true}
+ if(index===3&&cat.id==='customer'){const focus=g?.querySelector('#focusSettingsDetails');if(focus)focus.open=true}
+}
+cats.forEach(cat=>$('av193SettingsCategories').appendChild(tile(cat.name,'',cat,()=>goCat(cat))));
+// Reset settings navigation when reopening the module.
+const originalSettingsClick=existingSettings?.onclick;
+if(existingSettings){existingSettings.onclick=function(e){originalSettingsClick?.call(this,e);if(!$('settingsView').hidden)goRoot()}}
+$('settingsBack')?.addEventListener('click',goRoot);
+// Legacy settings are kept in the DOM, but concealed until a leaf is opened.
+})();
+</script>
+<style id="av193-customer-filter-colors-fix">
+/* Filtry: tmavě modrá + bílá pouze při aktivním výběru. */
+#customerFilterPanel .av183-filter-select {
+  background:#e4eefb !important; color:#1758aa !important;
+  border:1px solid #bfd2ef !important; -webkit-text-fill-color:#1758aa !important;
+}
+#customerFilterPanel .av183-filter-select.active {
+  background:#1758aa !important; color:#fff !important;
+  border-color:#1758aa !important; -webkit-text-fill-color:#fff !important;
+}
+#customerFilterPanel .av183-filter-select:focus-visible {
+  outline:3px solid #8cbafa;outline-offset:2px;
+}
+/* Existující přepínací tlačítka odpovídají stejnému pravidlu. */
+.customer-filters button:not(.active):not(#customerIncompleteButton):not(#customerUnavailableButton),
+.ownership-filters button:not(.active) {background:#e4eefb!important;color:#1758aa!important;border-color:#bfd2ef!important}
+.customer-filters button.active,.ownership-filters button.active {background:#1758aa!important;color:#fff!important;border-color:#1758aa!important}
+</style>
 </body></html>
