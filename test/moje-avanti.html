@@ -1786,7 +1786,17 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 .av208-legend-item{display:inline-flex;gap:5px;align-items:center;white-space:nowrap;font-size:12px;color:#596375}
 .av208-legend-color{display:inline-block;width:12px;height:12px;flex:0 0 12px;border-radius:2px}
 </style>
-</head><body>
+<style id="av211-css">
+.av211-counter-panel{max-width:720px;width:min(94vw,720px);max-height:87vh;overflow:auto}
+.av211-counter-top,.av211-counter-switch{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.av211-counter-switch{justify-content:flex-start;margin:14px 0}
+.av211-counter-rows{max-height:57vh;overflow:auto;border-top:1px solid #d7dfe9}
+.av211-counter-row{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;padding:12px 8px;background:transparent;color:inherit;border:0;border-bottom:1px solid #d7dfe9;cursor:pointer}
+.av211-counter-row:hover{background:#edf3ff}.av211-counter-row small{font-size:12px;color:#64748b;text-align:right}
+.av211-reschedule-extras{margin-top:12px}
+#av211OpenSamplesDb{cursor:pointer;background:#eff3fc;border:1px solid #c8d5eb}
+#av211OpenSamplesDb strong{color:#245fa8}
+</style></head><body>
 <script>
 /* České státní a ostatní svátky (dny pracovního klidu); bez nových oprávnění ke Google účtu. */
 (()=>{'use strict';
@@ -1826,7 +1836,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
  };
 })();
 </script>
-<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.210</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><span class="av191-head-stat" id="av191VisitsCount" title="Uskutečněné osobní návštěvy tento měsíc / měsíční plán">Návštěvy —/—</span><span class="av191-head-stat" id="av191CustomersCount" title="Různí zákazníci navštívení letos / aktivní zákazníci v databázi">Zákazníci —/—</span></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
+<header><button id="brandHome" class="brand" title="Domovská obrazovka">Moje AVANTI <span class="brand-version">2.9.212</span></button><nav aria-label="Hlavní navigace"><button id="navCustomers">♧ Zákazníci <span id="navCustomerIncomplete" class="unassigned-badge" hidden></span></button><button id="navVisits">▤ Návštěvy <span id="navVisitsFollowUp" class="unassigned-badge avanti-followup-badge" hidden title="Nedokončené schůzky"></span> <span id="navVisitsPending" class="unassigned-badge avanti-pending-badge" hidden></span></button><button id="navCalendar">▦ Kalendář <span id="navCalendarUnassigned" class="unassigned-badge" hidden></span> <span id="navCalendarTasks" class="unassigned-badge avanti-tasks-badge" title="Nesplněné úkoly">0</span></button><span class="av191-head-stat" id="av191VisitsCount" title="Uskutečněné osobní návštěvy tento měsíc / měsíční plán">Návštěvy —/—</span><span class="av191-head-stat" id="av191CustomersCount" title="Různí zákazníci navštívení letos / aktivní zákazníci v databázi">Zákazníci —/—</span></nav><div id="headerServiceStates" role="group" aria-label="Stav připojení služeb"><button id="headerCalendarState" class="header-service" type="button" data-status="off" title="Google Kalendář: nepřipojeno" aria-label="Google Kalendář: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg><span class="service-dot"></span></button><button id="headerDriveState" class="header-service" type="button" data-status="off" title="Google Disk: nepřipojeno" aria-label="Google Disk: nepřipojeno"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h7l7 12-3.5 6h-14L1 15 8 3Z"/><path d="m8 3 7 12M1 15h21"/></svg><span class="service-dot"></span></button></div><button id="headerSync" type="button" title="Stav synchronizace; podrobnosti v Nastavení" aria-label="Stav synchronizace" data-status="waiting"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/></svg><span id="headerSyncDot"></span><span id="headerSyncRev">–</span></button></header>
 <main>
 <section id="homeView"><div class="tiles">
 <button class="tile" id="tileCustomers"><span class="symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2"/><path d="M17 5a3 3 0 0 1 0 6m1 3a5 5 0 0 1 3 5v1"/></svg></span><b>Zákazníci <span id="tileCustomerIncomplete" class="unassigned-badge" hidden></span></b><small>Kontakty a karty zákazníků · <span id="homeCount">0</span></small></button>
@@ -1849,6 +1859,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 <div class="panel wh-panel" id="whOverview">
  <h2>Vyber sklad</h2><div class="wh-cards">
   <div class="wh-card soon"><span style="font-size:30px">▣</span><strong>Vzorky</strong><small>Hlavní sklad – připravíme v další etapě</small></div>
+  <button class="wh-card" type="button" id="av211OpenSamplesDb"><span style="font-size:30px">▤</span><strong>Databáze vzorků</strong><small>Přehled vydaných vzorků a zákazníků</small></button>
   <button class="wh-card gift" id="whOpenGifts" type="button"><span style="font-size:30px">🎁</span><strong>Vánoční dárky</strong><small>Trvalý sklad – příjem, výdej zákazníkovi a vratka na firmu</small></button>
  </div>
 </div>
@@ -1968,7 +1979,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
  <div id="branchPaneHistory" class="detail-pane" hidden><div class="avanti-history-head"><h2>Historie provozovny</h2><button type="button" id="branchHistoryAdd">+ Ruční zápis</button></div><p class="muted">Všechny činnosti této provozovny přehledně po dnech.</p><div id="branchHistoryList" class="avanti-history-list"></div></div>
   </div>
  </section>
- <section id="visitDetailView" hidden><div class="topline"><button class="secondary" type="button" id="visitDetailBack">← Zpět</button><div class="toolbar"><button type="button" id="visitDetailDelete" class="danger">Smazat návštěvu</button><button type="button" id="visitDetailComplete" hidden>Dokončit návštěvu</button><button type="button" id="visitGoogleWrite" hidden>↑ Zapsat do Google</button><button type="button" class="secondary" id="visitDetailShowCalendar">▦ Zobrazit v kalendáři</button><button type="button" class="secondary" id="visitDetailReschedule" hidden>Upravit datum</button><button type="button" id="visitDetailEdit">Upravit</button></div></div><div class="panel visit-readonly"><h1>Detail návštěvy</h1><p class="lead"><button type="button" id="visitDetailCustomerLink" class="visit-customer-link" hidden></button><span id="visitDetailCustomer"></span></p><div class="visit-readonly-grid"><section><h3>Datum</h3><p id="visitDetailDate"></p></section><section><h3>Město</h3><p id="visitDetailCity"></p></section><section><h3>Čas</h3><p id="visitDetailTime"></p></section><section id="visitDetailBranchWrap" hidden><h3>Provozovna</h3><p id="visitDetailBranch"></p></section><section id="visitDetailContactWrap" hidden><h3>Kontaktní osoba</h3><p id="visitDetailContact"></p></section></div><h2>Činnosti</h2><div id="visitDetailActivities"></div><div id="visitDetailSamples"></div><div class="visit-note-block"><h3>Moje poznámka (soukromá)</h3><p id="visitDetailPrivate"></p></div><div class="visit-note-block"><h3>Poznámka do hlášení</h3><p id="visitDetailReport"></p></div></div></section><div id="visitRescheduleDialog" class="avanti-new-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="visitRescheduleTitle"><div class="avanti-new-dialog"><h2 id="visitRescheduleTitle">Upravit datum návštěvy</h2><form id="visitRescheduleForm"><div class="formgrid"><label class="field">Datum *<input type="date" id="visitRescheduleDate" required></label><label class="field">Začátek<input type="time" id="visitRescheduleTime"></label><label class="field">Konec<input type="time" id="visitRescheduleEnd"></label></div><p class="muted">Mění se jen termín návštěvy. Ostatní údaje zůstanou beze změny.</p><div class="actions"><button type="submit">Uložit termín</button><button type="button" class="secondary" id="visitRescheduleCancel">Zrušit</button></div></form></div></div>
+ <section id="visitDetailView" hidden><div class="topline"><button class="secondary" type="button" id="visitDetailBack">← Zpět</button><div class="toolbar"><button type="button" id="visitDetailDelete" class="danger">Smazat návštěvu</button><button type="button" id="visitDetailComplete" hidden>Dokončit návštěvu</button><button type="button" id="visitGoogleWrite" hidden>↑ Zapsat do Google</button><button type="button" class="secondary" id="visitDetailShowCalendar">▦ Zobrazit v kalendáři</button><button type="button" class="secondary" id="visitDetailReschedule" hidden>Upravit datum</button><button type="button" id="visitDetailEdit">Upravit</button></div></div><div class="panel visit-readonly"><h1>Detail návštěvy</h1><p class="lead"><button type="button" id="visitDetailCustomerLink" class="visit-customer-link" hidden></button><span id="visitDetailCustomer"></span></p><div class="visit-readonly-grid"><section><h3>Datum</h3><p id="visitDetailDate"></p></section><section><h3>Město</h3><p id="visitDetailCity"></p></section><section><h3>Čas</h3><p id="visitDetailTime"></p></section><section id="visitDetailBranchWrap" hidden><h3>Provozovna</h3><p id="visitDetailBranch"></p></section><section id="visitDetailContactWrap" hidden><h3>Kontaktní osoba</h3><p id="visitDetailContact"></p></section></div><h2>Činnosti</h2><div id="visitDetailActivities"></div><div id="visitDetailSamples"></div><div class="visit-note-block"><h3>Moje poznámka (soukromá)</h3><p id="visitDetailPrivate"></p></div><div class="visit-note-block"><h3>Poznámka do hlášení</h3><p id="visitDetailReport"></p></div></div></section><div id="visitRescheduleDialog" class="avanti-new-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="visitRescheduleTitle"><div class="avanti-new-dialog"><h2 id="visitRescheduleTitle">Upravit plánovanou návštěvu</h2><form id="visitRescheduleForm"><div class="formgrid"><label class="field">Datum *<input type="date" id="visitRescheduleDate" required></label><label class="field">Začátek<input type="time" id="visitRescheduleTime"></label><label class="field">Konec<input type="time" id="visitRescheduleEnd"></label></div><div class="formgrid av211-reschedule-extras"><label class="field">Město / místo<input id="av211RescheduleCity" maxlength="100"></label><label class="field">Kontaktní osoba<select id="av211RescheduleContact"></select></label></div><label class="field" style="display:block">Moje poznámka<textarea id="av211RescheduleNote" rows="3"></textarea></label><p class="muted">Uložením se mění pouze plán, návštěva zůstane plánovaná. Činnosti a vzorky se zde neupravují.</p><div class="actions"><button type="submit">Uložit změny</button><button type="button" class="secondary" id="visitRescheduleCancel">Zrušit</button></div></form></div></div>
 <section id="editView" hidden><div class="topline"><button class="secondary" id="editBack">← Zpět</button><h1 id="formTitle">Nový zákazník</h1></div><div class="panel"><form id="form"><div class="pdf-import-notice" id="pdfImportNotice" hidden role="status"></div><div class="formgrid">
 <label class="field">Firma *<input name="company" maxlength="150" required autocomplete="organization" placeholder="Oficiální název firmy"></label>
 <label class="field">Zkrácený název (pro hlášení)<input name="shortName" maxlength="150" placeholder="Nepovinné · pouze týdenní hlášení"></label>
@@ -1996,7 +2007,7 @@ header button.header-service[data-status="error"] .service-dot{background:#ff7c7
 <label class="field" id="visitBranchWrap" hidden>Provozovna (nepovinné)<select name="branchId" id="visitBranch" class="touch-select"><option value="">Bez provozovny</option></select></label>
 <div id="visitContactWrap" hidden><label class="field">Kontaktní osoba (nepovinné)<select name="contactId" id="visitContact" class="touch-select"><option value="">Bez kontaktní osoby</option></select></label><button type="button" class="secondary visit-add-person" id="visitAddContact">+ Přidat kontakt</button></div>
 <div id="visitNewContactFields" hidden><strong>Nová kontaktní osoba</strong><p class="muted">Kontakt se přidá k firmě teprve při uložení návštěvy.</p><div class="formgrid"><label class="field wide">Jméno a příjmení<input name="newContactName" maxlength="150" autocomplete="off"></label><label class="field">Telefon<input name="newContactPhone" type="tel" maxlength="80"></label><label class="field">E-mail<input name="newContactEmail" type="email" maxlength="150"></label></div><div class="visit-new-person-actions"><button type="button" class="secondary" id="visitCancelContact">Zrušit nový kontakt</button></div></div>
-</div></div><label class="field wide" id="visitOtherWrap" hidden>Název zákazníka / místo<input name="otherName" maxlength="150" placeholder="Např. prodejna, firma nebo školení"></label><div class="visit-date-time wide"><label class="field date-field">Datum<input name="date" type="date" required></label><label class="field">Čas začátku<input name="time" type="time"></label></div><label class="cal-all-day-option" id="visitCalendarAllDayWrap" hidden><input type="checkbox" id="visitCalendarAllDay"> Celodenní</label><label class="field" id="visitEndTimeWrap" hidden>Konec události<input name="endTime" type="time"><small class="visit-time-hint" id="visitEndTimeHint">Konec lze zadat ručně; při dokončení se jinak vezme čas uložení.</small></label><label class="field" id="visitCalendarTitleWrap" hidden>Název události<input name="calendarTitle" maxlength="150"></label><label class="field visit-city-field wide">Město<input name="city" maxlength="100" required placeholder="Město návštěvy" list="visitCities"></label><datalist id="visitCities"></datalist><label class="field wide">Druh kontaktu<select name="contactType" id="visitContactType" class="touch-select"><option value="osobne" selected>Osobně</option><option value="telefon">Telefon</option><option value="email">E-mail</option></select></label></div><section id="avantiLoanPanel" class="avanti-loan-panel" hidden aria-label="Zapůjčené položky"><h2>⚠ Zapůjčené položky</h2><p>Vyber u každé položky, zda byla vrácena, nebo ji připomenout při příští návštěvě.</p><div id="avantiLoanRows"></div></section><div id="avantiVisitTasks" class="avanti-visit-tasks" hidden><div class="avanti-visit-task-head"><button type="button" class="secondary" id="avantiVisitTasksToggle" aria-expanded="true">☷ Úkoly (<span id="avantiVisitTaskCount">0</span>)</button><span class="muted">Připomínky a inventura</span></div><div id="avantiVisitTasksBody"></div></div><section id="av210VisitGiftPanel" class="av210-visit-gifts" hidden>
+</div></div><label class="field wide" id="visitOtherWrap" hidden>Název zákazníka / místo<input name="otherName" maxlength="150" placeholder="Např. prodejna, firma nebo školení"></label><div class="visit-date-time wide"><label class="field date-field">Datum<input name="date" type="date" required></label><label class="field">Čas začátku<input name="time" type="time"></label></div><label class="cal-all-day-option" id="visitCalendarAllDayWrap" hidden><input type="checkbox" id="visitCalendarAllDay"> Celodenní</label><label class="field" id="visitEndTimeWrap" hidden>Konec události<input name="endTime" type="time"><small class="visit-time-hint" id="visitEndTimeHint">Při dokončení může zůstat prázdné – doplní se aktuální čas uložení.</small></label><label class="field" id="visitCalendarTitleWrap" hidden>Název události<input name="calendarTitle" maxlength="150"></label><label class="field visit-city-field wide">Město<input name="city" maxlength="100" required placeholder="Město návštěvy" list="visitCities"></label><datalist id="visitCities"></datalist><label class="field wide">Druh kontaktu<select name="contactType" id="visitContactType" class="touch-select"><option value="osobne" selected>Osobně</option><option value="telefon">Telefon</option><option value="email">E-mail</option></select></label></div><section id="avantiLoanPanel" class="avanti-loan-panel" hidden aria-label="Zapůjčené položky"><h2>⚠ Zapůjčené položky</h2><p>Vyber u každé položky, zda byla vrácena, nebo ji připomenout při příští návštěvě.</p><div id="avantiLoanRows"></div></section><div id="avantiVisitTasks" class="avanti-visit-tasks" hidden><div class="avanti-visit-task-head"><button type="button" class="secondary" id="avantiVisitTasksToggle" aria-expanded="true">☷ Úkoly (<span id="avantiVisitTaskCount">0</span>)</button><span class="muted">Připomínky a inventura</span></div><div id="avantiVisitTasksBody"></div></div><section id="av210VisitGiftPanel" class="av210-visit-gifts" hidden>
 <h3>🎁 Vánoční dárky</h3><div id="av210GiftPlan" class="muted"></div>
 <p class="muted">Plán je pouze připomínka. Skutečně vydané dárky vyber ručně – lze je vydat i zákazníkům mimo seznam.</p>
 <div class="av210-gift-choice"><label class="field">Dárek ze skladu<select id="av210GiftItem"><option value="">Vyber dárek…</option></select></label><label class="field">Kusů<input id="av210GiftQty" type="number" min="1" max="999999" step="1" value="1"></label><button id="av210GiftAdd" type="button" class="secondary">+ Připravit výdej</button></div>
@@ -2433,6 +2444,26 @@ function av191VisitDiff(c){const plan=av191AnnualPlans[String(c.ownVisitGroup||'
 function av191Indicator(c){const diff=av191VisitDiff(c);return diff===null?'<span class="av191-visit-indicator" title="Roční plán se určí výběrem vlastní skupiny">—</span>':`<span class="av191-visit-indicator ${diff<0?'neg':diff>0?'pos':''}" title="Uskutečněné návštěvy minus roční plán">${diff>0?'+':''}${diff}</span>`}
 function av191Extra(c){const own=c.ownVisitGroup?`<span class="av191-group" title="Vlastní skupina">Moje sk. ${safe(c.ownVisitGroup)}</span>`:'<span class="av191-group">Moje sk. —</span>';const trend=av167Trend(c);const turnover=trend?`<span class="av191-trend av167-${trend.tone}" title="Meziroční obrat: ${safe(trend.signed)}">Obrat ${trend.arrow}</span>`:'<span class="av191-trend">Obrat —</span>';return `<div class="av191-customer-extra">${own}${turnover}<span title="Roční bilance návštěv">Návštěvy ${av191Indicator(c)}</span></div>`}
 function av191UpdateCounters(){const now=new Date(),year=now.getFullYear(),prefix=year+'-'+String(now.getMonth()+1).padStart(2,'0');const actual=av191ActualVisits(),monthCount=actual.filter(v=>String(v.date||'').startsWith(prefix)).length,target=av191MonthTarget(year,now.getMonth()+1);const active=data.filter(c=>!c.isColleague&&c.archived!==true),activeIds=new Set(active.map(c=>c.id)),unique=new Set(actual.filter(v=>String(v.date||'').startsWith(year+'-')&&activeIds.has(v.customerId)).map(v=>v.customerId)).size;const first=$('av191VisitsCount'),second=$('av191CustomersCount');if(first){first.textContent='Návštěvy '+monthCount+' / '+(target||'—');first.classList.toggle('av191-complete',target>0&&monthCount>=target)}if(second)second.textContent='Zákazníci '+unique+' / '+active.length;}
+// 2.9.212: rozkliknutí ročního unikátního počítadla zákazníků.
+function av211CustomerCounterOpen(){
+ const existing=document.getElementById('av211CustomerCounterDialog');if(existing)existing.remove();
+ const overlay=document.createElement('div');overlay.id='av211CustomerCounterDialog';overlay.className='avanti-new-overlay';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label','Roční návštěvy zákazníků');
+ overlay.innerHTML='<div class="avanti-new-dialog av211-counter-panel"><div class="av211-counter-top"><h2>Zákazníci – '+new Date().getFullYear()+'</h2><button type="button" class="secondary" id="av211CounterClose">Zavřít ×</button></div><div class="av211-counter-switch"><button type="button" id="av211CounterYes" class="active">Navštívení</button><button type="button" id="av211CounterNo" class="secondary">Nenavštívení</button></div><p class="muted" id="av211CounterSummary"></p><div id="av211CounterRows" class="av211-counter-rows"></div></div>';
+ document.body.append(overlay);
+ const active=data.filter(c=>!c.isColleague&&c.archived!==true);
+ const year=String(new Date().getFullYear());
+ const vById=new Map();for(const v of av191ActualVisits())if(String(v.date||'').startsWith(year)&&active.some(c=>c.id===v.customerId)){const a=vById.get(v.customerId)||[];a.push(v);vById.set(v.customerId,a)}
+ const close=()=>overlay.remove();document.getElementById('av211CounterClose').onclick=close;overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+ function draw(visited){const btnY=document.getElementById('av211CounterYes'),btnN=document.getElementById('av211CounterNo');btnY.classList.toggle('active',visited);btnY.classList.toggle('secondary',!visited);btnN.classList.toggle('active',!visited);btnN.classList.toggle('secondary',visited);
+  const found=active.filter(c=>vById.has(c.id)===visited).sort((a,b)=>String(a.company||a.person||'').localeCompare(String(b.company||b.person||''),'cs'));
+  document.getElementById('av211CounterSummary').textContent=(visited?'Navštíveno: ':'Nenavštíveno: ')+found.length+' z '+active.length+' aktivních zákazníků';
+  const host=document.getElementById('av211CounterRows');host.replaceChildren();
+  for(const c of found){const customerVisits=vById.get(c.id)||[];const dates=customerVisits.map(v=>v.date).sort();const b=document.createElement('button');b.type='button';b.className='av211-counter-row';const name=document.createElement('strong');name.textContent=c.company||c.person||'Zákazník';const meta=document.createElement('small');meta.textContent=visited?('Návštěv: '+customerVisits.length+' · Naposledy: '+(dates.length?new Date(dates[dates.length-1]+'T12:00').toLocaleDateString('cs-CZ'):'—')):(c.city||'Bez letošní návštěvy');b.append(name,meta);b.onclick=()=>{close();detail(c.id)};host.append(b)}
+  if(!found.length){const p=document.createElement('p');p.className='muted';p.textContent='Žádní zákazníci v této skupině.';host.append(p)}
+ }
+ document.getElementById('av211CounterYes').onclick=()=>draw(true);document.getElementById('av211CounterNo').onclick=()=>draw(false);draw(true);
+}
+$('av191CustomersCount').setAttribute('role','button');$('av191CustomersCount').setAttribute('tabindex','0');$('av191CustomersCount').style.cursor='pointer';$('av191CustomersCount').title='Kliknutím zobrazíš letošní navštívené a nenavštívené zákazníky';$('av191CustomersCount').addEventListener('click',av211CustomerCounterOpen);$('av191CustomersCount').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();av211CustomerCounterOpen()}});
 let av195EditingId=null;
 function av195EditColleague(id=null){
  const x=id?data.find(c=>c.id===id&&c.isColleague):null;
@@ -3877,7 +3908,7 @@ function renderDatabase(){
  $('dbResults').innerHTML=output.length?output.join(''):'<p class="muted">Žádné odpovídající záznamy.</p>';
 }
 $('tileDatabase').onclick=()=>{show('databaseView');renderDatabase()};
-$('databaseBack').onclick=()=>show('homeView');
+$('databaseBack').onclick=()=>{if(window.av211DatabaseFromWarehouse){window.av211DatabaseFromWarehouse=false;show('warehouseView');$('whOverview').hidden=false;$('whGifts').hidden=true;}else show('homeView')};
 ['dbMode','dbCategory','dbSearch'].forEach(id=>$(id).addEventListener(id==='dbSearch'?'input':'change',renderDatabase));
 $('dbExport').onclick=async()=>{
  renderDatabase();
@@ -4719,7 +4750,8 @@ function visitCalendarAllDayRefresh(){
  else if(!$('visitCalendarAllDayWrap').hidden){
   const [from,to]=calNewDefaultTime();
   if(!vf.elements.time.value)vf.elements.time.value=from;
-  if(!vf.elements.endTime.value){
+  // U dokončované návštěvy se původní/plánovaný konec nepředvyplňuje.
+  if(!visitCompleting&&!vf.elements.endTime.value){
    const minutes=Number(vf.elements.time.value.slice(0,2))*60+Number(vf.elements.time.value.slice(3))+60;
    vf.elements.endTime.value=minutes>=24*60?'23:59':String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0');
   }
@@ -4755,7 +4787,7 @@ $('visitCalendarAllDay').checked=canEditOwnAllDay&&(originalCalendarEvent.calend
 if(!completing&&avantiEditableInternalGoogle(originalCalendarEvent)&&!$('visitCalendarAllDay').checked&&!vf.elements.endTime.value)vf.elements.endTime.value=avantiGoogleEndClock(originalCalendarEvent);
 avantiVisitInitialEndValue=vf.elements.endTime.value;
 visitCalendarAllDayRefresh();
-if(completing){vf.elements.endTime.value='';avantiVisitInitialEndValue='';}
+if(completing){vf.elements.endTime.value='';avantiVisitInitialEndValue='';av187EndEdited=false;}
 const googleReadonly=false;
 for(const key of ['date','time']){vf.elements[key].readOnly=googleReadonly;vf.elements[key].title=googleReadonly?'Tento údaj uprav v Apple/Google Kalendáři.':'';}vf.elements.privateNote.readOnly=false;vf.elements.privateNote.title='Soukromá poznámka se ukládá do Moje AVANTI.';
 $('googleOriginHint').hidden=!(editId&&isGoogleImportedVisit(originalCalendarEvent));
@@ -4798,7 +4830,7 @@ function openGoogleAssignmentFull(event){
  visitCustomerLookup.refresh();
 }
 
-vf.onsubmit=e=>{e.preventDefault();syncVisitSampleChecks();if(!avLoanPrepare())return;const v={id:visitEditing||('v_'+Date.now()+'_'+Math.random().toString(36).slice(2)),mode:visitMode,customerId:visitMode==='own'?vf.elements.customerId.value:'',branchId:visitMode==='own'?vf.elements.branchId.value:'',contactId:visitMode==='own'&&vf.elements.contactId.value!==visitNewContactKey?vf.elements.contactId.value:'',otherName:visitMode==='other'?vf.elements.otherName.value.trim():'',date:vf.elements.date.value,city:vf.elements.city.value.trim(),time:vf.elements.time.value,privateNote:vf.elements.privateNote.value.trim(),reportNote:vf.elements.reportNote.value.trim(),contactType:vf.elements.contactType.value,activities:[...new Set([...vf.querySelectorAll('.visit-options input:checked')].map(x=>x.name).concat((visitInventoryMode?[]:visitSampleDraft).filter(x=>['Dodáno','Zapůjčeno'].includes(x.action)).map(visitSampleCategoryKey).filter(Boolean)))],status:vf.elements.completed.checked?'completed':'planned'};
+vf.onsubmit=e=>{e.preventDefault();if(visitCompleting&&!av187EndEdited)vf.elements.endTime.value='';syncVisitSampleChecks();if(!avLoanPrepare())return;const v={id:visitEditing||('v_'+Date.now()+'_'+Math.random().toString(36).slice(2)),mode:visitMode,customerId:visitMode==='own'?vf.elements.customerId.value:'',branchId:visitMode==='own'?vf.elements.branchId.value:'',contactId:visitMode==='own'&&vf.elements.contactId.value!==visitNewContactKey?vf.elements.contactId.value:'',otherName:visitMode==='other'?vf.elements.otherName.value.trim():'',date:vf.elements.date.value,city:vf.elements.city.value.trim(),time:vf.elements.time.value,privateNote:vf.elements.privateNote.value.trim(),reportNote:vf.elements.reportNote.value.trim(),contactType:vf.elements.contactType.value,activities:[...new Set([...vf.querySelectorAll('.visit-options input:checked')].map(x=>x.name).concat((visitInventoryMode?[]:visitSampleDraft).filter(x=>['Dodáno','Zapůjčeno'].includes(x.action)).map(visitSampleCategoryKey).filter(Boolean)))],status:vf.elements.completed.checked?'completed':'planned'};
 if(pendingGoogleEvent){if(visits.some(x=>x.googleCalendarId===pendingGoogleEvent.id)){alert('Tato schůzka už byla přiřazena. Obnov kalendář.');return}v.googleCalendarId=pendingGoogleEvent.id;v.googleCalendarSource='AVANTI – schůzky';v.googleEventOrigin='google';v.googleEventTitle=pendingGoogleEvent.summary||'';v.googleEventLocation=pendingGoogleEvent.location||'';v.googleEventEnd=pendingGoogleEvent.end?.dateTime||pendingGoogleEvent.end?.date||'';v.googleAllDay=!pendingGoogleEvent.start?.dateTime;}
 if(pendingGoogleEvent&&v.mode==='other'&&!v.otherName)v.otherName=String(pendingGoogleEvent.summary||'').trim();if(v.mode==='own'&&window.avantiVisitTasksValidate&&!window.avantiVisitTasksValidate())return;if(v.mode==='own'&&!data.some(c=>c.id===v.customerId)){alert('Vyber zákazníka.');return}if(v.mode==='own'&&window.av210GiftValidate&&!window.av210GiftValidate(v))return;if(v.mode==='other'&&!v.otherName){alert('Vyplň název zákazníka nebo místa.');return}if(!v.date||(!v.city&&!(v.mode==='own'&&isInternalCustomer(data.find(x=>x.id===v.customerId))))){alert('Vyplň datum a město.');return}
 const visitCompany=v.mode==='own'?data.find(c=>c.id===v.customerId):null;
@@ -4807,8 +4839,9 @@ if(visitEditing&&visits.find(x=>x.id===visitEditing)?.calendarCreated){
  v.calendarAllDay=ownAllDay;
  if(ownAllDay){v.time='';v.endTime='';v.endDate='';v.durationMinutes=null;}
  else{v.calendarEndDate='';
-  if(!v.time||(!vf.elements.endTime.value&&!completing)){alert('Vyplň začátek a konec události.');return}
+  if(!v.time||(!vf.elements.endTime.value&&!visitCompleting)){alert('Vyplň začátek a konec události.');return}
   let calendarEnd=vf.elements.endTime.value;
+  if(!calendarEnd&&visitCompleting){const now=av187Now();calendarEnd=avantiVisitTiming(v.date,v.time,now.time,now.date)!==null?now.time:(avantiVisitEndFromElapsed(v.date,v.time,Date.now()-avantiVisitFormOpenedAt)?.time||'');}
   const oldCalendar=visits.find(x=>x.id===visitEditing);
   v.endTime=calendarEnd;
  }
@@ -4874,7 +4907,7 @@ if((googleVisitOriginal&&avantiEditableInternalGoogle(googleVisitOriginal))||pen
    chosenEnd=avantiVisitTiming(v.date,v.time,now.time,now.date)!==null?now.time:(avantiVisitEndFromElapsed(v.date,v.time,Date.now()-avantiVisitFormOpenedAt)?.time||'');
   }
   v.endTime=chosenEnd||'';
-  v.endDate=completesToday&&!av187EndEdited?av187Now().date:av187EndDateFor(v.date,v.time,chosenEnd);
+  v.endDate=completesToday&&!av187EndEdited?(avantiVisitTiming(v.date,v.time,chosenEnd,av187Now().date)!==null?av187Now().date:(avantiVisitEndFromElapsed(v.date,v.time,Date.now()-avantiVisitFormOpenedAt)?.date||av187Now().date)):av187EndDateFor(v.date,v.time,chosenEnd);
   const oldRaw=pendingGoogleEvent?pendingGoogleEvent.end?.dateTime:googleVisitOriginal?.googleEventEnd;
   if(v.endTime===oldEnd&&v.date===oldDate&&v.time===oldStart&&oldRaw){
    const oldEndDay=weekDateISO(new Date(oldRaw));
@@ -5483,7 +5516,7 @@ function openVisitDetail(id){
  $('visitDetailBranchWrap').hidden=!branch;$('visitDetailBranch').textContent=branch?.name||'';
  $('visitDetailContactWrap').hidden=!contact;$('visitDetailContact').textContent=contact?.name||'';
  $('visitDetailDate').textContent=(v.date?new Date(v.date+'T12:00:00').toLocaleDateString('cs-CZ'):'—')+(v.calendarCreated===true&&v.calendarAllDay===true&&v.calendarEndDate&&v.calendarEndDate>v.date?' – '+new Date(v.calendarEndDate+'T12:00:00').toLocaleDateString('cs-CZ'):'')+(v.status!=='planned'&&v.googleCalendarDeleted===true?' · Uskutečněná, odstraněná z Google':'');
- $('visitDetailComplete').hidden=v.status!=='planned';$('visitGoogleWrite').hidden=isGoogleImportedVisit(v);$('visitDetailReschedule').hidden=v.status!=='planned'||isGoogleImportedVisit(v);$('visitDetailCity').textContent=isInternalVisit(v)?'Soukromá událost':(v.city||'—');$('visitDetailTime').textContent=visitTimeLabel(v)+(Number.isFinite(v.durationMinutes)?' · '+v.durationMinutes+' min':'');
+ $('visitDetailComplete').hidden=v.status!=='planned';$('visitGoogleWrite').hidden=isGoogleImportedVisit(v);$('visitDetailReschedule').hidden=true;$('visitDetailCity').textContent=isInternalVisit(v)?'Soukromá událost':(v.city||'—');$('visitDetailTime').textContent=visitTimeLabel(v)+(Number.isFinite(v.durationMinutes)?' · '+v.durationMinutes+' min':'');
  const groups=[['ordered','Objednáno'],['delivered','Dodáno'],['other','Ostatní']];
  $('visitDetailSamples').innerHTML=(customer?.sampleEvents||[]).filter(ev=>ev.visitId===v.id).length?'<div class="visit-detail-group"><strong>Vzorky a materiály</strong>'+ (customer.sampleEvents||[]).filter(ev=>ev.visitId===v.id).map(ev=>'<span class="visit-history-tag">'+safe(ev.categoryName)+' · '+safe(ev.itemName)+(ev.kind?' · '+safe(ev.kind):'')+sampleDisplayCode(ev)+' — '+safe(ev.action)+sampleQuantityLabel(ev)+'</span>').join('')+'</div>':''; $('visitDetailActivities').innerHTML=groups.map(([g,title])=>{
    const tags=(v.activities||[]).filter(key=>key.startsWith(g+':')).map(key=>{const id=key.slice(g.length+1);const label=VISIT_GROUPS[g]?.find(opt=>opt[0]===id)?.[1]||id;return '<span class="visit-history-tag">'+safe(label)+'</span>'}).join('');
@@ -5505,6 +5538,11 @@ function openVisitRescheduleDialog(){
  $('visitRescheduleDate').value=v.date||localToday();
  $('visitRescheduleTime').value=v.time||'';
  $('visitRescheduleEnd').value=v.endTime||av187PlusHour(v.time||'');av187RescheduleEndEdited=false;
+ $('av211RescheduleCity').value=v.city||'';$('av211RescheduleNote').value=v.privateNote||'';
+ const c=data.find(x=>x.id===v.customerId),contacts=c?avContacts(c).filter(x=>!x.archived):[];
+ $('av211RescheduleContact').replaceChildren(new Option('Bez kontaktní osoby',''),...contacts.map(x=>new Option(x.name||'Kontaktní osoba',x.id)));
+ $('av211RescheduleContact').value=v.contactId||'';
+ $('av211RescheduleContact').parentElement.hidden=!c;
  $('visitRescheduleDialog').hidden=false;
  setTimeout(()=>{$('visitRescheduleDate').focus()},0);
 }
@@ -5525,7 +5563,9 @@ $('visitRescheduleForm').onsubmit=e=>{
  const endTime=$('visitRescheduleEnd').value;
  if(!date){alert('Vyber datum návštěvy.');return}
  if(endTime&&!time){alert('Konec lze vyplnit jen pokud je zadaný začátek.');return}
- const next={...original,date,time};
+ const newCity=$('av211RescheduleCity').value.trim();
+ if(!newCity&&!isInternalVisit(original)){alert('Vyplň město návštěvy.');return}
+ const next={...original,date,time,city:newCity,contactId:$('av211RescheduleContact').parentElement.hidden?original.contactId:($('av211RescheduleContact').value||''),privateNote:$('av211RescheduleNote').value.trim(),status:'planned'};
  if(time&&endTime){
   const nextEndDate=av187EndDateFor(date,time,endTime);
   const duration=avantiVisitTiming(date,time,endTime,nextEndDate);
@@ -5547,7 +5587,7 @@ $('visitRescheduleForm').onsubmit=e=>{
  closeVisitRescheduleDialog();
  openVisitDetail(next.id);
 };
-$('visitDetailEdit').onclick=()=>{if(!visitDetailId)return;const v=visits.find(x=>x.id===visitDetailId);if(!v)return;if(v.calendarCreated===true&&isInternalVisit(v)&&!isGoogleImportedVisit(v)){calEditMine(v.id);return;}visitCompleting=false;visitEditFromDetail=true;openVisit(v.customerId||'',v.id)};
+$('visitDetailEdit').onclick=()=>{if(!visitDetailId)return;const v=visits.find(x=>x.id===visitDetailId);if(!v)return;if(v.status==='planned'&&!isGoogleImportedVisit(v)){openVisitRescheduleDialog();return;}if(v.calendarCreated===true&&isInternalVisit(v)&&!isGoogleImportedVisit(v)){calEditMine(v.id);return;}visitCompleting=false;visitEditFromDetail=true;openVisit(v.customerId||'',v.id)};
 $('visitDetailDelete').onclick=()=>{
   if(!visitDetailId)return;
   const visit=visits.find(v=>v.id===visitDetailId);
@@ -9406,7 +9446,7 @@ function customerChoices(){const q=$('whCustomerSearch').value.trim().toLocaleLo
 }
 function branches(){const c=currentCustomers().find(x=>x.id===selectedCustomer);const a=(c&&Array.isArray(c.branches)?c.branches:[]).filter(x=>!x.archived);$('whBranch').innerHTML='<option value="">Celá firma (bez provozovny)</option>'+a.map(x=>`<option value="${esc(x.id)}">${esc(x.name||x.city||'Provozovna')}</option>`).join('');$('whBranchWrap').hidden=!a.length;$('whSelectedCustomer').textContent=c?'Vybráno: '+cusName(c):'Zákazník není vybrán'}
 function updateType(){const on=$('whType').value==='customer';$('whCustomerWrap').hidden=!on;$('whBranchWrap').hidden=!on||!selectedCustomer||!$('whBranch').options.length||$('whBranch').options.length===1;if(on)customerChoices()}
-$('tileWarehouse').onclick=open;$('whBack').onclick=()=>document.getElementById('brandHome').click();$('whOpenGifts').onclick=openGifts;$('whToOverview').onclick=open;
+$('tileWarehouse').onclick=open;$('av211OpenSamplesDb').onclick=()=>{window.av211DatabaseFromWarehouse=true;$('tileDatabase').click()};$('whBack').onclick=()=>document.getElementById('brandHome').click();$('whOpenGifts').onclick=openGifts;$('whToOverview').onclick=open;
 $('whNewItem').onclick=()=>{closeForms();$('whItemForm').reset();$('whItemForm').hidden=false;$('whItemName').focus()};$('whItemCancel').onclick=closeForms;
 $('whItemForm').onsubmit=e=>{e.preventDefault();try{const name=$('whItemName').value.trim();if(!name)throw Error('Zadej název.');if(db.items.some(x=>x.name.toLocaleLowerCase('cs')===name.toLocaleLowerCase('cs')))throw Error('Tato položka již existuje.');persist({...db,items:[...db.items,{id:id(),name}]});closeForms();render();info('Položka „'+name+'“ byla přidána.')}catch(err){alert('Položku se nepodařilo uložit: '+err.message)}};
 $('whMovement').onclick=()=>{if(!db.items.length){alert('Nejdřív přidej skladovou položku.');return}closeForms();$('whMoveForm').reset();$('whDate').value=today();selectedCustomer='';$('whCustomerSearch').value='';branches();updateType();$('whMoveForm').hidden=false;render();$('whType').focus()};$('whMoveCancel').onclick=closeForms;
@@ -9529,7 +9569,7 @@ const sub=document.createElement('div');sub.id='av193SettingsCategory';sub.hidde
 const detail=document.createElement('div');detail.id='av193SettingsDetail';detail.hidden=true;panel.appendChild(detail);
 const cats=[
  {id:'customer',name:'Zákazníci',icon:'♧',accent:'#245fa8',soft:'#e5effc',items:[['Plány návštěv',0,'Měsíční cíle'],['Import zákazníků',1,'PDF a IČO'],['Zaměření a skupiny',3,'Číselníky zákazníků'],['Import a export dat',4,'Zákazníci a obraty']]},
- {id:'stock',name:'Sklad / Vzorky',icon:'▤',accent:'#277b65',soft:'#e2f4ea',items:[['Číselníky vzorků',3,'Druhy a kategorie'],['Evidence a katalogy',4,'Import a export'],['Databáze',-3,'Katalogy a vzorky']]},
+ {id:'stock',name:'Sklad / Vzorky',icon:'▤',accent:'#277b65',soft:'#e2f4ea',items:[['Číselníky vzorků',3,'Druhy a kategorie'],['Evidence a katalogy',4,'Import a export']]},
  {id:'backup',name:'Zálohování',icon:'↻',accent:'#ad7132',soft:'#fff1dc',items:[['Zálohování a obnova',5,'JSON zálohy']]},
  {id:'other',name:'Ostatní',icon:'◈',accent:'#7658a0',soft:'#f0eaf8',items:[['Synchronizace a zabezpečení',6,'Připojení a stav']]},
  {id:'app',name:'Aplikace',icon:'⚙',accent:'#5b687d',soft:'#ebedf2',items:[['Uspořádání dlaždic',-1,'Rozložení hlavní plochy'],['Nápady a postřehy',-2,'Update']]}
@@ -9681,10 +9721,16 @@ $('settingsBack')?.addEventListener('click',goRoot);
   });
   $('av196MailOpen').addEventListener('click',()=>{const emails=currentEmails();if(!emails.length)return;
    const subject=$('av196MailSubject').value,body=$('av196MailBody').value;
-   const params=new URLSearchParams();params.set('bcc',emails.join(','));if(subject)params.set('subject',subject);if(body)params.set('body',body);
-   // mailto používá výchozí poštovní aplikaci; neodesílá zprávu.
-   window.location.href='mailto:?'+params.toString();
-   $('av196MailFeedback').textContent='Připraven koncept s '+emails.length+' adresami BCC. Zkontroluj jej v poště a přilož soubory ručně.';
+   const batch=selectedBatches()[batchIndex]||[];
+   const colleagues=batch.filter(c=>c.owner==='colleagues').map(c=>c.email),customers=batch.filter(c=>c.owner!=='colleagues').map(c=>c.email);
+   // RFC 6068: URLSearchParams používá form-encoding (mezery -> '+'),
+   // které některé Outlook klienty v mailto chybně zobrazí doslova.
+   // Každá textová hodnota se proto kóduje pomocí encodeURIComponent (%20).
+   const fields=[];if(customers.length)fields.push('bcc='+encodeURIComponent(customers.join(',')));
+   if(subject)fields.push('subject='+encodeURIComponent(subject));
+   if(body)fields.push('body='+encodeURIComponent(body.replace(/\r?\n/g,'\r\n')));
+   window.location.href='mailto:'+colleagues.join(',')+(fields.length?'?'+fields.join('&'):'');
+   $('av196MailFeedback').textContent='Připraven koncept: '+colleagues.length+' kolegů v Komu, '+customers.length+' zákazníků v BCC. Zkontroluj jej v poště a přilož soubory ručně.';
   });
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready);else ready();
